@@ -87,7 +87,7 @@ const AdminLogin = () => {
         userId:loginResponse.data.userId,
       })
         localStorage.setItem(
-          "userDetails",
+          "adminDetails",
           JSON.stringify({
             isloggedIn: true,
             jwt: loginResponse.data.token,

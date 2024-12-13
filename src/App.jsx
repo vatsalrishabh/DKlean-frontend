@@ -46,6 +46,8 @@ import Dates from "./Components/Calendar/Dates";
 import DonorForgotPass from "./Components/DonorForgotPass";
 import AdminLogin from "./Admin/AdminLogin";
 import AdminForgotPass from "./Components/AdminForgotPass";
+import EditBookAnAppointment from "./Components/EditBookAnAppointment";
+import DonationPage from "./Components/Donations/DonationPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -101,6 +103,19 @@ loadDoctorDetails();
               <Footer />
             </>
           } />
+
+
+
+<Route path="/donate" element={
+            <>
+              <Navbar />
+              <DonationPage />
+              {/* <ChatBotButton /> */}
+              <Footer />
+            </>
+          } />
+
+
           <Route path="/pres/:bookingId" element={<Prescription />} />
           <Route path="/patientlogin" element={
             <>
@@ -342,6 +357,25 @@ loadDoctorDetails();
             <>
               <PatientNavbar />
               <PatientDashboard />
+              {/* <ChatBotButton /> */}
+              <Footer />
+            </>
+          ) : <PatientNotLoggedIn />} />
+
+
+<Route path="/bookAp" element={loggedInUser.isloggedIn ? (
+            <>
+              <PatientNavbar />
+              <BookAnAppointment />
+              {/* <ChatBotButton /> */}
+              <Footer />
+            </>
+          ) : <PatientNotLoggedIn />} />
+
+<Route path="/admin/bookAp" element={loggedInUser.isloggedIn ? (
+            <>
+              <PatientNavbar />
+              <EditBookAnAppointment />
               {/* <ChatBotButton /> */}
               <Footer />
             </>

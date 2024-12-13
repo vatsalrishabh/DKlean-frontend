@@ -1,147 +1,96 @@
-import React, { useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Select, MenuItem, FormControl, InputLabel, Badge } from '@mui/material';
-import Slide from '@mui/material/Slide';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BaseUrl } from "../BaseUrl";
+import { Button, Box, Typography } from "@mui/material";
+import { styled } from "@mui/system";
+import CircularProgress from '@mui/material/CircularProgress';
+import FinalSelect from "./FinalSelect";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+// Custom styled Box component for content styling
+const ContentBox = styled(Box)(({
+  backgroundColor: "white",
+  padding: "2rem",
+  borderRadius: "8px",
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+  marginBottom: "1.5rem",
+}));
 
 const TimeSlots = (props) => {
-  // Sample data for time slots and availability
-  const data = {
-    date: '12-12-2024',
-    slots: [
-      {
-        bookingId: 'slot1',
-        time: '09:00 AM to 09:30 AM',
-        doctors: [
-          { doctorId: 'doc1', status: 'booked' },
-          { doctorId: 'doc2', status: 'booked' },
-        ],
-        bookedBy: 'patient1',
-        bookedOn: '12-12-2024',
-      },
-      {
-        bookingId: 'slot2',
-        time: '10:00 AM to 10:30 AM',
-        doctors: [
-          { doctorId: 'doc1', status: 'not available' },
-          { doctorId: 'doc2', status: 'available' },
-        ],
-        bookedBy: 'NA',
-        bookedOn: 'NA',
-      },
-      {
-        bookingId: 'slot3',
-        time: '11:00 AM to 11:30 AM',
-        doctors: [
-          { doctorId: 'doc1', status: 'available' },
-          { doctorId: 'doc2', status: 'available' },
-        ],
-        bookedBy: 'NA',
-        bookedOn: 'NA',
-      },
-    ],
-  };
+  const [data, setData] = useState([]); // Store all booking data from server
+  const [selectedDateData, setSelectedDateData] = useState([]); // Filtered slots for selected date(single)
 
-  const [selectedSlot, setSelectedSlot] = useState(null);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [selectedDoctor, setSelectedDoctor] = useState('');
-  const [bookedBy, setBookedBy] = useState('loggedInUserId');
+  // Fetch all booking data on component mount
+  useEffect(() => {
+    const fetchAllDates = async () => {
+      try {
+        const response = await axios.get(`${BaseUrl}/api/bookings/allbookings`);
+        if (response.data) {
+          setData(response.data.data); // Set data
+        }
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
 
-  // Function to get the color based on doctor status
-  const getStatusBadge = (status) => {
-    switch (status) {
-      case 'available':
-        return <Badge color="success" variant="dot" />;
-      case 'not available':
-        return <Badge color="error" variant="dot" />;
-      case 'booked':
-        return <Badge color="gray" variant="dot" />;
-      default:
-        return <Badge color="default" />;
-    }
-  };
+    fetchAllDates();
+  }, []); // Run once when component mounts
 
-  const handleSlotClick = (slot) => {
-    setSelectedSlot(slot);
-    setOpenDialog(true);
-  };
+  // Filter slots based on selected date whenever the selected date or data changes
+  useEffect(() => {
+    const filteredSlots = data.filter(
+      (item) => item.date === props.selectedDate // Directly use props.selectedDate
+    );
+    setSelectedDateData(filteredSlots); // Update filtered slots
+    // console.log(selectedDateData+" "+"selected date data")
+    // console.log(selectedDateData[0].date+" "+"selected date date")
+    // console.log(selectedDateData.doctor+" "+"selected date slots")
+  }, [props.selectedDate, data]); // Re-filter when data or selected date changes
 
-  const handleBook = () => {
-    if (selectedDoctor) {
-      console.log({
-        bookedBy,
-        date: data.date,
-        timeSlot: selectedSlot.time,
-        doctor: selectedDoctor,
-      });
-      setOpenDialog(false);
-    } else {
-      alert('Please select a doctor.');
-    }
+  // Handle doctor booking
+  const handleBookDoctor = (slotId) => {
+    console.log("Booking doctor with slotId:", slotId);
+    // API call to book the doctor (use slotId to book a doctor)
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-center text-xl font-semibold mb-6">
-        Available Time Slots for {props.selectedDate || data.date}
-      </h1>
+    <div className="container mx-auto px-4 py-8">
+   
+      {/* Show selected date's available doctors */}
+      <h2 className="text-3xl font-semibold text-center mb-6">
+        Available Doctors for {props.selectedDate}
+      </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {data.slots.map((slot) => (
-          <div key={slot.bookingId} className="bg-white p-4 rounded-lg shadow-md">
-            <div
-              className={`cursor-pointer p-4 border-2 rounded-lg ${
-                slot.bookedBy === 'NA' ? 'border-blue-500' : 'border-gray-300'
-              }`}
-              onClick={() => handleSlotClick(slot)}
-            >
-              <div className="font-bold text-lg">{slot.time}</div>
+      {/* Render the selected date's slots and availability */}
+      {selectedDateData.length > 0 ? (
+        selectedDateData.map((item) => (
+          <ContentBox key={item._id}>
+            <div className="pb-5">
+              <Typography variant="h6" className="text-xl font-semibold mb-4">
+               Date: {item.date}   
+              </Typography>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <Dialog
-        open={openDialog}
-        TransitionComponent={Transition}
-        onClose={() => setOpenDialog(false)}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle>Select a Doctor</DialogTitle>
-        <DialogContent>
-          <FormControl fullWidth>
-            <InputLabel id="doctor-select-label" className="p-3">
-              Select Doctor
-            </InputLabel>
-            <Select
-              labelId="doctor-select-label"
-              value={selectedDoctor}
-              onChange={(e) => setSelectedDoctor(e.target.value)}
-              label="Select Doctor"
-            >
-              {selectedSlot &&
-                selectedSlot.doctors.map((doctor) => (
-                  <MenuItem key={doctor.doctorId} value={doctor.doctorId}>
-                    <div className="flex justify-between items-center">
-                      <span>{doctor.doctorId}</span>
-                      {getStatusBadge(doctor.status)}
-                    </div>
-                  </MenuItem>
-                ))}
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleBook} color="primary">
-            Book
-          </Button>
-        </DialogActions>
-      </Dialog>
+            <ul className="space-y-4 overflow-y-auto max-h-96">
+              {" "}
+              {/* Adjust max-h-96 to your preferred height */}
+              {item.slots.map((slot) => (
+                <li
+                  key={slot._id}
+                  className="flex justify-between items-center py-4 bg-gray-100 rounded-lg hover:bg-gray-200"
+                >
+                  <span className="text-lg font-medium flex justify-between">
+                 <div>{slot.time}</div>   <div><FinalSelect time={slot.time} doctors={slot.doctors} date={item.date} /> </div>  
+                 </span>
+                  
+                </li>
+              ))}
+            </ul>
+          </ContentBox>
+        ))
+      ) : (
+        <Typography variant="h6" className="text-red-500 text-center flex justify-center align-middle">
+          <CircularProgress color="secondary" size={40} />
+        </Typography>
+      )}
     </div>
   );
 };

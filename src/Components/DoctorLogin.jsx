@@ -62,7 +62,7 @@ const DoctorLogin = () => {
         console.log(loginResponse.status);
     //  console.log(loginResponse.data.DoctorDetails);
     localStorage.setItem(
-      "userDetails",
+      "donorDetails",
       JSON.stringify({
         isloggedIn: true,
         jwt: loginResponse.data.token,
