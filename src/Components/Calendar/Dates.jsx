@@ -16,7 +16,7 @@ const Dates = () => {
       return `${day}-${month}-${year}`;
     };
     setFormattedDate(formatDate(selectedDate)); // Format the selected date
-  }, [selectedDate],[formattedDate]);
+  }, [selectedDate]);
 
   // Function to handle date selection
   const handleDateClick = (day) => {

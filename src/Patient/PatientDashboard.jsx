@@ -3,12 +3,12 @@ import { Card, CardContent, Typography, Button, Grid, Avatar } from '@mui/materi
 import { Link } from 'react-router-dom';
 import { CalendarToday, History, PersonOutline, Settings } from '@mui/icons-material';
 
-const DoctorDashboard = () => {
+const PatientDashboard = () => {
   const [loggedInUser, setLoggedInUser] = useState({});
 
   useEffect(() => {
     const loadUserDetails = () => {
-      const details = localStorage.getItem('doctorDetails');
+      const details = localStorage.getItem('userDetails');
       if (details) {
         setLoggedInUser(JSON.parse(details));
       }
@@ -44,7 +44,7 @@ const DoctorDashboard = () => {
               <Typography variant="body2" color="textSecondary" className="mb-4">
                 Schedule a new appointment with your preferred doctor.
               </Typography>
-              <Link to="/bookNewAppointment" style={{ textDecoration: 'none' }}>
+              <Link to="/bookAp" style={{ textDecoration: 'none' }}>
                 <Button
                   variant="contained"
                   style={{ backgroundColor: '#71a113', color: '#fff' }}
@@ -69,7 +69,7 @@ const DoctorDashboard = () => {
               <Typography variant="body2" color="textSecondary" className="mb-4">
                 View details of all your past appointments and treatments.
               </Typography>
-              <Link to="/allPreviousAppointments" style={{ textDecoration: 'none' }}>
+              <Link to="/pApp" style={{ textDecoration: 'none' }}>
                 <Button
                   variant="contained"
                   style={{ backgroundColor: '#71a113', color: '#fff' }}
@@ -110,4 +110,4 @@ const DoctorDashboard = () => {
   );
 };
 
-export default DoctorDashboard;
+export default PatientDashboard;

@@ -3,12 +3,12 @@ import { Card, CardContent, Typography, Button, Grid, Avatar } from '@mui/materi
 import { Link } from 'react-router-dom';
 import { CalendarToday, History, PersonOutline, Settings } from '@mui/icons-material';
 
-const DoctorDashboard = () => {
+const AdminDashboard = () => {
   const [loggedInUser, setLoggedInUser] = useState({});
 
   useEffect(() => {
     const loadUserDetails = () => {
-      const details = localStorage.getItem('doctorDetails');
+      const details = localStorage.getItem('subAdminDetails');
       if (details) {
         setLoggedInUser(JSON.parse(details));
       }
@@ -110,4 +110,4 @@ const DoctorDashboard = () => {
   );
 };
 
-export default DoctorDashboard;
+export default AdminDashboard;

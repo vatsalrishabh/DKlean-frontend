@@ -8,6 +8,7 @@ import { BaseUrl } from "./BaseUrl";
 import SnackBarAlert from '../Components/SnackBarAlert'
 
 const DoctorLogin = () => {
+  const role='doctor';
   const [showLogin, setShowLogin] = useState(true);
   const [hideOtpModal, setHideOtpModal] = useState("hidden"); //initially hide otp modal
   const [isOtpCorrect, setIsOtpCorrect] = useState(false);
@@ -44,7 +45,7 @@ const DoctorLogin = () => {
     const loginForm = {
       email: doctorLoginEmail,
       password: doctorLoginPassword,
-      role:"donor",
+      role:role,
     };
 
     try {
@@ -62,11 +63,11 @@ const DoctorLogin = () => {
         console.log(loginResponse.status);
     //  console.log(loginResponse.data.DoctorDetails);
     localStorage.setItem(
-      "donorDetails",
+      "doctorDetails",
       JSON.stringify({
         isloggedIn: true,
         jwt: loginResponse.data.token,
-        role:'donor',
+        role:role,
         email: loginResponse.data.email,
         userId:loginResponse.data.userId,
       })
@@ -114,7 +115,7 @@ const DoctorLogin = () => {
     const registrationForm = new FormData();
     registrationForm.append("email", doctorEmail);
     registrationForm.append("mobile", doctorMobile);
-    registrationForm.append("role", "donor");
+    registrationForm.append("role", role);
 
 
 
@@ -163,7 +164,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
       sex: doctorSex,
       email: doctorEmail,
       otp: otp,
-      role:"donor",
+      role:role,
     };
 
     // console.log("verify otp executed");
@@ -183,7 +184,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
         console.log("OTP verified, registration done");
         setIsOtpCorrect("correct"); // verify it matches make that true
         setTimeout(() => {
-          // goto dashboard and finish Login.
+          setShowLogin(true);
         }, 2000);
         setHideOtpModal("hidden");
       } else {
@@ -220,7 +221,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
             Home
           </BreadcrumbItem>
 
-          <BreadcrumbItem>Donor Login</BreadcrumbItem>
+          <BreadcrumbItem>Doctor Login</BreadcrumbItem>
           {/* <BreadcrumbItem>Flowbite React</BreadcrumbItem> */}
         </Breadcrumb>
       </div>
@@ -320,7 +321,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
             >
               <div className="mb-5">
                 <div className="heading text-center font-bold text-2xl">
-                  Donor <span className="text-custom-maroon">Login</span>
+                  Doctor <span className="text-custom-maroon">Login</span>
                 </div>
                 <div className="togglle flex w-full justify-center">
                   <div
@@ -401,7 +402,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
                 </label> */}
                 <div className="flex">
                   <p>Change Password :-</p>
-                  <Link to="../donorforgotPass">
+                  <Link to="../doctorforgotPass">
                     {" "}
                     <p className="pl-5 text-blue-500 font-bold underline">
                       Forgot Password
@@ -430,7 +431,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
             >
               <div className="mb-5">
                 <div className="heading text-center font-bold text-2xl">
-                  Donor{" "}
+                  Doctor{" "}
                   <span className="text-custom-maroon">Registraiton</span>
                 </div>
                 <div className="togglle flex w-full justify-center">

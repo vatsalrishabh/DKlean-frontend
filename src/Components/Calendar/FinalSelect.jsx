@@ -25,6 +25,17 @@ const FinalSelect = (props) => {
       doctorName: doctor.doctorName,
       bookedBy: "CurrentUserId", // Replace with actual user ID if available
     });
+
+    localStorage.setItem('paymentData', JSON.stringify({
+        date: props.date,                // Ensure props.date has a valid value
+        time: props.time,                // Ensure props.time has a valid value
+        bookingId: doctor.bookingId,     // Ensure doctor.bookingId is defined
+        doctorId: doctor.doctorId,       // Ensure doctor.doctorId is defined
+        doctorName: doctor.doctorName,   // Ensure doctor.doctorName is defined
+        bookedBy: userId || "Anonymous", // Replace with actual user ID; fallback to "Anonymous"
+      }));
+      
+
   };
 
   const style = {

@@ -15,7 +15,7 @@ const AdminForgotPass = () => {
   const [isOtpVisible, setIsOtpVisible] = useState(false);
   const [isEmailReadOnly, setEmailReadOnly] = useState(false);
   const [alert, setAlert] = useState({ message: "", status: "99" });
-
+const role = "admin";
   const navigate = useNavigate();
 
   const showAlert = (message, status, timeout = 5000) => {
@@ -26,7 +26,7 @@ const AdminForgotPass = () => {
   const resetPassword = async (e) => {
     e.preventDefault();
 
-    const payload = { email:emailUpdatePassword, role:"admin" };
+    const payload = { email:emailUpdatePassword, role:role };
     try {
       const response = await axios.post(
         `${BaseUrl}/api/auth/updatePassword`,
@@ -58,7 +58,7 @@ const AdminForgotPass = () => {
       email: emailUpdatePassword,
       password: patientPassword,
       otp,
-      role:"admin" 
+      role:role
     };
 
     try {

@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Avatar } from '@mui/material';
 import pulsecarelogo from '../assets/Puslecarelogo/PulseCare.png';
 
 const PatientNavbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState({});
+  
+    useEffect(() => {
+      const loadUserDetails = () => {
+        const details = localStorage.getItem('userDetails');
+        if (details) {
+          setLoggedInUser(JSON.parse(details));
+        }
+      };
+      loadUserDetails();
+  
+    }, []);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
@@ -31,7 +44,7 @@ const PatientNavbar = () => {
 
   const handleLogout = () => {
     // Remove user details from localStorage
-    localStorage.removeItem('userDetails');
+    localStorage.clear();
     // Optionally, redirect to the login page or perform other actions
     window.location.href = '/home'; // Adjust the URL as needed
   };
@@ -54,7 +67,7 @@ const PatientNavbar = () => {
             onClick={toggleDropdown} // Toggle dropdown on click
           >
             <span className="sr-only">Open user menu</span>
-            <img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/150" alt="user avatar" />
+            <Avatar sx={{ bgcolor: 'red' }}>{loggedInUser?.name?.slice(0, 1) || 'N'}</Avatar>
           </button>
           {/* Dropdown menu */}
           <div

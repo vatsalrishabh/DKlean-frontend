@@ -73,7 +73,7 @@ const Footer = () => {
         <li className="flex items-center">
           <EmailIcon className="mr-2" />
           <span className="mr-2 font-bold">Email:</span>
-          <Link to="mailto:pulsecare39@gmail.com" className="hover:underline">pulsecare39@gmail.com</Link>
+          <Link to="mailto:dkleanhealthcare@gmail.com" className="hover:underline">dkleanhealthcare@gmail.com</Link>
         </li>
         <li className="flex items-center">
           {/* <CallIcon className="mr-2" />

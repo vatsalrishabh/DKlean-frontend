@@ -6,7 +6,7 @@ import SnackBarAlert from "./SnackBarAlert";
 import { BaseUrl } from "./BaseUrl";
 import "./PatientForgotPass.css";
 
-const PatientForgotPass = () => {
+const SubAdminForgotPass = () => {
   const [emailUpdatePassword, setEmailUpdatePassword] = useState("");
   const [patientPassword, setPassword] = useState("");
   const [patientConPassword, setConPassword] = useState("");
@@ -15,8 +15,7 @@ const PatientForgotPass = () => {
   const [isOtpVisible, setIsOtpVisible] = useState(false);
   const [isEmailReadOnly, setEmailReadOnly] = useState(false);
   const [alert, setAlert] = useState({ message: "", status: "99" });
-  const role ="user"
-
+const role = "subadmin";
   const navigate = useNavigate();
 
   const showAlert = (message, status, timeout = 5000) => {
@@ -100,7 +99,7 @@ const PatientForgotPass = () => {
       >
         <div className="mb-5">
           <div className="heading text-center font-bold text-2xl">
-            Patient <span className="text-custom-maroon">Forgot Password</span>
+            Sub Admin <span className="text-custom-maroon">Forgot Password</span>
           </div>
           <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
             Username
@@ -182,7 +181,7 @@ const PatientForgotPass = () => {
 
       <div className="flex items-center justify-center">
         <p>Click here to go to Login page.</p>
-        <Link to="../patientlogin" className="pl-5 text-blue-500 font-bold underline">
+        <Link to="../subadminlogin" className="pl-5 text-blue-500 font-bold underline">
           Login Page
         </Link>
       </div>
@@ -190,4 +189,4 @@ const PatientForgotPass = () => {
   );
 };
 
-export default PatientForgotPass;
+export default SubAdminForgotPass;

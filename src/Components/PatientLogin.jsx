@@ -75,6 +75,7 @@ const PatientLogin = () => {
       if (loginResponse.status === 200) {
         setLoggedInUser({
           isloggedIn: true,
+          name:loginResponse.data.name,
           jwt: loginResponse.data.token,
           email: loginResponse.data.email,
           userId:loginResponse.data.userId,
@@ -83,6 +84,7 @@ const PatientLogin = () => {
       console.log({
         isloggedIn: true,
         jwt: loginResponse.data.token,
+        name:loginResponse.data.name,
         email: loginResponse.data.email,
         userId:loginResponse.data.userId,
       })
@@ -91,16 +93,14 @@ const PatientLogin = () => {
           JSON.stringify({
             isloggedIn: true,
             role:'user',
+            name:loginResponse.data.name,
             jwt: loginResponse.data.token,
             email: loginResponse.data.email,
             userId:loginResponse.data.userId,
           })
         );
         setAlert({ message: "Logged in Successfully!", status: "200" });
-        // localStorage code above
-        setTimeout(() => {
-          navigate("/pdash");
-        }, 3000);
+        
       }
     } catch (error) {
       // Corrected error handling
@@ -221,7 +221,7 @@ const PatientLogin = () => {
         setIsOtpCorrect("correct"); // verify it matches make that true
         // loginUser("sample-jwt-token", "patient", "user-id", "user@example.com");
         setTimeout(() => {
-          navigate("/pdash");
+          setShowLogin(true);
         }, 2000);
         setHideOtpModal("hidden");
       } else {

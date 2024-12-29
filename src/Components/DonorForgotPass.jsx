@@ -15,6 +15,7 @@ const DonorForgotPass = () => {
   const [isOtpVisible, setIsOtpVisible] = useState(false);
   const [isEmailReadOnly, setEmailReadOnly] = useState(false);
   const [alert, setAlert] = useState({ message: "", status: "99" });
+  const role = "donor";
 
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const DonorForgotPass = () => {
   const resetPassword = async (e) => {
     e.preventDefault();
 
-    const payload = { email:emailUpdatePassword,role:"donor" };
+    const payload = { email:emailUpdatePassword,role:role };
     try {
       const response = await axios.post(
         `${BaseUrl}/api/auth/updatePassword`,
@@ -58,7 +59,7 @@ const DonorForgotPass = () => {
       email: emailUpdatePassword,
       password: patientPassword,
       otp,
-      role:"donor"
+      role:role
     };
 
     try {

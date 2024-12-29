@@ -3,7 +3,7 @@ import axios from "axios";
 import { BaseUrl } from "../BaseUrl";
 import { Button, Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import FinalSelect from "./FinalSelect";
 
 // Custom styled Box component for content styling
@@ -41,20 +41,10 @@ const TimeSlots = (props) => {
       (item) => item.date === props.selectedDate // Directly use props.selectedDate
     );
     setSelectedDateData(filteredSlots); // Update filtered slots
-    // console.log(selectedDateData+" "+"selected date data")
-    // console.log(selectedDateData[0].date+" "+"selected date date")
-    // console.log(selectedDateData.doctor+" "+"selected date slots")
   }, [props.selectedDate, data]); // Re-filter when data or selected date changes
-
-  // Handle doctor booking
-  const handleBookDoctor = (slotId) => {
-    console.log("Booking doctor with slotId:", slotId);
-    // API call to book the doctor (use slotId to book a doctor)
-  };
 
   return (
     <div className="container mx-auto px-4 py-8">
-   
       {/* Show selected date's available doctors */}
       <h2 className="text-3xl font-semibold text-center mb-6">
         Available Doctors for {props.selectedDate}
@@ -66,28 +56,36 @@ const TimeSlots = (props) => {
           <ContentBox key={item._id}>
             <div className="pb-5">
               <Typography variant="h6" className="text-xl font-semibold mb-4">
-               Date: {item.date}   
+                Date: {item.date}
               </Typography>
             </div>
             <ul className="space-y-4 overflow-y-auto max-h-96">
-              {" "}
-              {/* Adjust max-h-96 to your preferred height */}
               {item.slots.map((slot) => (
                 <li
-                  key={slot._id}
+                   // Unique key combining item ID, slot time, and index
                   className="flex justify-between items-center py-4 bg-gray-100 rounded-lg hover:bg-gray-200"
                 >
-                  <span className="text-lg font-medium flex justify-between">
-                 <div>{slot.time}</div>   <div><FinalSelect time={slot.time} doctors={slot.doctors} date={item.date} /> </div>  
-                 </span>
-                  
+                  <span className="text-lg w-full font-medium flex justify-between">
+                    <div>{slot.time}</div>
+                    <div>
+                      <FinalSelect
+                       
+                        time={slot.time}
+                        doctors={slot.doctors}
+                        date={item.date}
+                      />
+                    </div>
+                  </span>
                 </li>
               ))}
             </ul>
           </ContentBox>
         ))
       ) : (
-        <Typography variant="h6" className="text-red-500 text-center flex justify-center align-middle">
+        <Typography
+          variant="h6"
+          className="text-red-500 text-center flex justify-center align-middle"
+        >
           <CircularProgress color="secondary" size={40} />
         </Typography>
       )}

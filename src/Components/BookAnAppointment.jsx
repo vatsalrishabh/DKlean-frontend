@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ConsultCard from "./ConsultCard";
@@ -9,6 +10,8 @@ const BookAnAppointment = () => {
   const [specialityCard, setSpecialityCard] = useState([]);
   const [commonHealthCard, setCommonHealthCard] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
+
+  
 
   useEffect(() => {
     // Load user details from local storage immediately
@@ -30,7 +33,7 @@ const BookAnAppointment = () => {
         return;
       }
       
-      console.log("JWT: ", loggedInUser.jwt); // Debug: Check JWT value
+      console.log("JWT: ", loggedInUser); // Debug: Check JWT value
 
       try {
         const response = await axios.get(
@@ -70,9 +73,11 @@ const BookAnAppointment = () => {
         {/* Breadcrumb starts */}
         <div className="p-8">
           <Breadcrumb aria-label="Default breadcrumb example">
-            <BreadcrumbItem href="/" icon={HiHome}>
+          <Link to="/patientlogin">
+          <BreadcrumbItem icon={HiHome}>
               Home
             </BreadcrumbItem>
+          </Link>
             <BreadcrumbItem>Book an appointment</BreadcrumbItem>
           </Breadcrumb>
         </div>
