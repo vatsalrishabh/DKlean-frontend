@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <div className="Navbar">
       <nav className="bg-custom-maroon border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-1">
           <Link to="/" className="flex items-center lg:w-1/3">
             <img src={PulseCare} className="h-14" alt="PulseCare Logo" />
           </Link>
@@ -70,13 +70,58 @@ const Navbar = () => {
             id="navbar-default"
           >
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-custom-maroon md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 dark:border-gray-700">
-              <li>
+              <li className="lg:flex justify-center align-middle" >
                 <Link
                   to="/home"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
                   onClick={handleDropDown}
                 >
                   Home
+                </Link>
+              </li>
+              <li className="lg:flex justify-center align-middle" >
+                <Link
+                  to="/aboutus"
+                  className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
+                  onClick={handleDropDown}
+                >
+                  About
+                </Link>
+              </li>
+              <li className="lg:flex justify-center align-middle" >
+                <Link
+                  to="/services"
+                  className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
+                  onClick={handleDropDown}
+                >
+                  Services
+                </Link>
+              </li>
+              <li className="lg:flex justify-center align-middle" >
+                <Link
+                  to="/gallery"
+                  className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
+                  onClick={handleDropDown}
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li className="lg:flex justify-center align-middle" >
+                <Link
+                  to="/contactus"
+                  className="block py-2  font-bold text-white rounded hover:bg-red-500"
+                  onClick={handleDropDown}
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li className="lg:flex justify-center align-middle" >
+                <Link
+                  to="/donate"
+                  className="block py-2 px-3 font-bold text-white rounded-lg bg-yellow-400 hover:bg-yellow-500"
+                  onClick={handleDropDown}
+                >
+                  Donate
                 </Link>
               </li>
               <li className="relative">
@@ -135,33 +180,6 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-              </li>
-              <li>
-                <Link
-                  to="/aboutus"
-                  className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
-                  onClick={handleDropDown}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contactus"
-                  className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
-                  onClick={handleDropDown}
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li className="bg-red-700 lg:p-2">
-                <Link
-                  to="/patientlogin"
-                  className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
-                  onClick={handleDropDown}
-                >
-                  Book Appointment
-                </Link>
               </li>
             </ul>
           </div>

@@ -63,7 +63,7 @@ const Animation = () => {
               animationActive ? 'animate__animated animate__fadeIn' : ''
             }`}
           >
-            PulseCare: Revolutionizing Healthcare with Online Consultations
+            Dklean: Revolutionizing Healthcare with Online Consultations
           </h1>
           <p className="text-lg md:text-xl text-center md:text-left">
             Get healthcare services at your fingertips. Connect with experienced doctors, get instant prescriptions, and track your health progress—all from the comfort of your home.

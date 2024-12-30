@@ -13,7 +13,7 @@ const Footer = () => {
     <div className="mx-auto w-full max-w-screen-xl">
       <div className="grid lg:grid-cols-3 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3 grid-cols-1">
         <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">PulseCare</h2>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Dklean</h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                     <Link to="../patientlogin" className=" hover:underline">Patient Login</Link>
@@ -107,7 +107,7 @@ const Footer = () => {
         </div>
     </div>
     <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 <a href="https://flowbite.com/">PulseCare™</a>. All Rights Reserved.
+        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 <a href="https://flowbite.com/">Dklean™</a>. All Rights Reserved.
         </span>
         <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
