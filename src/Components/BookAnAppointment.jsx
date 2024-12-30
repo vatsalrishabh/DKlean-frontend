@@ -4,7 +4,7 @@ import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ConsultCard from "./ConsultCard";
 import axios from "axios";
-import { BaseUrl } from "./BaseUrl";
+import {BaseUrl} from './BaseUrl'
 
 const BookAnAppointment = () => {
   const [specialityCard, setSpecialityCard] = useState([]);
