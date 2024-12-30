@@ -44,7 +44,7 @@ const AdminDashboard = () => {
               <Typography variant="body2" color="textSecondary" className="mb-4">
                 Schedule a new appointment with your preferred doctor.
               </Typography>
-              <Link to="/bookNewAppointment" style={{ textDecoration: 'none' }}>
+              <Link to="/admin/bookAp" style={{ textDecoration: 'none' }}>
                 <Button
                   variant="contained"
                   style={{ backgroundColor: '#71a113', color: '#fff' }}

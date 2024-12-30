@@ -70,11 +70,11 @@ export default function EditConsultCard(props) {
       );
     }
   };
-
   const addNewService = async () => {
     try {
+      // Correct the order of arguments
       await axios.post(
-        `${BaseUrl}api/service/postNewService`,
+        `${BaseUrl}/api/services/postNewService`,
         {
           name: "General Consultation", // Default name
           price: 500, // Default price
@@ -89,7 +89,7 @@ export default function EditConsultCard(props) {
           },
         }
       );
-
+  
       alert("Speciality added successfully!");
       // Refresh or notify parent
     } catch (error) {
@@ -101,6 +101,7 @@ export default function EditConsultCard(props) {
       console.log(error);
     }
   };
+  
 
   return (
     <div className="p-4">

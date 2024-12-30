@@ -4,10 +4,10 @@ import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ConsultCard from "./ConsultCard";
 import axios from "axios";
-import {BaseUrl} from './BaseUrl'
+import {BaseUrl} from './BaseUrl';
 
 const BookAnAppointment = () => {
-  const [specialityCard, setSpecialityCard] = useState([]);
+  const [specialityCard, setSpecialityCard] = useState([]);  // 
   const [commonHealthCard, setCommonHealthCard] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
 
@@ -84,10 +84,10 @@ const BookAnAppointment = () => {
         {/* Breadcrumb ends */}
 
         <div className="heading font-bold text-gray-700 text-4xl flex justify-center align-middle p-5">
-          25+ Specialities
+       Blood Tests
         </div>
         <div className="heading text-gray-700 text-xl flex justify-center align-middle p-1">
-          Consult with top doctors across specialities
+         Book your test now
         </div>
         <div className="justify-center align-middle grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 lg:p-5 py-5">
           {specialityCard && specialityCard.length > 0 ? (
@@ -110,10 +110,10 @@ const BookAnAppointment = () => {
       {/* Common Health Concerns starts */}
       <div className="Speciality-wise-cards bg-custom-graybg">
         <div className="heading font-bold text-gray-700 text-4xl flex justify-center align-middle p-5">
-          Common Health Concerns
+          Common Health/Physio Concerns
         </div>
         <div className="heading text-gray-700 text-xl flex justify-center align-middle p-1">
-          Consult a doctor online for any health issue
+          Consult a physiotherapist online for any health issue
         </div>
         <div className="justify-center align-middle grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 lg:p-5 py-5">
           {commonHealthCard && commonHealthCard.length > 0 ? (
