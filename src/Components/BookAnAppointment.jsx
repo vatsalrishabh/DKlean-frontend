@@ -4,13 +4,13 @@ import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import ConsultCard from "./ConsultCard";
 import axios from "axios";
-import {BaseUrl} from './BaseUrl'
+
 
 const BookAnAppointment = () => {
   const [specialityCard, setSpecialityCard] = useState([]);
   const [commonHealthCard, setCommonHealthCard] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
-
+  const BaseUrl = "http://localhost:3000";
   
 
   useEffect(() => {
