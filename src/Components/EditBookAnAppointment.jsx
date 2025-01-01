@@ -27,7 +27,7 @@ const EditBookAnAppointment = () => {
   useEffect(() => {
     // Fetch data from API
     const fetchServices = async () => {
-      if (!loggedInUser.jwt) {
+      if (!loggedInUser.isloggedIn) {
         console.error("No JWT found in loggedInUser");
         return;
       }

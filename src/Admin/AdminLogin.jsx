@@ -98,9 +98,9 @@ const AdminLogin = () => { // state props componetnts hooks
         );
         setAlert({ message: "Logged in Successfully!", status: "200" });
         // localStorage code above
-        // setTimeout(() => {
-        //   navigate("/pdash");
-        // }, 3000);
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       }
     } catch (error) {
       // Corrected error handling

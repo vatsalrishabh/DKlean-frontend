@@ -46,7 +46,7 @@ const Donationbox = () => {
   };
 
   return (
-    <div className="lg:w-1/3 sm:w-full">
+    <div className=" sm:w-full">
       <ThemeProvider theme={theme}>
         <div className="p-8 bg-gradient-to-r from-green-100 via-green-50 to-green-200 rounded-xl shadow-lg">
           <div className="prices text-center">

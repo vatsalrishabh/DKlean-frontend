@@ -30,7 +30,8 @@ const DonationPage = () => {
 
   return (
    <>
-<div className="w-full flex justify-end p-4">
+<div className="flex justify-end p-4">
+
 <Donationbox />
 </div>
    </>

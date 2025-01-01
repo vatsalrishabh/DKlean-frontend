@@ -29,7 +29,6 @@ const DoctorLogin = () => {
   const [alert, setAlert] = useState({ message: "", status: "99" }); //no alert or Snackbar when status is 99
 
   const [otp, setOtp] = useState("");
-
   const displayLogin = () => {
     setShowLogin(true);
   };
