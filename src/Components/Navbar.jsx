@@ -36,7 +36,7 @@ const Navbar = () => {
     <div className="Navbar">
       <nav className="bg-custom-maroon border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-1">
-          <Link to="/" className="flex items-center lg:w-1/3">
+          <Link to="/" className="flex items-center lg:w-1/5 pl-3">
             <img src={PulseCare} className="h-14" alt="PulseCare Logo" />
           </Link>
           <button
@@ -69,8 +69,8 @@ const Navbar = () => {
             } lg:w-2/3 w-full lg:block md:hidden`}
             id="navbar-default"
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-custom-maroon md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 dark:border-gray-700">
-              <li className="lg:flex justify-center align-middle" >
+            <div className="font-medium flex flex-col p-3 md:p-0 mt-4 border border-gray-100 rounded-lg bg-custom-maroon md:flex-row md:space-x-12 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 dark:border-gray-700">
+              <p className="lg:flex justify-center align-middle">
                 <Link
                   to="/home"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -78,8 +78,8 @@ const Navbar = () => {
                 >
                   Home
                 </Link>
-              </li>
-              <li className="lg:flex justify-center align-middle" >
+              </p>
+              <p className="lg:flex justify-center align-middle">
                 <Link
                   to="/aboutus"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -87,8 +87,8 @@ const Navbar = () => {
                 >
                   About
                 </Link>
-              </li>
-              <li className="lg:flex justify-center align-middle" >
+              </p>
+              <p className="lg:flex justify-center align-middle">
                 <Link
                   to="/services"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -96,8 +96,8 @@ const Navbar = () => {
                 >
                   Services
                 </Link>
-              </li>
-              <li className="lg:flex justify-center align-middle" >
+              </p>
+              <p className="lg:flex justify-center align-middle">
                 <Link
                   to="/gallery"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -105,17 +105,18 @@ const Navbar = () => {
                 >
                   Gallery
                 </Link>
-              </li>
-              <li className="lg:flex justify-center align-middle" >
+              </p>
+              <p className="lg:flex justify-center align-middle">
                 <Link
                   to="/contactus"
-                  className="block py-2  font-bold text-white rounded hover:bg-red-500"
+                  className="block lg:w-[85px] py-2 font-bold text-white rounded hover:bg-red-500"
                   onClick={handleDropDown}
                 >
                   Contact Us
                 </Link>
-              </li>
-              <li className="lg:flex justify-center align-middle" >
+              </p>
+              <p className="lg:flex justify-center align-middle">
+                <div className="">
                 <Link
                   to="/donate"
                   className="block py-2 px-3 font-bold text-white rounded-lg bg-yellow-400 hover:bg-yellow-500"
@@ -123,8 +124,9 @@ const Navbar = () => {
                 >
                   Donate
                 </Link>
-              </li>
-              <li className="relative">
+                </div>
+              </p>
+              <p className="relative">
                 <button
                   className="flex items-center py-2 px-3 font-bold text-white rounded hover:bg-red-500 focus:outline-none"
                   onClick={handleLoginDropdown}
@@ -137,51 +139,51 @@ const Navbar = () => {
                     loginDropDown ? "block" : "hidden"
                   } absolute top-12 left-0 z-10 w-48 bg-white shadow-lg rounded-lg`}
                 >
-                  <ul className="py-2">
-                    <li>
+                  <div className="py-2">
+                    <p>
                       <Link
                         to="/patientlogin"
                         className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white"
                       >
                         Patient Login
                       </Link>
-                    </li>
-                    <li>
+                    </p>
+                    <p>
                       <Link
                         to="/doctorlogin"
                         className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white"
                       >
                         Doctor Login
                       </Link>
-                    </li>
-                    <li>
+                    </p>
+                    <p>
                       <Link
                         to="/donorlogin"
                         className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white"
                       >
                         Donor Login
                       </Link>
-                    </li>
-                    <li>
+                    </p>
+                    <p>
                       <Link
                         to="/adminlogin"
                         className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white"
                       >
                         Admin Login
                       </Link>
-                    </li>
-                    <li>
+                    </p>
+                    <p>
                       <Link
                         to="/subadminlogin"
                         className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white"
                       >
                         SubAdmin Login
                       </Link>
-                    </li>
-                  </ul>
+                    </p>
+                  </div>
                 </div>
-              </li>
-            </ul>
+              </p>
+            </div>
           </div>
         </div>
       </nav>

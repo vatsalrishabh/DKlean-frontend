@@ -6,8 +6,8 @@ import axios from "axios";
 import { BaseUrl } from "./BaseUrl";
 
 const EditBookAnAppointment = () => {
-  const [specialityCard, setSpecialityCard] = useState([]);
-  const [commonHealthCard, setCommonHealthCard] = useState([]);
+  const [specialityCard, setSpecialityCard] = useState([]);  // all the physio card is stored over here
+  const [commonHealthCard, setCommonHealthCard] = useState([]); // all the bloode tests are stored over here 
   const [loggedInUser, setLoggedInUser] = useState({});
 
   
@@ -21,12 +21,12 @@ const EditBookAnAppointment = () => {
         setLoggedInUser(userDetails);
       }
     };
-    loadUserDetails();
-  }, []);
+ 
 
-  useEffect(() => {
     // Fetch data from API
     const fetchServices = async () => {
+      await  loadUserDetails();
+      await console.log(loggedInUser.isloggedIn)
       if (!loggedInUser.isloggedIn) {
         console.error("No JWT found in loggedInUser");
         return;
@@ -54,7 +54,7 @@ const EditBookAnAppointment = () => {
             (service) => service.category !== "physio"
           );
 
-          setSpecialityCard(specialityServices);
+          setSpecialityCard(specialityServices);//
           setCommonHealthCard(commonHealthServices);
         }
       } catch (error) {
@@ -63,7 +63,9 @@ const EditBookAnAppointment = () => {
     };
 
     fetchServices();
-  }, [loggedInUser]); // Depend on loggedInUser to ensure the JWT is ready
+
+  }, []);
+
 
   return (
     <div className="BookAnAppointment">
@@ -115,7 +117,7 @@ const EditBookAnAppointment = () => {
         <div className="justify-center align-middle grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 lg:p-5 py-5">
           {commonHealthCard && commonHealthCard.length > 0 ? (
             commonHealthCard.map((card, index) => (
-              <ConsultCard
+              <EditConsultCard
                 key={index}
                 specialityImg={card.serviceImg}
                 specialityName={card.name}

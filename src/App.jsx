@@ -74,12 +74,12 @@ function App() {
     };
   
     const checkTokenExpiration = (details, key) => {
-      if (details?.isloggedIn && details?.jwt) {
+      if (details?.isloggedIn) {
         try {
           const decoded = jwtDecode(details.jwt);
           const currentTime = Math.floor(Date.now() / 1000);
           if (decoded.exp < currentTime) {
-            console.log(`${key} token has expired.`);
+            console.warn(`${key} token has expired.`);
             localStorage.removeItem(key);
           }
         } catch (error) {
@@ -96,21 +96,21 @@ function App() {
       { key: "donorDetails", setter: setLoggedInDonor },
     ];
   
-    // Load all user-related details and check token expiration
     keys.forEach(({ key, setter }) => {
+      const details = JSON.parse(localStorage.getItem(key));
       loadDetails(key, setter);
+      checkTokenExpiration(details, key);
     });
   
     const intervalId = setInterval(() => {
-      keys.forEach(({ key, setter }) => {
-        loadDetails(key, setter);
-        checkTokenExpiration(localStorage.getItem(key), key);
+      keys.forEach(({ key }) => {
+        const details = JSON.parse(localStorage.getItem(key));
+        checkTokenExpiration(details, key);
       });
-    }, 60000); // Check every 1 minute
+    }, 60000);
   
     return () => clearInterval(intervalId);
   }, []);
-  
   
 
   return (
