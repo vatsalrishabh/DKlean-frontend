@@ -69,7 +69,7 @@ const Navbar = () => {
             } lg:w-2/3 w-full lg:block md:hidden`}
             id="navbar-default"
           >
-            <div className="font-medium flex flex-col p-3 md:p-0 mt-4 border border-gray-100 rounded-lg bg-custom-maroon md:flex-row md:space-x-12 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="font-medium flex flex-col p-3 md:p-0 mt-4 border border-gray-100 rounded-lg bg-custom-maroon md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 dark:border-gray-700">
               <p className="lg:flex justify-center align-middle">
                 <Link
                   to="/home"

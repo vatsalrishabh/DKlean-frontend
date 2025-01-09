@@ -7,7 +7,7 @@ import { BaseUrl } from "./BaseUrl";
 
 const EditBookAnAppointment = () => {
   const [specialityCard, setSpecialityCard] = useState([]);  // all the physio card is stored over here
-  const [commonHealthCard, setCommonHealthCard] = useState([]); // all the bloode tests are stored over here 
+  const [commonHealthCard, setCommonHealthCard] = useState([]); // all the blood  tests are stored over here 
   const [loggedInUser, setLoggedInUser] = useState({});
 
   
@@ -27,6 +27,7 @@ const EditBookAnAppointment = () => {
     const fetchServices = async () => {
       await  loadUserDetails();
       await console.log(loggedInUser.isloggedIn)
+      console.log(loggedInUser.isloggedIn)
       if (!loggedInUser.isloggedIn) {
         console.error("No JWT found in loggedInUser");
         return;
@@ -43,7 +44,7 @@ const EditBookAnAppointment = () => {
             },
           }
         );
-
+     
         const { data } = response.data;
 
         if (data && data.length > 0) {
@@ -97,6 +98,7 @@ const EditBookAnAppointment = () => {
                 specialityName={card.name}
                 specialityServiceId={card.serviceId}
                 specialityRate={card.price}
+                specialityCategory={card.category}
               />
             ))
           ) : (

@@ -78,6 +78,7 @@ function App() {
         try {
           const decoded = jwtDecode(details.jwt);
           const currentTime = Math.floor(Date.now() / 1000);
+          console.log(decoded.exp+"sdf"+currentTime)
           if (decoded.exp < currentTime) {
             console.warn(`${key} token has expired.`);
             localStorage.removeItem(key);
@@ -126,7 +127,6 @@ function App() {
               <>
                 <Navbar />
                 <DonationPage />
-                {/* <ChatBotButton /> */}
                 <Footer />
               </>
             }
@@ -138,7 +138,6 @@ function App() {
               <>
                 <Navbar />
                 <Home />
-
                 <Footer />
               </>
             }

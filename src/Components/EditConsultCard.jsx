@@ -8,6 +8,7 @@ import { BaseUrl } from "./BaseUrl";
 export default function EditConsultCard(props) {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [specialityName, setSpecialityName] = useState(props.specialityName);
+  const [category , setCategory] = useState(props.specialityCategory);
   const [specialityRate, setSpecialityRate] = useState(props.specialityRate);
   const [imageUrl, setImageUrl] = useState(props.specialityImg);
  
@@ -28,6 +29,7 @@ export default function EditConsultCard(props) {
       name: specialityName,
       price: specialityRate,
       serviveImg: imageUrl,
+      category,
     };
 
     try {
@@ -117,6 +119,15 @@ export default function EditConsultCard(props) {
         <div className="mb-4">
           <TextField
             label="Speciality Name"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            fullWidth
+            variant="outlined"
+          />
+        </div>
+        <div className="mb-4">
+          <TextField
+            label="Category Name"
             value={specialityName}
             onChange={(e) => setSpecialityName(e.target.value)}
             fullWidth
