@@ -82,6 +82,7 @@ function App() {
           if (decoded.exp < currentTime) {
             console.warn(`${key} token has expired.`);
             localStorage.removeItem(key);
+            location.reload();
           }
         } catch (error) {
           console.error(`Error decoding ${key} token:`, error);

@@ -100,7 +100,7 @@ const PatientLogin = () => {
           })
         );
         setAlert({ message: "Logged in Successfully!", status: "200" });
-        
+       location.reload();
       }
     } catch (error) {
       // Corrected error handling

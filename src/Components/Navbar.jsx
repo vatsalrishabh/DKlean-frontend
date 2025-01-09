@@ -70,7 +70,7 @@ const Navbar = () => {
             id="navbar-default"
           >
             <div className="font-medium flex flex-col p-3 md:p-0 mt-4 border border-gray-100 rounded-lg bg-custom-maroon md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 dark:border-gray-700">
-              <p className="lg:flex justify-center align-middle">
+              <div className="lg:flex justify-center align-middle">
                 <Link
                   to="/home"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -78,8 +78,8 @@ const Navbar = () => {
                 >
                   Home
                 </Link>
-              </p>
-              <p className="lg:flex justify-center align-middle">
+              </div>
+              <div className="lg:flex justify-center align-middle">
                 <Link
                   to="/aboutus"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -87,8 +87,8 @@ const Navbar = () => {
                 >
                   About
                 </Link>
-              </p>
-              <p className="lg:flex justify-center align-middle">
+              </div>
+              <div className="lg:flex justify-center align-middle">
                 <Link
                   to="/services"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -96,8 +96,8 @@ const Navbar = () => {
                 >
                   Services
                 </Link>
-              </p>
-              <p className="lg:flex justify-center align-middle">
+              </div>
+              <div className="lg:flex justify-center align-middle">
                 <Link
                   to="/gallery"
                   className="block py-2 px-3 font-bold text-white rounded hover:bg-red-500"
@@ -105,8 +105,8 @@ const Navbar = () => {
                 >
                   Gallery
                 </Link>
-              </p>
-              <p className="lg:flex justify-center align-middle">
+              </div>
+              <div className="lg:flex justify-center align-middle">
                 <Link
                   to="/contactus"
                   className="block lg:w-[85px] py-2 font-bold text-white rounded hover:bg-red-500"
@@ -114,8 +114,8 @@ const Navbar = () => {
                 >
                   Contact Us
                 </Link>
-              </p>
-              <p className="lg:flex justify-center align-middle">
+              </div>
+              <div className="lg:flex justify-center align-middle">
                 <div className="">
                 <Link
                   to="/donate"
@@ -125,8 +125,8 @@ const Navbar = () => {
                   Donate
                 </Link>
                 </div>
-              </p>
-              <p className="relative">
+              </div>
+              <div className="relative">
                 <button
                   className="flex items-center py-2 px-3 font-bold text-white rounded hover:bg-red-500 focus:outline-none"
                   onClick={handleLoginDropdown}
@@ -182,7 +182,7 @@ const Navbar = () => {
                     </p>
                   </div>
                 </div>
-              </p>
+              </div>
             </div>
           </div>
         </div>
