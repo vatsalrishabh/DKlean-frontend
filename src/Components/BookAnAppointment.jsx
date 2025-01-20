@@ -7,8 +7,8 @@ import axios from "axios";
 import {BaseUrl} from './BaseUrl';
 
 const BookAnAppointment = () => {
-  const [specialityCard, setSpecialityCard] = useState([]);  // 
-  const [commonHealthCard, setCommonHealthCard] = useState([]);
+  const [specialityCard, setSpecialityCard] = useState([]);  // blood services
+  const [commonHealthCard, setCommonHealthCard] = useState([]);   // physio services 
   const [loggedInUser, setLoggedInUser] = useState({});
 
   
@@ -48,15 +48,16 @@ const BookAnAppointment = () => {
         const { data } = response.data;
 
         if (data && data.length > 0) {
+          console.log(data);
           const specialityServices = data.filter(
-            (service) => service.category === "physio"
+            (service) => service.category === "blood"
           );
           const commonHealthServices = data.filter(
-            (service) => service.category !== "physio"
+            (service) => service.category  === "Health"
           );
 
-          setSpecialityCard(specialityServices);
-          setCommonHealthCard(commonHealthServices);
+          setSpecialityCard(specialityServices);   // blood sevices 
+          setCommonHealthCard(commonHealthServices); // physio services 
         }
       } catch (error) {
         console.error("Error fetching services:", error);

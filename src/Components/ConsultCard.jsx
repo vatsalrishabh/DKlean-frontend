@@ -32,7 +32,7 @@ export default function ConsultCard(props) {
   };
 
   return (
-    <div div className="p-3">
+    <div  className="p-3">
        <Card
           className="max-w-sm"
           imgAlt="Apple Watch Series 7 in colors pink, silver, and black"

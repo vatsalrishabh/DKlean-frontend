@@ -7,7 +7,8 @@ import BookAnAppointment from "./Components/BookAnAppointment";
 import DoctorLogin from "./Components/DoctorLogin";
 import PatientLogin from "./Components/PatientLogin";
 import Home from "./Components/Home";
-import Navbar from "./Components/Navbar";
+// import Navbar from "./Components/Navbar";
+import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer";
 import ContactUs from "./Components/ContactUs";
 import ChatBotButton from "./Components/ChatBotButton";
@@ -57,6 +58,12 @@ import SubAdminDashboard from './SubAdmin/SubAdminDashboard'
 import DoctorForgotPass from "./Components/DoctorForgotPass";
 import SubAdminForgotPass from "./Components/SubAdminForgotPass";
 import AllAppointment from "./Patient/AllAppointment";
+import Testimony from "./Components/Testimony/Testimony";
+import HomeSmall from "./Components/HomeSmall";
+import DoctorSlider from "./Components/DoctorSlider";
+import Professional from "./Components/Professional";
+import PricingAndCart from "./PricingAndCart/PricingAndCart";
+import PatientDashboardModern from "./Patient/PatientDashboardModern";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -138,7 +145,11 @@ function App() {
             element={
               <>
                 <Navbar />
-                <Home />
+             <HomeSmall/>
+             <DoctorSlider/>
+             <Professional/>
+                <Testimony/>
+                <PricingAndCart/>
                 <Footer />
               </>
             }
@@ -175,7 +186,8 @@ function App() {
               loggedInUser.isloggedIn  ? (
                 <>
                   <PatientNavbar />
-                  <PatientDashboard />
+                  {/* <PatientDashboard /> */}
+                  <PatientDashboardModern/>
                   <Footer />
                 </>
               ) : (
