@@ -159,9 +159,11 @@ const Navbar = () => {
 
           {/* Book Appointment Button */}
           <div className="flex justify-center w-1/2">
-            <button className="bg-[#6d0101] text-white px-6 py-2 text-sm font-semibold hover:bg-black transition duration-300 transform">
+          <Link to="/patientlogin">
+          <button className="bg-[#6d0101] text-white px-6 py-2 text-sm font-semibold hover:bg-black transition duration-300 transform">
               Book An Appointment
             </button>
+          </Link>
           </div>
         </div>
       </div>

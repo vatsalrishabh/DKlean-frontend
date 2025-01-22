@@ -21,12 +21,16 @@ const DonorDashboard = () => {
 
   return (
     <>
+
+
     <div className="flex flex-col lg:flex-row  w-full">
-      {/* Reverse the order on small screens */}
-      <div className="order-2 lg:order-1 ">
+      
+      {/* the breadcrumb starts */}
+      
+      <div className="order-2 lg:order-1  lg:w-4/6">
          <DonationHistory />
       </div>
-      <div className="order-1 lg:order-2  ">
+      <div className="order-1 lg:order-2 lg:w-2/6">
       <DonationPage />
       </div>
     </div>

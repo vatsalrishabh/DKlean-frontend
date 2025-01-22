@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { Avatar } from '@mui/material';
 import pulsecarelogo from '../assets/Puslecarelogo/PulseCare.png';
 
-const PatientNavbar = () => {
+const PatientNavbar = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({});
+
+
   
     useEffect(() => {
       const loadUserDetails = () => {
-        const details = localStorage.getItem('userDetails');
+        const details = localStorage.getItem(props.localstorage);
         if (details) {
           setLoggedInUser(JSON.parse(details));
         }
@@ -50,7 +52,7 @@ const PatientNavbar = () => {
   };
 
   return (
-    <nav className="bg-custom-maroon border-gray-200 dark:bg-gray-900">
+    <nav className="bg-custom-maroon border-gray-200 dark:bg-gray-900 block lg:hidden">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={pulsecarelogo} height={100} width={100}  alt="PulseCare Logo" />   
@@ -76,38 +78,38 @@ const PatientNavbar = () => {
             <ul className="py-1" aria-labelledby="user-menu-button">
               <li>
                 <Link
-                  to="/patientlogin"
+                  to={props.linkOne}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   onClick={() => setDropdownOpen(false)}
                 >
-                  Dashboard
+                {props.oneName}
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/appointments"
+                  to={props.linkTwo}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   onClick={() => setDropdownOpen(false)}
                 >
-                  Upcoming Appointments
+                 {props.twoName}
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/selectDis"
+                  to={props.linkThree}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   onClick={() => setDropdownOpen(false)}
                 >
-                 Book an Appointment
+               {props.threeName}
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/history"
+                  to={props.linkFour}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   onClick={() => setDropdownOpen(false)}
                 >
-                 Patient History
+            {props.fourtName}
                 </Link>
               </li>
               <li>

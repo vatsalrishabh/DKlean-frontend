@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal'; // Importing the Modal component
 
-const Card = ({ name, price, description, discount }) => {
+const Card = ({ name, price, description, discount,serviceId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const maxLength = 30; // Maximum length for the description before truncating
 
@@ -16,6 +16,7 @@ const Card = ({ name, price, description, discount }) => {
   return (
     <div className="card bg-white shadow-lg rounded-lg p-6 flex flex-col items-center space-y-6 w-[300px] border border-gray-200 hover:shadow-xl transition-all duration-300">
       {/* Product Title */}
+      {serviceId && <span>Service ID:- {serviceId}</span>}
       <h2 className="text-2xl font-semibold text-[#8f1b1b] text-center">{name}</h2>
       
       {/* Product Description */}

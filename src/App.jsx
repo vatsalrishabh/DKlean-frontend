@@ -185,11 +185,11 @@ function App() {
             element={
               loggedInUser.isloggedIn  ? (
                 <>
-                  <PatientNavbar />
-                  {/* <PatientDashboard /> */}
-                  <PatientDashboardModern/>
-                  <Footer />
-                </>
+                  <PatientNavbar localstorage="userDetails" oneName="Dashboard" linkOne="/patientlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Book an Appointment" linkThree="/selectDis"  fourtName="Patient History" linkFour="/history"  />
+                  <PatientDashboard />
+                  {/* <PatientDashboardModern/> */}
+                  {/* <Footer /> */}
+                </>  
               ) : (
                 <>
                   <Navbar />
@@ -206,9 +206,9 @@ function App() {
             element={
               loggedInDoctor.isloggedIn?(
                 <>
-                  <DoctorNavbar />
+                 <PatientNavbar localstorage="doctorDetails" oneName="Dashboard" linkOne="/doctorlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Manage Appointment" linkThree="/selectDis"  fourtName="Doctor History" linkFour="/history"  />
                   <DoctorDashboard />
-                  <Footer />
+                 
                 </>
               ) : (
                 <>
@@ -234,7 +234,7 @@ function App() {
                   <Footer />
                 </>
               ) : (
-                <>
+                <> 
                   <Navbar />
                   <DonorLogin/>
                   <Footer />
@@ -250,9 +250,9 @@ function App() {
             element={
               loggedInAdmin.isloggedIn ? (
                 <>
-                  <PatientNavbar />
+                  <PatientNavbar localstorage="userDetails" oneName="Dashboard" linkOne="/patientlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Book an Appointment" linkThree="/selectDis"  fourtName="Patient History" linkFour="/history"  />
                   <AdminDashboard />
-                  <Footer />
+                  {/* <Footer /> */}
                 </>
               ) : (
                 <>
@@ -352,13 +352,12 @@ function App() {
           {/* all admin routes below */}
 
           <Route
-            path="/admin"
+            path="/adminAllApp"
             element={
-              loggedInAdmin.isLoggedInlo ? (
+              loggedInAdmin.isloggedIn? (
                 <>
-                  <DoctorNavbar />
-                  <DoctorDashboard />
-                  <Footer />
+                   <PatientNavbar localstorage="adminDetails" oneName="Dashboard" linkOne="/patientlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Book an Appointment" linkThree="/selectDis"  fourtName="Patient History" linkFour="/history"  />
+                  <DoctorDashboard />  
                 </>
               ) : (
                 <>
@@ -579,7 +578,7 @@ function App() {
                   <PatientNavbar />
                   <BookAnAppointment />
                   {/* <ChatBotButton /> */}
-                  <Footer />
+              
                 </>
               ) : (
                 <PatientNotLoggedIn />

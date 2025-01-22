@@ -1,78 +1,162 @@
 import React from 'react';
-import { FaReceipt, FaDownload, FaInfoCircle } from 'react-icons/fa';
+import { Card, CardContent, Typography, Divider, Box, Grid } from '@mui/material';
+import { AccountCircle, CreditCard, LocationOn, Business, AccessTime, CheckCircle, Cancel } from '@mui/icons-material';
+import { BreadCrumb } from '../DoctorDashboard/BreadCrumb';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const DonationHistory = () => {
-  const donationData = [
-    {
-      id: 1,
-      date: '2024-12-30',
-      amount: '$100',
-      receipt: 'Download',
-      notes: 'For disaster relief.',
-    },
-    {
-      id: 2,
-      date: '2024-11-15',
-      amount: '$50',
-      receipt: 'Download',
-      notes: 'General donation.',
-    },
-    {
-      id: 3,
-      date: '2024-10-01',
-      amount: '$200',
-      receipt: 'Download',
-      notes: 'For educational support.',
-    },
-  ];
+  const logout = () => {
+    console.log('Logout clicked');
+    localStorage.clear();
+    location.reload();
+  };
+  
 
   return (
-    <div className="lg:w-2/3 sm:w-full   bg-white shadow-md rounded-md">
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Donation History</h1>
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="bg-gray-200 text-gray-700">
-            <th className="py-3 px-4 border">Date</th>
-            <th className="py-3 px-4 border">Amount</th>
-            <th className="py-3 px-4 border">Receipt</th>
-            <th className="py-3 px-4 border">Notes</th>
-            <th className="py-3 px-4 border">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {donationData.map((donation) => (
-            <tr key={donation.id} className="text-gray-700 hover:bg-gray-100">
-              <td className="py-3 px-4 border text-center">{donation.date}</td>
-              <td className="py-3 px-4 border text-center">{donation.amount}</td>
-              <td className="py-3 px-4 border text-center">
-                <button
-                  className="text-blue-500 hover:text-blue-700 flex items-center justify-center"
-                >
-                  <FaDownload className="mr-1" /> {donation.receipt}
-                </button>
-              </td>
-              <td className="py-3 px-4 border text-center">{donation.notes}</td>
-              <td className="py-3 px-4 border text-center">
-                <div className="flex items-center justify-center space-x-4">
-                  <button
-                    className="text-green-500 hover:text-green-700"
-                    title="View Details"
-                  >
-                    <FaInfoCircle />
-                  </button>
-                  <button
-                    className="text-blue-500 hover:text-blue-700"
-                    title="Download Receipt"
-                  >
-                    <FaReceipt />
-                  </button>
+<>
+
+ {/* the breadcrumbstarts  */}
+ <div className="pt-5">
+          <BreadCrumb
+            first="Patient Dashboard"
+            second="Donation Page"
+            firstLink="/donorlogin"
+            secondLink="/donorlogin"
+          />
+        </div>
+        {/* the breadcrumb ends  */}
+        <div className='flex justify-end' >
+          <button className=' bg-custom-maroon rounded-lg p-2 text-white' onClick={logout}>
+          <LogoutIcon/>  Logout
+          </button>
+        </div>
+
+<div className="flex w-full h-full bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 p-6">
+      <Grid container spacing={6}>
+        {/* Donor Details Section */}
+        <Grid item xs={12} md={4}>
+          <Card className="p-6 bg-white shadow-xl rounded-lg">
+            <Typography variant="h5" className="text-maroon font-bold mb-4 flex items-center">
+              <AccountCircle sx={{ fontSize: 28, color: '#8f1b1b', marginRight: 1 }} />
+              Donor Details
+            </Typography>
+            <Divider className="mb-4" />
+            
+            <div className="mb-4">
+              <Typography variant="h6" className="text-maroon font-semibold">
+                <AccountCircle sx={{ fontSize: 20, color: '#8f1b1b', marginRight: 1 }} />
+                Vatsal Rishabh Pandey
+              </Typography>
+              <Typography variant="body2" className="text-gray-600">
+                <CreditCard sx={{ fontSize: 20, color: '#8f1b1b', marginRight: 1 }} />
+                Pan Card - FZLPP2990D
+              </Typography>
+            </div>
+
+            <div className="mb-4">
+              <Typography variant="body2" className="text-gray-600">
+                <AccessTime sx={{ fontSize: 20, color: '#8f1b1b', marginRight: 1 }} />
+                Age: <span className="font-semibold">23 yrs</span>
+              </Typography>
+              <Typography variant="body2" className="text-gray-600">
+                <Business sx={{ fontSize: 20, color: '#8f1b1b', marginRight: 1 }} />
+                Gender: <span className="font-semibold">Female</span>
+              </Typography>
+            </div>
+
+            <div className="mb-4">
+              <Typography variant="body2" className="text-gray-600">
+                <LocationOn sx={{ fontSize: 20, color: '#8f1b1b', marginRight: 1 }} />
+                Address: <span className="font-semibold">XYZ, City, Country</span>
+              </Typography>
+            </div>
+
+            <div className="mb-4">
+              <Typography variant="body2" className="text-gray-600">
+                <CreditCard sx={{ fontSize: 20, color: '#8f1b1b', marginRight: 1 }} />
+                Donor ID: <span className="font-semibold">12345</span>
+              </Typography>
+            </div>
+          </Card>
+        </Grid>
+
+        {/* Donation History Section */}
+        <Grid item xs={12} md={8}>
+          <Card className="p-6 bg-white shadow-xl rounded-lg">
+            <Typography variant="h5" className="text-maroon font-bold mb-4 flex items-center">
+              <CheckCircle sx={{ fontSize: 28, color: '#8f1b1b', marginRight: 1 }} />
+              Donation Transactions
+            </Typography>
+            <Divider className="mb-4" />
+
+            <div className="mb-4">
+              <Typography variant="h6" className="text-gray-700 font-semibold">
+                Total Donation: <span className="text-green-600">₹ 15,000</span>
+              </Typography>
+            </div>
+
+            {/* Transaction List with Scrollbar */}
+            <div className="space-y-6 overflow-y-auto max-h-96 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+              {/* Transaction 1 */}
+              <div className="transaction-item bg-gray-50 p-4 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-xl">
+                <div className="flex justify-between mb-2">
+                  <Typography variant="body1" className="text-maroon font-semibold">₹ 200</Typography>
+                  <Typography variant="body2" className="text-gray-500">25 January, 2024</Typography>
                 </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+                <div className="flex justify-between">
+                  <Typography variant="body2" className="text-gray-600">
+                    Status: <span className="text-green-600 font-semibold">Completed</span>
+                  </Typography>
+                  <Typography variant="body2" className="text-gray-600">
+                    Transaction ID: <span className="font-semibold">#ABC12345</span>
+                  </Typography>
+                </div>
+              </div>
+
+              {/* Transaction 2 */}
+              <div className="transaction-item bg-gray-50 p-4 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-xl">
+                <div className="flex justify-between mb-2">
+                  <Typography variant="body1" className="text-maroon font-semibold">₹ 1,000</Typography>
+                  <Typography variant="body2" className="text-gray-500">10 January, 2024</Typography>
+                </div>
+
+                <div className="flex justify-between">
+                  <Typography variant="body2" className="text-gray-600">
+                    Status: <span className="text-green-600 font-semibold">Completed</span>
+                  </Typography>
+                  <Typography variant="body2" className="text-gray-600">
+                    Transaction ID: <span className="font-semibold">#DEF56789</span>
+                  </Typography>
+                </div>
+              </div>
+
+              {/* Transaction 3 */}
+              <div className="transaction-item bg-gray-50 p-4 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-xl">
+                <div className="flex justify-between mb-2">
+                  <Typography variant="body1" className="text-maroon font-semibold">₹ 500</Typography>
+                  <Typography variant="body2" className="text-gray-500">5 January, 2024</Typography>
+                </div>
+
+                <div className="flex justify-between">
+                  <Typography variant="body2" className="text-gray-600">
+                    Status: <span className="text-yellow-600 font-semibold">Rejected</span>
+                  </Typography>
+                  <Typography variant="body2" className="text-gray-600">
+                    Transaction ID: <span className="font-semibold">#GHI67890</span>
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </Grid>
+        
+      </Grid>
     </div>
+
+</>
+
+
   );
 };
 
