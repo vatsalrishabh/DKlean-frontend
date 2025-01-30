@@ -48,7 +48,7 @@ const AllAppointment = () => {
       </Typography>
          {/* Breadcrumb starts */}
               <div className="p-8">
-                <Breadcrumb aria-label="Default breadcrumb example">
+                {/* <Breadcrumb aria-label="Default breadcrumb example">
                 <Link to="/patientlogin">
                 <BreadcrumbItem  icon={HiHome}>
                     Home
@@ -56,7 +56,7 @@ const AllAppointment = () => {
                 </Link>
               
                   <BreadcrumbItem>Book an appointment</BreadcrumbItem>
-                </Breadcrumb>
+                </Breadcrumb> */}
               </div>
               {/* Breadcrumb ends */}
       <Grid container spacing={4}>

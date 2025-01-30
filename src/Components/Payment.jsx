@@ -73,11 +73,11 @@ const Payment = (props) => {
 
       const order = response.data;
       const options = {
-        key: 'rzp_live_1MxULmQnXguann',
+        key: 'rzp_test_l0gnUnaG8U4VmM',
         amount: (amount - discount) * 100,
         currency: order.currency,
         name: 'PulseCare',
-        description: 'Live Transaction',
+        description: 'Test Transaction',
         order_id: order.id,
         callback_url: `${BaseUrl}/api/razorpay/payment-success`,
         prefill: {

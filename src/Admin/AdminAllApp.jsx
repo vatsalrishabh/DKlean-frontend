@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminAllApp = () => {
   return (
-    <div className=''>
+    <div className=' '>
       
     </div>
   )

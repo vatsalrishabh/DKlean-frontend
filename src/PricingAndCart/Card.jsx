@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import Modal from './Modal'; // Importing the Modal component
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setServiceData }  from "../features/serviceSlice"
 
 const Card = ({ name, price, description, discount,serviceId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const maxLength = 30; // Maximum length for the description before truncating
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -12,6 +17,12 @@ const Card = ({ name, price, description, discount,serviceId }) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const gotoDates = () => {
+    dispatch(setServiceData({ serviceId, name, price }));
+    navigate('/patient/dates');
+  };
+  
 
   return (
     <div className="card bg-white shadow-lg rounded-lg p-6 flex flex-col items-center space-y-6 w-[300px] border border-gray-200 hover:shadow-xl transition-all duration-300">
@@ -36,7 +47,7 @@ const Card = ({ name, price, description, discount,serviceId }) => {
 
       {/* Button Section */}
       <div className="flex flex-col items-center space-y-4 mt-4 w-full">
-        <button className="px-6 py-2 bg-[#8f1b1b] text-white rounded-lg hover:bg-[#a22d2d] transition-all duration-300 w-full">
+        <button className="px-6 py-2 bg-[#8f1b1b] text-white rounded-lg hover:bg-[#a22d2d] transition-all duration-300 w-full" onClick={gotoDates}>
           Book Now
         </button>
         {description.length > maxLength && (

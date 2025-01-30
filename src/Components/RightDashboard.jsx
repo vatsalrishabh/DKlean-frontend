@@ -12,7 +12,7 @@ const iconMap = {
   HelpOutline: <HelpOutline sx={{ fontSize: 80, color: "#9e1b1b", marginRight: "1.5rem" }} />,
 };
 
-const RightDashboard = ({ cardsData }) => {
+const RightDashboard = ({ cardsData , breadCrumbs}) => {
   const renderCard = (card) => (
     <Grid item xs={12} sm={6} md={4} key={card.title}>
       <Card className="shadow-lg transform transition-transform duration-300 hover:scale-105 rounded-lg p-4 bg-white">
@@ -47,7 +47,12 @@ const RightDashboard = ({ cardsData }) => {
     <div className="right">
       {/* Breadcrumb Section */}
       <div className="pt-5">
-        <BreadCrumb first="Patient Dashboard" second="" firstLink="/patientlogin" secondLink="/" />
+      <BreadCrumb
+          first={breadCrumbs.first}
+          second={breadCrumbs.second}
+          firstLink={breadCrumbs.firstLink}
+          secondLink={breadCrumbs.secondLink}
+        />
       </div>
 
       {/* Dashboard Content */}

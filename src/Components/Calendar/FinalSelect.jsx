@@ -10,11 +10,17 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import EventIcon from "@mui/icons-material/Event";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 const FinalSelect = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const serviceFromRedux = useSelector(state=>state.service);
+  const navigate = useNavigate();
 
   const handleBookClick = (doctor) => {
     console.log({
@@ -23,7 +29,8 @@ const FinalSelect = (props) => {
       bookingId: doctor.bookingId,
       doctorId: doctor.doctorId,
       doctorName: doctor.doctorName,
-      bookedBy: "CurrentUserId", // Replace with actual user ID if available
+      bookedBy: "CurrentUserId", 
+      serviceFromRedux , // this the servive id name and price for the service selected
     });
 
     localStorage.setItem('paymentData', JSON.stringify({
@@ -32,11 +39,16 @@ const FinalSelect = (props) => {
         bookingId: doctor.bookingId,     // Ensure doctor.bookingId is defined
         doctorId: doctor.doctorId,       // Ensure doctor.doctorId is defined
         doctorName: doctor.doctorName,   // Ensure doctor.doctorName is defined
-        bookedBy: userId || "Anonymous", // Replace with actual user ID; fallback to "Anonymous"
+        serviceFromRedux ,
+        bookedBy: "Anonymous", // Replace with actual user ID; fallback to "Anonymous"
       }));
-      
 
+      navigate("/patient/payment");
   };
+   
+
+  // Media query for mobile devices (small screens)
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const style = {
     position: "absolute",
@@ -54,7 +66,18 @@ const FinalSelect = (props) => {
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: "#8f1b1b",
+          "&:hover": {
+            backgroundColor: "#a33232",
+          },
+          fontSize: isMobile ? "0.8rem" : "1rem", // Smaller font size on mobile
+          padding: isMobile ? "8px 16px" : "10px 20px", // Adjust padding for mobile
+        }}
+        onClick={handleOpen}
+      >
         View Slot Details
       </Button>
       <Modal
@@ -75,6 +98,9 @@ const FinalSelect = (props) => {
               component="h2"
               textAlign="center"
               gutterBottom
+              sx={{
+                fontSize: isMobile ? "1.25rem" : "1.5rem", // Larger title for desktops, smaller for mobile
+              }}
             >
               Slot Details
             </Typography>
@@ -143,12 +169,13 @@ const FinalSelect = (props) => {
                   <Grid item xs={2} textAlign="right">
                     <Button
                       variant="contained"
-                      color="secondary"
                       size="small"
                       sx={{
+                      background:"#8f1b1b",
                         minWidth: "60px",
                         maxWidth: "100px",
-                        fontSize: "0.8rem",
+                        fontSize: isMobile ? "0.75rem" : "0.9rem", // Smaller font size on mobile
+                        padding: isMobile ? "6px 12px" : "8px 16px", // Adjust padding for mobile
                       }}
                       disabled={doc.status !== "available"}
                       onClick={() => handleBookClick(doc)}

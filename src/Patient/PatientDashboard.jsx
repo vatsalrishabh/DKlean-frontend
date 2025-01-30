@@ -273,49 +273,7 @@ const PatientDashboard = () => {
               </Grid>
 
               {/* Medical Reports Section */}
-              <Grid item xs={12} sm={6} md={4}>
-                <Card className="shadow-lg transform transition-transform duration-300 hover:scale-105 rounded-lg p-4 bg-white">
-                  <CardContent className="flex items-center">
-                    <FileCopy
-                      sx={{
-                        fontSize: 80,
-                        color: "#9e1b1b",
-                        marginRight: "1.5rem",
-                      }}
-                    />
-                    <div className="text-left">
-                      <Typography
-                        variant="h4"
-                        className="text-gray-800 font-semibold"
-                      >
-                        Medical Reports
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        className="mb-4"
-                      >
-                        Access your medical records and reports anytime.
-                      </Typography>
-                      <Link
-                        to="/medicalReports"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <Button
-                          variant="contained"
-                          sx={{
-                            backgroundColor: "#9e1b1b",
-                            color: "#fff",
-                            "&:hover": { backgroundColor: "#d01212" },
-                          }}
-                        >
-                          View Reports
-                        </Button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Grid>
+        
 
               {/* Contact Support Section */}
               <Grid item xs={12} sm={6} md={4}>

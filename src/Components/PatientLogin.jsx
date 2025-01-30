@@ -34,7 +34,7 @@ const PatientLogin = () => {
 
   const [otp, setOtp] = useState("");
   const [alert, setAlert] = useState({ message: "", status: "99" }); //no alert or Snackbar when status is 99
-  const [showPassword , setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // const { isloggedIn, loginUser, logoutUser, isAuthenticated } = useContext(LoginContext);
 
@@ -58,7 +58,7 @@ const PatientLogin = () => {
     const loginForm = {
       email: patientLoginEmail,
       password: patientLoginPassword,
-      role:"user",
+      role: "user",
     };
 
     try {
@@ -75,32 +75,31 @@ const PatientLogin = () => {
       if (loginResponse.status === 200) {
         setLoggedInUser({
           isloggedIn: true,
-          name:loginResponse.data.name,
+          name: loginResponse.data.name,
           jwt: loginResponse.data.token,
           email: loginResponse.data.email,
-          userId:loginResponse.data.userId,
-        }
-      );
-      console.log({
-        isloggedIn: true,
-        jwt: loginResponse.data.token,
-        name:loginResponse.data.name,
-        email: loginResponse.data.email,
-        userId:loginResponse.data.userId,
-      })
+          userId: loginResponse.data.userId,
+        });
+        console.log({
+          isloggedIn: true,
+          jwt: loginResponse.data.token,
+          name: loginResponse.data.name,
+          email: loginResponse.data.email,
+          userId: loginResponse.data.userId,
+        });
         localStorage.setItem(
           "userDetails",
           JSON.stringify({
             isloggedIn: true,
-            role:'user',
-            name:loginResponse.data.name,
+            role: "user",
+            name: loginResponse.data.name,
             jwt: loginResponse.data.token,
             email: loginResponse.data.email,
-            userId:loginResponse.data.userId,
+            userId: loginResponse.data.userId,
           })
         );
         setAlert({ message: "Logged in Successfully!", status: "200" });
-       location.reload();
+        location.reload();
       }
     } catch (error) {
       // Corrected error handling
@@ -135,7 +134,7 @@ const PatientLogin = () => {
     e.preventDefault();
 
     const registrationForm = new FormData();
-    
+
     registrationForm.append("email", patientEmail);
     registrationForm.append("mobile", patientMobile);
     registrationForm.append("role", "user");
@@ -143,13 +142,13 @@ const PatientLogin = () => {
     //confim password and cpassword should be same
     if (patientPassword !== patientConPassword) {
       console.log("Passwords do not match!");
-      
-        //   message: "Password and confirm password does not match",
-        //   status: "500",
-        // });
-        // setTimeout(() => {
-        //   setAlert({ message: "", status: "99" });
-        // }, 5000);
+
+      //   message: "Password and confirm password does not match",
+      //   status: "500",
+      // });
+      // setTimeout(() => {
+      //   setAlert({ message: "", status: "99" });
+      // }, 5000);
 
       setwrongPassCpassAlert(true);
       setTimeout(() => {
@@ -185,8 +184,8 @@ const PatientLogin = () => {
         setTimeout(() => {
           setAlert({ message: "", status: "99" });
         }, 5000);
-      console.error("An error occurred:", error);
-    }
+        console.error("An error occurred:", error);
+      }
       console.error("An error occurred:", error);
     }
   };
@@ -240,7 +239,8 @@ const PatientLogin = () => {
         setTimeout(() => {
           setAlert({ message: "", status: "99" });
         }, 5000);
-      }if(error.response && error.response.status === 500){
+      }
+      if (error.response && error.response.status === 500) {
         setAlert({
           message: "Something went wrong! Server issue",
           status: "500",
@@ -327,12 +327,10 @@ const PatientLogin = () => {
                   <strong>{patientEmail}</strong>.
                 </p>
                 {!isOtpCorrect ? (
-                  <p className="mb-5 text-lg font-normal text-red-700 dark:text-red-700">
-                 
-                  </p>
+                  <p className="mb-5 text-lg font-normal text-red-700 dark:text-red-700"></p>
                 ) : (
                   <p className="mb-5 text-lg font-normal text-green-500 dark:text-green-500">
-                      Account Created Successfully! 
+                    Account Created Successfully!
                   </p>
                 )}
 
@@ -360,7 +358,7 @@ const PatientLogin = () => {
                   onClick={verifyOtp}
                   className=" mx-2 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                 >
-               Submit Otp
+                  Submit Otp
                 </div>
                 <div
                   data-modal-hide="popup-modal "
@@ -396,6 +394,19 @@ const PatientLogin = () => {
                 <div className="heading text-center font-bold text-2xl">
                   Patient <span className="text-custom-maroon">Login</span>
                 </div>
+                 {/* Are you a doctor starts */}
+<div className="flex justify-end w-full">
+  <div className="lg:w-1/2 flex justify-center text-center text-xs pt-1 mb-1">
+    <span className="text-gray-600">
+      Are you a doctor? -{" "}
+    </span>
+    <Link to="/doctorlogin" className="text-yellow-400 font-medium ml-1">
+      Login here
+    </Link>
+  </div>
+</div>
+{/* Are you a doctor ends */}
+
                 <div className="togglle flex w-full justify-center">
                   <div
                     className="login rounded-md bg-custom-maroon text-white p-2 border w-1/2 flex justify-center align-middle my-2"
@@ -403,6 +414,7 @@ const PatientLogin = () => {
                   >
                     Login
                   </div>
+
                   <div
                     className="registration  p-2 border w-1/2 flex justify-center align-middle my-2"
                     onClick={displayRegistration}
@@ -410,6 +422,8 @@ const PatientLogin = () => {
                     Registration
                   </div>
                 </div>
+
+
 
                 <label
                   htmlFor="website-admin"
@@ -455,30 +469,78 @@ const PatientLogin = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 /> */}
-            
-<div className="max-w-sm">
-  <label className="block text-sm mb-2 dark:text-white">Password</label>
-  <div className="relative">
 
-{/* hidden show password */}
-<div>
-    <input id="hs-toggle-password" type={showPassword?"text":"password"} className="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Enter password"  value={patientLoginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)} required/>
-    <button type="button" onClick={()=>showPassword?setShowPassword(false):setShowPassword(true)}  className="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
-      <svg className="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path className="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
-        <path className="hs-password-active:hidden" d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
-        <path className="hs-password-active:hidden" d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
-        <line className="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22"></line>
-        <path className="hidden hs-password-active:block" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-        <circle className="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
-      </svg>
-    </button>
-    </div>
-{/* hidden show password */}
-
-  </div>
-</div>
+                <div className="max-w-sm">
+                  <label className="block text-sm mb-2 dark:text-white">
+                    Password
+                  </label>
+                  <div className="relative">
+                    {/* hidden show password */}
+                    <div>
+                      <input
+                        id="hs-toggle-password"
+                        type={showPassword ? "text" : "password"}
+                        className="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        placeholder="Enter password"
+                        value={patientLoginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          showPassword
+                            ? setShowPassword(false)
+                            : setShowPassword(true)
+                        }
+                        className="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500"
+                      >
+                        <svg
+                          className="shrink-0 size-3.5"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path
+                            className="hs-password-active:hidden"
+                            d="M9.88 9.88a3 3 0 1 0 4.24 4.24"
+                          ></path>
+                          <path
+                            className="hs-password-active:hidden"
+                            d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"
+                          ></path>
+                          <path
+                            className="hs-password-active:hidden"
+                            d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"
+                          ></path>
+                          <line
+                            className="hs-password-active:hidden"
+                            x1="2"
+                            x2="22"
+                            y1="2"
+                            y2="22"
+                          ></line>
+                          <path
+                            className="hidden hs-password-active:block"
+                            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"
+                          ></path>
+                          <circle
+                            className="hidden hs-password-active:block"
+                            cx="12"
+                            cy="12"
+                            r="3"
+                          ></circle>
+                        </svg>
+                      </button>
+                    </div>
+                    {/* hidden show password */}
+                  </div>
+                </div>
 
                 {/* patient login ends */}
               </div>

@@ -41,55 +41,58 @@ const Testimony = () => {
 
   return (
     <div
-      className="Testimony h-[100vh] flex justify-center items-center text-center px-4"
-      style={{ backgroundImage: `url(${testimonybg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+    className=" relative Testimony h-[100vh] flex flex-col md:flex-row justify-center items-center text-center px-4"
+    style={{ backgroundImage: `url(${testimonybg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+  >
+    {/* Left Arrow */}
+    <div
+      className="leftArrow grid place-content-center cursor-pointer bg-white rounded-full p-4 md:ml-10 ml-2 md:mb-0 mb-4 transition-transform duration-500 shadow-lg"
+      aria-label="Previous Testimonial"
+      onClick={() => changeImage("left")}
+      style={{ position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)" }}
     >
-      {/* Left Arrow */}
-      <div
-        className="leftArrow grid place-content-center cursor-pointer bg-white rounded-full p-4 md:ml-10 ml-4 transition-transform duration-500 shadow-lg"
-        aria-label="Previous Testimonial"
-        onClick={() => changeImage("left")}
-      >
-        <ArrowBackIosIcon
-          sx={{ color: "black", fontSize: 40 }}
-          className="hover:scale-125 transition-transform duration-300"
-        />
+      <ArrowBackIosIcon
+        sx={{ color: "black", fontSize: 30 }}
+        className="hover:scale-125 transition-transform duration-300"
+      />
+    </div>
+  
+    {/* Testimonial Content */}
+    <div className={`mid max-w-3xl animate__animated ${animation} px-4`}>
+      <h2 className="text-lg mb-4 text-[#999999]">Testimonial</h2>
+      <div className="text-2xl mb-6 flex flex-col md:flex-row align-middle justify-center">
+        <div className="pr-2 text-5xl font-bold text-[#8f1b1b]">Trusted</div>
+        <div className="pl-2 text-5xl">by Our Clients</div>
       </div>
-
-      {/* Testimonial Content */}
-      <div className={`mid max-w-3xl animate__animated ${animation}`}>
-        <h2 className="text-lg mb-6 text-[#999999]">Testimonial</h2>
-        <div className="text-2xl mb-8 flex align-middle justify-center">
-          <div className="pr-2 text-5xl font-bold text-[#8f1b1b]">Trusted</div>
-          <div className="pl-2 text-5xl">by Our Clients</div>
-        </div>
-
-        <div className="client images rounded-full overflow-hidden w-36 h-36 mx-auto mb-6 shadow-lg">
-          <img src={currentTestimonial.image} alt={`${currentTestimonial.name}'s photo`} />
-        </div>
-
-        <blockquote className="testimony text-xl italic text-gray-700 mb-6">
-          “{currentTestimonial.text}”
-        </blockquote>
-
-        <div className="name-address text-gray-900">
-          <h3 className="font-semibold text-2xl">{currentTestimonial.name}</h3>
-          <p className="text-lg">{currentTestimonial.address}</p>
-        </div>
+  
+      <div className="client images rounded-full overflow-hidden w-28 h-28 md:w-36 md:h-36 mx-auto mb-4 shadow-lg">
+        <img src={currentTestimonial.image} alt={`${currentTestimonial.name}'s photo`} />
       </div>
-
-      {/* Right Arrow */}
-      <div
-        className="rightArrow grid place-content-center cursor-pointer bg-white rounded-full p-4 md:mr-10 mr-4 transition-transform duration-500 shadow-lg"
-        aria-label="Next Testimonial"
-        onClick={() => changeImage("right")}
-      >
-        <ArrowForwardIosIcon
-          sx={{ color: "black", fontSize: 40 }}
-          className="hover:scale-125 transition-transform duration-300"
-        />
+  
+      <blockquote className="testimony text-lg md:text-xl italic text-gray-700 mb-4">
+        “{currentTestimonial.text}”
+      </blockquote>
+  
+      <div className="name-address text-gray-900">
+        <h3 className="font-semibold text-xl md:text-2xl">{currentTestimonial.name}</h3>
+        <p className="text-base md:text-lg">{currentTestimonial.address}</p>
       </div>
     </div>
+  
+    {/* Right Arrow */}
+    <div
+      className="rightArrow grid place-content-center cursor-pointer bg-white rounded-full p-4 md:mr-10 mr-2 md:mb-0 mb-4 transition-transform duration-500 shadow-lg"
+      aria-label="Next Testimonial"
+      onClick={() => changeImage("right")}
+      style={{ position: "absolute", right: "1rem", top: "50%", transform: "translateY(-50%)" }}
+    >
+      <ArrowForwardIosIcon
+        sx={{ color: "black", fontSize: 30 }}
+        className="hover:scale-125 transition-transform duration-300"
+      />
+    </div>
+  </div>
+  
   );
 };
 

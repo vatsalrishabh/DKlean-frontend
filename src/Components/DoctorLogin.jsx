@@ -322,6 +322,19 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
                 <div className="heading text-center font-bold text-2xl">
                   Doctor <span className="text-custom-maroon">Login</span>
                 </div>
+               {/* Are you a patient starts */}
+<div className="flex justify-end w-full">
+  <div className="lg:w-1/2 flex justify-center text-center text-xs pt-1 mb-1">
+    <span className="text-gray-600">
+      Are you a patient? -{" "}
+    </span>
+    <Link to="/patientlogin" className="text-yellow-400 font-medium ml-1">
+      Login here
+    </Link>
+  </div>
+</div>
+{/* Are you a patient ends */}
+
                 <div className="togglle flex w-full justify-center">
                   <div
                     className="login rounded-md bg-custom-maroon text-white p-2 border w-1/2 flex justify-center align-middle my-2"

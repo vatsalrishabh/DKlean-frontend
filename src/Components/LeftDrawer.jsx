@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Drawer, List, ListItem, ListItemText, Avatar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const LeftDrawer = ({ localstorage, avatarType, menuItems }) => {
-  const [loggedInUser, setLoggedInUser] = useState({});
+const LeftDrawer = ({ loggedInUser, avatarType, menuItems }) => {
   const [hideLeftDrawer, setHideDrawer] = useState(false);
 
   useEffect(() => {
@@ -18,19 +17,9 @@ const LeftDrawer = ({ localstorage, avatarType, menuItems }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const loadUserDetails = () => {
-      const details = localStorage.getItem(localstorage);
-      if (details) {
-        setLoggedInUser(JSON.parse(details));
-      }
-    };
-    loadUserDetails();
-  }, [localstorage]);
-
   const logout = () => {
     localStorage.clear();
-    window.location.href = "/login"; // Redirect to login or desired page
+    location.reload(); // Reload to reset the app state
   };
 
   return (
@@ -43,7 +32,7 @@ const LeftDrawer = ({ localstorage, avatarType, menuItems }) => {
           "& .MuiDrawer-paper": {
             width: 250,
             boxSizing: "border-box",
-            backgroundColor: "#9e1b1b", // Darker Maroon
+            backgroundColor: "#9e1b1b",
             color: "#fff",
             transition: "all 0.3s ease-in-out",
           },
@@ -53,7 +42,7 @@ const LeftDrawer = ({ localstorage, avatarType, menuItems }) => {
       >
         <div className="flex flex-col items-center mt-6">
           <Avatar sx={{ bgcolor: "#d01212", width: 100, height: 100 }}>
-            {loggedInUser?.name?.slice(0, 1).toUpperCase() || avatarType[0]}
+            {loggedInUser?.name?.charAt(0).toUpperCase() || avatarType[0]}
           </Avatar>
           <Typography variant="h6" className="font-semibold text-white mt-2">
             {loggedInUser?.name || avatarType}

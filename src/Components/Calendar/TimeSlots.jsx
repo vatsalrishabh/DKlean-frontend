@@ -5,6 +5,7 @@ import { Button, Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import CircularProgress from "@mui/material/CircularProgress";
 import FinalSelect from "./FinalSelect";
+import UniversalPatientDetails from "../../Patient/UniversalPatientDetails";
 
 // Custom styled Box component for content styling
 const ContentBox = styled(Box)(({
@@ -44,12 +45,14 @@ const TimeSlots = (props) => {
   }, [props.selectedDate, data]); // Re-filter when data or selected date changes
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pb-2">
       {/* Show selected date's available doctors */}
-      <h2 className="text-3xl font-semibold text-center mb-6">
+      <h2 className="text-3xl text-gray-700 font-semibold text-center mb-1">
         Available Doctors for {props.selectedDate}
       </h2>
-
+      <div>
+        <UniversalPatientDetails />
+      </div>
       {/* Render the selected date's slots and availability */}
       {selectedDateData.length > 0 ? (
         selectedDateData.map((item) => (
@@ -60,16 +63,15 @@ const TimeSlots = (props) => {
               </Typography>
             </div>
             <ul className="space-y-4 overflow-y-auto max-h-96">
-              {item.slots.map((slot) => (
+              {item.slots.map((slot, index) => (
                 <li
-                   // Unique key combining item ID, slot time, and index
+                  key={`${item._id}-${slot.time}-${index}`} // Unique key combining item ID, slot time, and index
                   className="flex justify-between items-center py-4 bg-gray-100 rounded-lg hover:bg-gray-200"
                 >
                   <span className="text-lg w-full font-medium flex justify-between">
                     <div>{slot.time}</div>
                     <div>
                       <FinalSelect
-                       
                         time={slot.time}
                         doctors={slot.doctors}
                         date={item.date}
@@ -86,7 +88,7 @@ const TimeSlots = (props) => {
           variant="h6"
           className="text-red-500 text-center flex justify-center align-middle"
         >
-          <CircularProgress color="secondary" size={40} />
+          <CircularProgress sx={{ color: "#8f1b1b" }} size={40} />
         </Typography>
       )}
     </div>

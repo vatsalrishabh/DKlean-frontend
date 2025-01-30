@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Loader from "./Components/Loader";
 import AboutUs from "./Components/AboutUs";
-import BookAnAppointment from "./Components/BookAnAppointment";
+// import BookAnAppointment from "./Components/BookAnAppointment";
 import DoctorLogin from "./Components/DoctorLogin";
 import PatientLogin from "./Components/PatientLogin";
 import Home from "./Components/Home";
@@ -32,38 +32,42 @@ import PaymentSuccess from "./Components/PaymentSuccess";
 import SelectDiseaseType from "./Components/SelectDiseaseType";
 import UpcomingApp from "./Components/UpcomingApp";
 import PatientHistory from "./Components/PatientHistory";
-import DoctorNavbar from "./Components/DoctorDashboard/DoctorNavbar";
-import AllPatientProfile from "./Components/DoctorDashboard/AllPatientProfile";
-import PatientProfile from "./Components/PatientProfile";
-import ManageAppointments from "./Components/DoctorDashboard/ManageAppointments";
-import PrescribeMedicine from "./Components/PrescribeMedicine";
+// import DoctorNavbar from "./Components/DoctorDashboard/DoctorNavbar";
+// import AllPatientProfile from "./Components/DoctorDashboard/AllPatientProfile";
+// import PatientProfile from "./Components/PatientProfile";
+// import ManageAppointments from "./Components/DoctorDashboard/ManageAppointments";
+// import PrescribeMedicine from "./Components/PrescribeMedicine";
 import EditPatientProfile from "./Components/EditPatientProfile";
-import DEditPProfile from "./Components/DoctorDashboard/DEditPProfile";
-import DPProfile from "./Components/DoctorDashboard/DPProfile";
-import DUpcoming from "./Components/DoctorDashboard/DUpcoming";
-import PatientPrescription from "./Components/DoctorDashboard/PatientPrescription";
+// import DEditPProfile from "./Components/DoctorDashboard/DEditPProfile";
+// import DPProfile from "./Components/DoctorDashboard/DPProfile";
+// import DUpcoming from "./Components/DoctorDashboard/DUpcoming";
+// import PatientPrescription from "./Components/DoctorDashboard/PatientPrescription";
 import FinalReport from "./Components/DoctorDashboard/FinalReport";
-import ManageMulAppointment from "./Components/DoctorDashboard/ManageMulAppointment";
+// import ManageMulAppointment from "./Components/DoctorDashboard/ManageMulAppointment";
 import Dates from "./Components/Calendar/Dates";
 import DonorForgotPass from "./Components/DonorForgotPass";
 import AdminLogin from "./Admin/AdminLogin";
 import AdminForgotPass from "./Components/AdminForgotPass";
-import EditBookAnAppointment from "./Components/EditBookAnAppointment";
+// import EditBookAnAppointment from "./Components/EditBookAnAppointment";
 import DonationPage from "./Components/Donations/DonationPage";
 import DonorDashboard from "./Donor/DonorDashboard";
 import DonorLogin from "./Components/DonorLogin";
-import AdminDashboard from './Admin/AdminDasboard';
-import SubAdminLogin from "./Components/SubAdminLogin";
-import SubAdminDashboard from './SubAdmin/SubAdminDashboard'
+import AdminDashboard from "./Admin/AdminDasboard";
+// import SubAdminLogin from "./Components/SubAdminLogin";
+// import SubAdminDashboard from "./SubAdmin/SubAdminDashboard";
 import DoctorForgotPass from "./Components/DoctorForgotPass";
 import SubAdminForgotPass from "./Components/SubAdminForgotPass";
-import AllAppointment from "./Patient/AllAppointment";
+// import AllAppointment from "./Patient/AllAppointment";
 import Testimony from "./Components/Testimony/Testimony";
 import HomeSmall from "./Components/HomeSmall";
 import DoctorSlider from "./Components/DoctorSlider";
 import Professional from "./Components/Professional";
 import PricingAndCart from "./PricingAndCart/PricingAndCart";
-import PatientDashboardModern from "./Patient/PatientDashboardModern";
+// import PatientDashboardModern from "./Patient/PatientDashboardModern";
+import PatientDash from "./Patient/PatientDash";
+import PaymentPage from "./PaymentPage/PaymentPage";
+import PositionPractice from "./Components/PositionPractice";
+import PatientBookAnApp from "./Patient/PatientBookAnApp";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -79,13 +83,13 @@ function App() {
         setter(JSON.parse(storedDetails));
       }
     };
-  
+
     const checkTokenExpiration = (details, key) => {
       if (details?.isloggedIn) {
         try {
           const decoded = jwtDecode(details.jwt);
           const currentTime = Math.floor(Date.now() / 1000);
-          console.log(decoded.exp+"sdf"+currentTime)
+          console.log(decoded.exp + "sdf" + currentTime);
           if (decoded.exp < currentTime) {
             console.warn(`${key} token has expired.`);
             localStorage.removeItem(key);
@@ -96,7 +100,7 @@ function App() {
         }
       }
     };
-  
+
     const keys = [
       { key: "userDetails", setter: setLoggedInUser },
       { key: "doctorDetails", setter: setLoggedInDoctor },
@@ -104,23 +108,22 @@ function App() {
       { key: "subAdminDetails", setter: setLoggedInSubAdmin },
       { key: "donorDetails", setter: setLoggedInDonor },
     ];
-  
+
     keys.forEach(({ key, setter }) => {
       const details = JSON.parse(localStorage.getItem(key));
       loadDetails(key, setter);
       checkTokenExpiration(details, key);
     });
-  
+
     const intervalId = setInterval(() => {
       keys.forEach(({ key }) => {
         const details = JSON.parse(localStorage.getItem(key));
         checkTokenExpiration(details, key);
       });
     }, 60000);
-  
+
     return () => clearInterval(intervalId);
   }, []);
-  
 
   return (
     <Router>
@@ -133,7 +136,7 @@ function App() {
             path="/donate"
             element={
               <>
-                <Navbar />
+                <Navbar userType="donorDetails" />
                 <DonationPage />
                 <Footer />
               </>
@@ -144,12 +147,12 @@ function App() {
             path="/home"
             element={
               <>
-                <Navbar />
-             <HomeSmall/>
-             <DoctorSlider/>
-             <Professional/>
-                <Testimony/>
-                <PricingAndCart/>
+                <Navbar userType="userDetails"/>
+                <HomeSmall />
+                <DoctorSlider />
+                <Professional />
+                <Testimony />
+                <PricingAndCart />
                 <Footer />
               </>
             }
@@ -157,15 +160,26 @@ function App() {
 
           <Route path="/pres/:bookingId" element={<Prescription />} />
 
-{/* History page starts */}
-<Route
+          {/* History page starts */}
+          <Route
             path="/pApp"
             element={
-              loggedInUser.isloggedIn  ? (
+              loggedInUser.isloggedIn ? (
                 <>
-                  <PatientNavbar />
-                  <AllAppointment />
-                  <Footer />
+                <Navbar userType="userDetails"/>
+               <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientprofile"
+                  /> 
+                    <PatientDash />
+                  {/* <AllAppointment /> */}
                 </>
               ) : (
                 <>
@@ -176,23 +190,154 @@ function App() {
               )
             }
           />
-{/* History page ends */}
+          {/* History page ends */}
 
 
+          <Route
+            path="/contactSupport"
+            element={
+              loggedInUser.isloggedIn ? (
+                <>
+               <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientprofile"
+                  /> 
+                    <PatientDash />
+                  {/* <AllAppointment /> */}
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <PatientLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+
+<Route
+            path="/patient/dates"
+            element={
+              loggedInUser.isloggedIn ? (
+                <>
+              <Dates/>
+                  {/* <AllAppointment /> */}
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <PatientLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+
+
+
+<Route
+            path="/bookphysio"
+            element={
+              loggedInUser.isloggedIn ? (
+                <>
+                  <Navbar userType="userDetails"/>
+                  <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientprofile"
+                  />    
+                    {/* smartphone navbar above and its link */}
+                 <PatientBookAnApp/>
+                  {/* <PatientDashboardModern/> */}
+                  {/* <Footer /> */}
+                </>
+              ) : (
+                <>
+                  <Navbar userType="userDetails"/>
+                  <PatientLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+<Route
+            path="/bookbloodtest"
+            element={
+              loggedInUser.isloggedIn ? (
+                <>
+                  <Navbar userType="userDetails"/>
+                  <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientprofile"
+                  />    
+                    {/* smartphone navbar above and its link */}
+                 <PatientBookAnApp/>
+                  {/* <PatientDashboardModern/> */}
+                  {/* <Footer /> */}
+                </>
+              ) : (
+                <>
+                  <Navbar userType="userDetails"/>
+                  <PatientLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+       
 
           <Route
             path="/patientlogin"
             element={
-              loggedInUser.isloggedIn  ? (
+              loggedInUser.isloggedIn ? (
                 <>
-                  <PatientNavbar localstorage="userDetails" oneName="Dashboard" linkOne="/patientlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Book an Appointment" linkThree="/selectDis"  fourtName="Patient History" linkFour="/history"  />
-                  <PatientDashboard />
+                  <Navbar userType="userDetails"/>
+                  <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientprofile"
+                  />    
+                    {/* smartphone navbar above and its link */}
+                  <PatientDash />
                   {/* <PatientDashboardModern/> */}
                   {/* <Footer /> */}
-                </>  
+                </>
               ) : (
                 <>
-                  <Navbar />
+                  <Navbar userType="userDetails"/>
                   <PatientLogin />
                   <Footer />
                 </>
@@ -200,15 +345,51 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/doctorlogin"
             element={
-              loggedInDoctor.isloggedIn?(
+              loggedInDoctor.isloggedIn ? (
                 <>
-                 <PatientNavbar localstorage="doctorDetails" oneName="Dashboard" linkOne="/doctorlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Manage Appointment" linkThree="/selectDis"  fourtName="Doctor History" linkFour="/history"  />
+                  <PatientNavbar
+                    localstorage="doctorDetails"
+                    oneName="Dashboard"
+                    linkOne="/doctorlogin"
+                    twoName="Edit Appointments"
+                    linkTwo="/doctor/UpcomingApp"
+                    threeName="Manage Appointment"
+                    linkThree="/doctor/manageApp"
+                    fourtName="Contact Support"
+                    linkFour="/doctor/contactSupport"
+                  />
                   <DoctorDashboard />
-                 
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <DoctorLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+          <Route
+            path="/doctor/UpcomingApp"
+            element={
+              loggedInDoctor.isloggedIn ? (
+                <>
+                 <PatientNavbar
+                    localstorage="doctorDetails"
+                    oneName="Dashboard"
+                    linkOne="/doctorlogin"
+                    twoName="Edit Appointments"
+                    linkTwo="/doctor/UpcomingApp"
+                    threeName="Manage Appointment"
+                    linkThree="/doctor/manageApp"
+                    fourtName="Contact Support"
+                    linkFour="/doctor/contactSupport"
+                  />
+                  <DoctorDashboard />
                 </>
               ) : (
                 <>
@@ -221,22 +402,28 @@ function App() {
           />
 
 
-
-
-
 <Route
-            path="/donorlogin"
+            path="/doctor/manageApp"
             element={
-              loggedInDonor.isloggedIn ? (
+              loggedInDoctor.isloggedIn ? (
                 <>
-                  <PatientNavbar />
-                  <DonorDashboard />
-                  <Footer />
+                 <PatientNavbar
+                    localstorage="doctorDetails"
+                    oneName="Dashboard"
+                    linkOne="/doctorlogin"
+                    twoName="Edit Appointments"
+                    linkTwo="/doctor/UpcomingApp"
+                    threeName="Manage Appointment"
+                    linkThree="/doctor/manageApp"
+                    fourtName="Contact Support"
+                    linkFour="/doctor/contactSupport"
+                  />
+                  <DoctorDashboard />
                 </>
               ) : (
-                <> 
+                <>
                   <Navbar />
-                  <DonorLogin/>
+                  <DoctorLogin />
                   <Footer />
                 </>
               )
@@ -244,13 +431,55 @@ function App() {
           />
 
 
+          
+
 
 <Route
+            path="/doctor/contactSupport"
+            element={
+              loggedInDoctor.isloggedIn ? (
+                <>
+                 <PatientNavbar
+                    localstorage="doctorDetails"
+                    oneName="Dashboard"
+                    linkOne="/doctorlogin"
+                    twoName="Edit Appointments"
+                    linkTwo="/doctor/UpcomingApp"
+                    threeName="Manage Appointment"
+                    linkThree="/doctor/manageApp"
+                    fourtName="Contact Support"
+                    linkFour="/doctor/contactSupport"
+                  />
+                  <DoctorDashboard />
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <DoctorLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+          
+
+         
+          <Route
             path="/adminlogin"
             element={
               loggedInAdmin.isloggedIn ? (
                 <>
-                  <PatientNavbar localstorage="userDetails" oneName="Dashboard" linkOne="/patientlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Book an Appointment" linkThree="/selectDis"  fourtName="Patient History" linkFour="/history"  />
+                  <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="Upcoming Appointments"
+                    linkTwo="/appointments"
+                    threeName="Book an Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Patient History"
+                    linkFour="/history"
+                  />
                   <AdminDashboard />
                   {/* <Footer /> */}
                 </>
@@ -266,6 +495,38 @@ function App() {
 
 
 <Route
+            path="/admin/bookAp"
+            element={
+              loggedInAdmin.isloggedIn ? (
+                <>
+                  <PatientNavbar
+                    localstorage="doctorDetails"
+                    oneName="Dashboard"
+                    linkOne="/adminlogin"
+                    twoName="Upcoming Appointments"
+                    linkTwo="/appointments"
+                    threeName="Manage Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Doctor History"
+                    linkFour="/history"
+                  />   {/* the above is smarpthone navbar */}
+                  <AdminDashboard/>
+                  {/* <DoctorDashboard /> */}
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <AdminLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+
+
+          {/* <Route
             path="/subadminlogin"
             element={
               loggedInSubAdmin.isloggedIn ? (
@@ -282,10 +543,9 @@ function App() {
                 </>
               )
             }
-          />
+          /> */}
 
-
-{/* all login pages ends here */}
+          {/* all login pages ends here */}
 
           <Route
             path="/patientforgotPass"
@@ -299,6 +559,30 @@ function App() {
             }
           />
 
+
+
+
+<Route
+            path="/donorlogin"
+            element={
+              loggedInDonor.isloggedIn ? (
+                <>
+                  <PatientNavbar />
+                  <DonorDashboard />
+                  <Footer />
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <DonorLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+
           <Route
             path="/donorforgotPass"
             element={
@@ -311,7 +595,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/doctorforgotPass"
             element={
               <>
@@ -323,8 +607,7 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/adminforgotPass"
             element={
               <>
@@ -336,7 +619,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/subAdminforgotPass"
             element={
               <>
@@ -348,202 +631,7 @@ function App() {
             }
           />
 
-
-          {/* all admin routes below */}
-
-          <Route
-            path="/adminAllApp"
-            element={
-              loggedInAdmin.isloggedIn? (
-                <>
-                   <PatientNavbar localstorage="adminDetails" oneName="Dashboard" linkOne="/patientlogin" twoName="Upcoming Appointments"  linkTwo="/appointments" threeName="Book an Appointment" linkThree="/selectDis"  fourtName="Patient History" linkFour="/history"  />
-                  <DoctorDashboard />  
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <AdminLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
          
-
-          {/* all the dcotors routes below */}
-     
-
-          {/* <Route
-            path="/allpatienthistory/:patientId"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <DoctorDashboard />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/allpatientprofile"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <AllPatientProfile />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/PatientPres"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <PatientPrescription />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/DpatientprofileEdit/:patientEmail"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <DEditPProfile />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/Dpatientprofile/:patientEmail"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <DPProfile />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/manageAppoint"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <ManageAppointments />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/manageMulAppoint"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <ManageMulAppointment />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/Dappointments"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <DUpcoming />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          />
-
-          <Route
-            path="/prescriptions"
-            element={
-              loggedInDoctor.isLoggedIn ? (
-                <>
-                  <DoctorNavbar />
-                  <PrescribeMedicine />
-                  <Footer />
-                </>
-              ) : (
-                <>
-                  <Navbar />
-                  <DoctorLogin />
-                  <Footer />
-                </>
-              )
-            }
-          /> */}
 
           <Route
             path="/aboutus"
@@ -568,17 +656,26 @@ function App() {
             }
           />
 
-          
-
           <Route
             path="/bookAp"
             element={
               loggedInUser.isloggedIn ? (
                 <>
-                  <PatientNavbar />
-                  <BookAnAppointment />
+            <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientprofile"
+                  />    
+                <PatientDash />
+                  {/* <PatientNavbar />
+                  <BookAnAppointment /> */}
                   {/* <ChatBotButton /> */}
-              
                 </>
               ) : (
                 <PatientNotLoggedIn />
@@ -586,98 +683,68 @@ function App() {
             }
           />
 
-          <Route
-            path="/admin/bookAp"
+<Route
+            path="/profileSettings"
             element={
-              loggedInAdmin.isloggedIn ? (
+              loggedInUser.isloggedIn ? (
                 <>
-                  <PatientNavbar />
-                  <EditBookAnAppointment />
-                  <Footer />
+                <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/doctorlogin"
+                    twoName="Upcoming Appointments"
+                    linkTwo="/appointments"
+                    threeName="Manage Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Doctor History"
+                    linkFour="/history"
+                  />
+                  <PatientDash/>
+                  {/* <BookAnAppointment /> */}
+                  {/* <ChatBotButton /> */}
                 </>
               ) : (
-              <>
-    <Navbar/>
-<AdminLogin />
-    <Footer/>
-              </>
-               
+                <PatientNotLoggedIn />
               )
             }
           />
+
+
 
           <Route
             path="/patientprofile"
             element={
               loggedInUser.isloggedIn ? (
                 <>
-                  <PatientNavbar />
-                  <PatientProfile />
-                  <Footer />
+                 <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                    threeName="Book an Appointment"
+                    linkThree="/bookAp"
+                    fourtName="Profile Setting"
+                    linkFour="/patientProfile"
+                  />    
+                    {/* smartphone navbar above and its link */}
+                  <PatientDash />
+               
                 </>
               ) : (
-                <PatientNotLoggedIn />
+                <>
+                <Navbar />
+                <PatientLogin />
+                <Footer />
+              </>
               )
             }
           />
 
-          <Route
-            path="/editpatientprofile"
-            element={
-              loggedInUser.isloggedIn ? (
-                <>
-                  <PatientNavbar />
-                  <EditPatientProfile />
-                  <Footer />
-                </>
-              ) : (
-                <PatientNotLoggedIn />
-              )
-            }
-          />
-
-          <Route
-            path="/selectDis"
-            element={
-              loggedInUser.isloggedIn ? (
-                <>
-                  <PatientNavbar />
-                  <SelectDiseaseType />
-                  <Footer />
-                </>
-              ) : (
-                <PatientNotLoggedIn />
-              )
-            }
-          />
-          <Route
-            path="/history"
-            element={
-              loggedInUser.isloggedIn ? (
-                <>
-                  <PatientNavbar />
-                  <PatientHistory />
-                  <Footer />
-                </>
-              ) : (
-                <PatientNotLoggedIn />
-              )
-            }
-          />
-          <Route
-            path="/appointments"
-            element={
-              loggedInUser.isloggedIn ? (
-                <>
-                  <PatientNavbar />
-                  <UpcomingApp />
-                  <Footer />
-                </>
-              ) : (
-                <PatientNotLoggedIn />
-              )
-            }
-          />
+         
+         
+        
+   
           <Route
             path="/finalreport"
             element={
@@ -685,9 +752,11 @@ function App() {
             }
           />
           <Route
-            path="/payment"
+            path="/patient/payment"
             element={
-              loggedInUser.isloggedIn ? <Payment /> : <PatientNotLoggedIn />
+              loggedInUser.isloggedIn ? <PaymentPage /> :<> <Navbar />
+              <PatientLogin />
+              <Footer /></>
             }
           />
           <Route
@@ -731,6 +800,14 @@ function App() {
               </>
             }
           />
+          {/* <Route
+            path="/position"
+            element={
+              <>
+               <PositionPractice />
+              </>
+            }
+          /> */}
           <Route
             path="/privacy"
             element={
@@ -761,7 +838,7 @@ function App() {
               </>
             }
           />
-          <Route path="/videocall" element={<VideoCall />} />
+         
           <Route
             path="*"
             element={

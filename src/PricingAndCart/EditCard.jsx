@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import EditModal from './EditModal'; // Assuming the EditModal is being used for editing purposes
 
-const EditCard = ({ initialName, initialPrice, initialDescription, initialDiscount, onDelete, onUpdate }) => {
+const EditCard = ({ initialName, initialPrice, initialDescription, initialDiscount, initialCategory, onDelete, onUpdate, jwt, serviceId }) => {
   const [name, setName] = useState(initialName);
   const [price, setPrice] = useState(initialPrice);
   const [description, setDescription] = useState(initialDescription);
   const [discount, setDiscount] = useState(initialDiscount);
+  const [category, setCategory] = useState(initialCategory); // New state for category
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const maxLength = 30; // Maximum length for the description before truncating
@@ -19,12 +20,8 @@ const EditCard = ({ initialName, initialPrice, initialDescription, initialDiscou
   };
 
   const handleUpdateCard = () => {
-    onUpdate({ name, price, description, discount }); // Pass the updated card details to the parent
+    onUpdate({ name, price, description, discount, category }); // Pass the updated card details to the parent
     setIsModalOpen(false);
-  };
-
-  const handleDeleteCard = () => {
-    onDelete(); // Pass the delete action to the parent
   };
 
   return (
@@ -49,10 +46,6 @@ const EditCard = ({ initialName, initialPrice, initialDescription, initialDiscou
 
       {/* Button Section */}
       <div className="flex flex-col items-center space-y-4 mt-4 w-full">
-        <button className="px-6 py-2 bg-[#8f1b1b] text-white rounded-lg hover:bg-[#a22d2d] transition-all duration-300 w-full">
-          Book Now
-        </button>
-
         {/* Read More Button for long descriptions */}
         {description.length > maxLength && (
           <button
@@ -65,18 +58,10 @@ const EditCard = ({ initialName, initialPrice, initialDescription, initialDiscou
 
         {/* Edit Button to open the edit modal */}
         <button
-          className="text-sm text-blue-500 hover:underline"
+          className="px-6 py-2 bg-[#8f1b1b] text-white rounded-lg hover:bg-[#a22d2d] transition-all duration-300 w-full"
           onClick={handleOpenModal}
         >
           Edit
-        </button>
-
-        {/* Delete Button */}
-        <button
-          className="text-sm text-red-500 hover:underline"
-          onClick={handleDeleteCard}
-        >
-          Delete
         </button>
       </div>
 
@@ -87,12 +72,16 @@ const EditCard = ({ initialName, initialPrice, initialDescription, initialDiscou
           price={price}
           description={description}
           discount={discount}
+          category={category}
           onClose={handleCloseModal}
-          onSave={handleUpdateCard} // Pass the update function to modal
+          onSave={handleUpdateCard}
           onNameChange={setName}
           onPriceChange={setPrice}
           onDescriptionChange={setDescription}
           onDiscountChange={setDiscount}
+          onCategoryChange={setCategory} // Pass the category change handler
+          serviceId={serviceId}
+          jwt={jwt}
         />
       )}
     </div>
