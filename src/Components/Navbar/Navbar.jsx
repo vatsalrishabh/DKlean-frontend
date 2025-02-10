@@ -25,7 +25,7 @@ const Navbar = (props) => {
       }
     };
     loadDetails();
-    console.log(loggedInUser.isloggedIn+"sdkhaldfkhasdlkh");
+    // console.log(loggedInUser.isloggedIn+"sdkhaldfkhasdlkh");
     if(loggedInUser.isloggedIn===undefined){
       setIsDropdownOpen(false);
     }

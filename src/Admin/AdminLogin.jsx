@@ -222,7 +222,7 @@ const AdminLogin = () => { // state props componetnts hooks
         setIsOtpCorrect("correct"); // verify it matches make that true
         // loginUser("sample-jwt-token", "patient", "user-id", "user@example.com");
         setTimeout(() => {
-          navigate("/pdash");
+          navigate("/adminlogin");
         }, 2000);
         setHideOtpModal("hidden");
       } else {
@@ -529,7 +529,7 @@ const AdminLogin = () => { // state props componetnts hooks
             >
               <div className="mb-5">
                 <div className="heading text-center font-bold text-2xl">
-                  Patient{" "}
+                  Admin{" "}
                   <span className="text-custom-maroon">Registraiton</span>
                 </div>
                 <div className="togglle flex w-full justify-center">

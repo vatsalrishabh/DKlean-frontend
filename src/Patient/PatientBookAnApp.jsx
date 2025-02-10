@@ -99,7 +99,7 @@ const PatientBookAnApp = () => {
 
         if (data && data.length > 0) {
           setSpecialityCard(data.filter((service) => service.category === "blood"));
-          setCommonHealthCard(data.filter((service) => service.category === "Health"));
+          setCommonHealthCard(data.filter((service) => service.category === "Physio"));
         }
       } catch (error) {
         console.error("Error fetching services:", error);

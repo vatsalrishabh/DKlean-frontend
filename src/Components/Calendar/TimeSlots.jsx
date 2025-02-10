@@ -18,7 +18,7 @@ const ContentBox = styled(Box)(({
 
 const TimeSlots = (props) => {
   const [data, setData] = useState([]); // Store all booking data from server
-  const [selectedDateData, setSelectedDateData] = useState([]); // Filtered slots for selected date(single)
+  const [selectedDateData, setSelectedDateData] = useState([]); // Filtered slots for selected date
 
   // Fetch all booking data on component mount
   useEffect(() => {
@@ -34,15 +34,15 @@ const TimeSlots = (props) => {
     };
 
     fetchAllDates();
-  }, []); // Run once when component mounts
+  }, []);
 
   // Filter slots based on selected date whenever the selected date or data changes
   useEffect(() => {
     const filteredSlots = data.filter(
-      (item) => item.date === props.selectedDate // Directly use props.selectedDate
+      (item) => item.date === props.selectedDate
     );
-    setSelectedDateData(filteredSlots); // Update filtered slots
-  }, [props.selectedDate, data]); // Re-filter when data or selected date changes
+    setSelectedDateData(filteredSlots);
+  }, [props.selectedDate, data]);
 
   return (
     <div className="container mx-auto px-4 pb-2">
@@ -53,6 +53,7 @@ const TimeSlots = (props) => {
       <div>
         <UniversalPatientDetails />
       </div>
+
       {/* Render the selected date's slots and availability */}
       {selectedDateData.length > 0 ? (
         selectedDateData.map((item) => (
@@ -65,7 +66,7 @@ const TimeSlots = (props) => {
             <ul className="space-y-4 overflow-y-auto max-h-96">
               {item.slots.map((slot, index) => (
                 <li
-                  key={`${item._id}-${slot.time}-${index}`} // Unique key combining item ID, slot time, and index
+                  key={`${item._id}-${slot.time}-${slot.doctors?.join("-") || "no-docs"}-${index}`} 
                   className="flex justify-between items-center py-4 bg-gray-100 rounded-lg hover:bg-gray-200"
                 >
                   <span className="text-lg w-full font-medium flex justify-between">
@@ -84,12 +85,12 @@ const TimeSlots = (props) => {
           </ContentBox>
         ))
       ) : (
-        <Typography
-          variant="h6"
-          className="text-red-500 text-center flex justify-center align-middle"
-        >
+        <div className="flex justify-center items-center">
           <CircularProgress sx={{ color: "#8f1b1b" }} size={40} />
-        </Typography>
+          <Typography variant="h6" className="text-red-500 ml-2">
+            No available slots for this date
+          </Typography>
+        </div>
       )}
     </div>
   );

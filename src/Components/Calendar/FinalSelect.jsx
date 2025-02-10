@@ -24,6 +24,7 @@ const FinalSelect = (props) => {
 
   const handleBookClick = (doctor) => {
     console.log({
+      blocked:props.blocked,
       date: props.date,
       time: props.time,
       bookingId: doctor.bookingId,
@@ -63,6 +64,7 @@ const FinalSelect = (props) => {
     borderRadius: "12px",
     p: 2,
   };
+// console.log(props.doctors)
 
   return (
     <div>
@@ -130,7 +132,8 @@ const FinalSelect = (props) => {
                 Doctors & Availability
               </Typography>
 
-              {props.doctors.map((doc) => (
+              {props.doctors.map((doc,index) => (
+          <div key={doc.bookingId || index}  className={doc.blocked?`hidden ${index}`:" "} >
                 <Grid
                   container
                   spacing={2}
@@ -184,6 +187,7 @@ const FinalSelect = (props) => {
                     </Button>
                   </Grid>
                 </Grid>
+          </div>
               ))}
             </Box>
           </Box>

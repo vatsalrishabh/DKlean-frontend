@@ -232,7 +232,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
         <div
           id="popup-modal"
           tabIndex="-1"
-          className={`${hideOtpModal} overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full`}
+          className={`${hideOtpModal} overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-blue-gray-50 `}
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

@@ -4,29 +4,56 @@ import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import axios from "axios";
 import { BaseUrl } from "../BaseUrl";
 
-const Donationbox = () => {
+const Donationbox = ({donorDetails}) => {
   const [donationType, setDonationType] = useState("Give Once");
   const [selectedAmount, setSelectedAmount] = useState("");
   const [customAmount, setCustomAmount] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState({});
   const [formData, setFormData] = useState({
-    name: "",
+    userId:donorDetails?.userId,
+    name: donorDetails?.name,
     dob: "",
-    email: "",
-    mobile: "",
+    email: donorDetails?.email,
+    mobile: donorDetails?.mobile,
     address: "",
     pincode: "",
     city: "",
     state: "",
     country: "",
-    pancard: "",
+    pancard: donorDetails?.pancard,
   });
-
+  
   const [errors, setErrors] = useState({
     name: "",
     mobile: "",
     dob: "",
     pancard: "",
   });
+// console.log(donorDetails.userId)
+useEffect(()=>{
+  const loadUserDetails = () => {
+    const storedUserDetails = localStorage.getItem("donorDetails");
+    if (storedUserDetails) {
+      const userDetails = JSON.parse(storedUserDetails);
+      // console.log(storedUserDetails);
+     setLoggedInUser(userDetails); // Set the logged-in user with the JWT
+    }
+  };
+  loadUserDetails();
+  setFormData({
+    userId:donorDetails?.userId,
+    name: donorDetails?.name,
+    dob: "",
+    email: donorDetails?.email,
+    mobile: donorDetails?.mobile,
+    address: "",
+    pincode: "",
+    city: "",
+    state: "",
+    country: "",
+    pancard: donorDetails?.pancard,
+  });
+},[donorDetails]);
 
   const handleTypeChange = (type) => setDonationType(type);
 
@@ -80,9 +107,10 @@ const Donationbox = () => {
       };
       console.log("Donation Details:", donationDetails);
       try{
-        const response = axios.post(`${BaseUrl}/api`,donationDetails)
-      }catch(error){
+        const response = axios.post(`${BaseUrl}/api/donations/donateNow`,donationDetails,);
 
+      }catch(error){
+          console.log("Server Error"+error);
       }
     }
   };
@@ -92,7 +120,7 @@ const Donationbox = () => {
       if (formData.pincode.length === 6) { // Ensure pincode is fully entered
         try {
           const response = await axios.get(
-            `https://www.postalpincode.in/api/pincode/${formData.pincode}`
+            `http://www.postalpincode.in/api/pincode/${formData.pincode}`
           );
           const { PostOffice, Status } = response.data;
           if (PostOffice.length > 0) {
@@ -113,6 +141,10 @@ const Donationbox = () => {
     };
     fetchLocationDetails();
   }, [formData.pincode]);
+
+  
+
+
 
   return (
     <div className="w-full bg-[#f7f7f7] py-10">
@@ -298,7 +330,7 @@ const Donationbox = () => {
               type="submit"
               className="px-6 py-3 bg-custom-maroon text-white rounded-xl font-semibold w-full sm:w-60"
             >
-              Donate Now
+              Donate {loggedInUser.isloggedIn?" ":"Anonymously"}
             </button>
           </div>
         </form>

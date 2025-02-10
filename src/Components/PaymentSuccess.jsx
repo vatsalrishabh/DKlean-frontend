@@ -9,7 +9,7 @@ import SnackBarAlert from './SnackBarAlert'; // Assuming this is your Snackbar c
 const PaymentSuccess = () => {
   const [patientDetails, setPatientDetails] = useState(null);
   const [alert, setAlert] = useState({ message: '', status: '99' }); // 99 indicates no alert
-  const [emailSent, setEmailSent] = useState(false); // To track if the email has already been sent
+  const [emailSent, setEmailSent] = useState(false); // Track if the email has already been sent
 
   useEffect(() => {
     // Retrieve payment data from localStorage
@@ -17,7 +17,7 @@ const PaymentSuccess = () => {
     if (storedData) {
       setPatientDetails(JSON.parse(storedData));
     }
-  }, [alert]);
+  }, []);
 
   useEffect(() => {
     // Send receipt email after data is set, only if email hasn't been sent yet
@@ -39,12 +39,12 @@ const PaymentSuccess = () => {
     if (patientDetails) {
       sendMail();
     }
-  }, [patientDetails, emailSent]); // Add emailSent to the dependency array to prevent repeated API calls
+  }, [patientDetails, emailSent]); // Add emailSent to dependency array to prevent repeated API calls
 
   const handlePrint = () => {
     window.print();
     setTimeout(() => {
-      window.location.href = '/appointments'; // Redirect to appointments after printing
+      window.location.href = '/pApp'; // Redirect to appointments after printing
     }, 3000); // Delay to allow print dialog to close before redirect
   };
 
@@ -73,26 +73,43 @@ const PaymentSuccess = () => {
           </Typography>
 
           {/* Patient Details Section */}
-          {Object.entries(patientDetails).map(([key, value]) => (
-            <div key={key} className="mb-2 flex items-center justify-start">
-              {/* Display Icon Based on Key */}
-              {key === 'patientId' || key === 'doctorName' ? (
-                <Person className="mr-2 text-custom-maroon" />
-              ) : key === 'appointmentDate' ? (
-                <CalendarToday className="mr-2 text-custom-maroon" />
-              ) : key === 'appointmentTime' ? (
-                <AccessTime className="mr-2 text-custom-maroon" />
-              ) : key === 'diseaseType' || key === 'category' ? (
-                <MedicalServices className="mr-2 text-custom-maroon" />
-              ) : (
-                <Receipt className="mr-2 text-custom-maroon" />
-              )}
+          {Object.entries(patientDetails).map(([key, value]) => {
+            if (typeof value === 'object' && value !== null) {
+              return (
+                <div key={key} className="mb-2">
+                  <Typography variant="body1" className="font-semibold">
+                    {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:
+                  </Typography>
+                  {Object.entries(value).map(([subKey, subValue]) => (
+                    <Typography key={subKey} variant="body2" className="ml-4">
+                      <strong>{subKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {subValue}
+                    </Typography>
+                  ))}
+                </div>
+              );
+            }
 
-              <Typography variant="body1">
-                <strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {value}
-              </Typography>
-            </div>
-          ))}
+            return (
+              <div key={key} className="mb-2 flex items-center justify-start">
+                {/* Display Icon Based on Key */}
+                {key === 'patientId' || key === 'doctorName' ? (
+                  <Person className="mr-2 text-custom-maroon" />
+                ) : key === 'appointmentDate' ? (
+                  <CalendarToday className="mr-2 text-custom-maroon" />
+                ) : key === 'appointmentTime' ? (
+                  <AccessTime className="mr-2 text-custom-maroon" />
+                ) : key === 'diseaseType' || key === 'category' ? (
+                  <MedicalServices className="mr-2 text-custom-maroon" />
+                ) : (
+                  <Receipt className="mr-2 text-custom-maroon" />
+                )}
+
+                <Typography variant="body1">
+                  <strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {value}
+                </Typography>
+              </div>
+            );
+          })}
 
           {/* Print Button */}
           <Button

@@ -89,7 +89,7 @@ function App() {
         try {
           const decoded = jwtDecode(details.jwt);
           const currentTime = Math.floor(Date.now() / 1000);
-          console.log(decoded.exp + "sdf" + currentTime);
+          // console.log(decoded.exp + "sdf" + currentTime);
           if (decoded.exp < currentTime) {
             console.warn(`${key} token has expired.`);
             localStorage.removeItem(key);
@@ -185,6 +185,92 @@ function App() {
                 <>
                   <Navbar />
                   <PatientLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+<Route
+            path="/admin/allApp"
+            element={
+              loggedInAdmin.isloggedIn ? (
+                <>
+              <PatientNavbar
+                    localstorage="adminDetails"
+                    oneName="Dashboard"
+                    linkOne="/adminlogin"
+                    twoName="Upcoming Appointments"
+                    linkTwo="/appointments"
+                    threeName="Manage Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Doctor History"
+                    linkFour="/history"
+                  />   {/* the above is smarpthone navbar */}
+                  <AdminDashboard/>
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <AdminLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+
+<Route
+            path="/admin/addDoctor"
+            element={
+              loggedInAdmin.isloggedIn ? (
+                <>
+              <PatientNavbar
+                    localstorage="adminDetails"
+                    oneName="Dashboard"
+                    linkOne="/adminlogin"
+                    twoName="Upcoming Appointments"
+                    linkTwo="/appointments"
+                    threeName="Manage Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Doctor History"
+                    linkFour="/history"
+                  />   {/* the above is smarpthone navbar */}
+                  <AdminDashboard/>
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <AdminLogin />
+                  <Footer />
+                </>
+              )
+            }
+          />
+
+<Route
+            path="/admin/allDonation"
+            element={
+              loggedInAdmin.isloggedIn ? (
+                <>
+              <PatientNavbar
+                    localstorage="adminDetails"
+                    oneName="Dashboard"
+                    linkOne="/adminlogin"
+                    twoName="Upcoming Appointments"
+                    linkTwo="/appointments"
+                    threeName="Manage Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Doctor History"
+                    linkFour="/history"
+                  />   {/* the above is smarpthone navbar */}
+                  <AdminDashboard/>
+                </>
+              ) : (
+                <>
+                  <Navbar />
+                  <AdminLogin />
                   <Footer />
                 </>
               )
@@ -569,7 +655,7 @@ function App() {
                 <>
                   <PatientNavbar />
                   <DonorDashboard />
-                  <Footer />
+                  {/* <Footer /> */}
                 </>
               ) : (
                 <>

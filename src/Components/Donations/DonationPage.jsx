@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Donationbox from "./Donationbox";
+import LeftDonationMot from "./LeftDonationMot";
 
 
 const DonationPage = () => {
@@ -30,8 +31,13 @@ const DonationPage = () => {
 
   return (
    <>
-<div className="flex justify-end p-4">
-<Donationbox />
+<div className="lg:flex justify-end p-4">
+  <div className="lg:w-2/3 ">
+    <LeftDonationMot/>
+  </div>
+  <div className="lg:w-1/3">
+  <Donationbox />
+  </div>
 </div>
    </>
   );

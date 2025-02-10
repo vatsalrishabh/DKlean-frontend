@@ -83,7 +83,7 @@ const EditModal = ({ name, price, description, discount, category, serviceId, on
               value={category}
               onChange={(e) => onCategoryChange(e.target.value)}
             >
-              <option value="Health">Health/Blood</option>
+              <option value="blood">Blood</option>
               <option value="Physio">Physio</option>
             </select>
           </div>

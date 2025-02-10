@@ -14,6 +14,9 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import AdminLoginRight from "./AdminLoginRight";
 import AdminEditServices from "./AdminEditServices";
+import AdminAllAppointment from "./AdminAllAppointment";
+import AdminApproveDoctor from "./AdminApproveDoctor";
+import AdminAllDonation from "./AdminAllDonation";
 
 const AdminDashboard = () => {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -77,11 +80,11 @@ const AdminDashboard = () => {
 
           <List>
             {[
-              { text: "All Appointments", path: "/all" },
-              { text: "Donations", path: "/pApp" },
-              { text: "Add Doctors", path: "/profileSettings" },
+              { text: "All Appointments", path: "/admin/allApp" },
+              { text: "Donations", path: "/admin/allDonation" },
+              { text: "Add Doctors", path: "/admin/addDoctor" },
               { text: "Medical Reports", path: "/medicalReports" },
-              { text: "Add Services", path: "/contactSupport" },
+              { text: "Add Services", path: "/admin/bookAp" },
             ].map((item, index) => (
               <ListItem button component={Link} to={item.path} key={index}>
                 <ListItemText primary={item.text} />
@@ -97,6 +100,11 @@ const AdminDashboard = () => {
       {/* Right Section */}
       {location.pathname === "/adminlogin" && <AdminLoginRight />}
       {location.pathname === "/admin/bookAp" && <AdminEditServices />}
+      {location.pathname === "/admin/allApp" && <AdminAllAppointment/>}
+      {location.pathname === "/admin/addDoctor" && <AdminApproveDoctor/>}
+      {location.pathname === "/admin/allDonation" && <AdminAllDonation/>}
+      
+
      
     </div>
   );

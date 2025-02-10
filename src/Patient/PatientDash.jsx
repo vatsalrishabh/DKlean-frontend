@@ -23,7 +23,7 @@ const  PatientDash = () => {
        const storedUserDetails = localStorage.getItem("userDetails");
        if (storedUserDetails) {
          const userDetails = JSON.parse(storedUserDetails);
-         console.log(storedUserDetails);
+        //  console.log(storedUserDetails);
          setLoggedInUser(userDetails); // Set the logged-in user with the JWT
        }
      };

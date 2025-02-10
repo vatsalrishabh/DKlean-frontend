@@ -24,7 +24,7 @@ const AdminLoginRight = () => {
                   <div className="text-left">
                     <Typography variant="h4" className="text-gray-800 font-semibold">All Appointments</Typography>
                     <Typography variant="body2" color="textSecondary" className="mb-4">List of all the appointments</Typography>
-                    <Link to="/admin/bookAp" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/allApp" style={{ textDecoration: "none" }}>
                       <Button variant="contained" sx={{ backgroundColor: "#9e1b1b", color: "#fff", '&:hover': { backgroundColor: "#d01212" } }}>See List</Button>
                     </Link>
                   </div>
@@ -40,7 +40,7 @@ const AdminLoginRight = () => {
                   <div className="text-left">
                     <Typography variant="h4" className="text-gray-800 font-semibold">Donations</Typography>
                     <Typography variant="body2" color="textSecondary" className="mb-4">View details of all donations.</Typography>
-                    <Link to="/pApp" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/allDonation" style={{ textDecoration: "none" }}>
                       <Button variant="contained" sx={{ backgroundColor: "#9e1b1b", color: "#fff", '&:hover': { backgroundColor: "#d01212" } }}>View Details</Button>
                     </Link>
                   </div>
@@ -56,7 +56,7 @@ const AdminLoginRight = () => {
                   <div className="text-left">
                     <Typography variant="h4" className="text-gray-800 font-semibold">Add Doctors</Typography>
                     <Typography variant="body2" color="textSecondary" className="mb-4">Manage Doctors and physiotherapists.</Typography>
-                    <Link to="/profileSettings" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/addDoctor" style={{ textDecoration: "none" }}>
                       <Button variant="contained" sx={{ backgroundColor: "#9e1b1b", color: "#fff", '&:hover': { backgroundColor: "#d01212" } }}>Manage</Button>
                     </Link>
                   </div>
@@ -72,7 +72,7 @@ const AdminLoginRight = () => {
                   <div className="text-left">
                     <Typography variant="h4" className="text-gray-800 font-semibold">Add Services</Typography>
                     <Typography variant="body2" color="textSecondary" className="mb-4">Add bloodwork and physiotherapy services</Typography>
-                    <Link to="/medicalReports" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/bookAp" style={{ textDecoration: "none" }}>
                       <Button variant="contained" sx={{ backgroundColor: "#9e1b1b", color: "#fff", '&:hover': { backgroundColor: "#d01212" } }}>View Reports</Button>
                     </Link>
                   </div>

@@ -8,6 +8,7 @@ import { BaseUrl } from "./BaseUrl";
 import { SuccessAlert, ErrorAlert, FailedAlert } from "./Alerts";
 import { LoginContext } from "../context/LoginContext";
 import SnackBarAlert from "./SnackBarAlert";
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 
 const PatientLogin = () => {
   const navigate = useNavigate();
@@ -32,6 +33,8 @@ const PatientLogin = () => {
   const [patientLoginEmail, setPatientLoginEmail] = useState("");
   const [patientLoginPassword, setLoginPassword] = useState("");
 
+
+ 
   const [otp, setOtp] = useState("");
   const [alert, setAlert] = useState({ message: "", status: "99" }); //no alert or Snackbar when status is 99
   const [showPassword, setShowPassword] = useState(false);
@@ -296,7 +299,7 @@ const PatientLogin = () => {
         <div
           id="popup-modal"
           tabIndex="-1"
-          className={`${hideOtpModal} overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full`}
+          className={`${hideOtpModal} overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-blue-gray-50 `}
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -335,6 +338,7 @@ const PatientLogin = () => {
                 )}
 
                 {/* react otp input starts */}
+                
                 <OtpInput
                   value={otp}
                   onChange={setOtp}
@@ -350,6 +354,7 @@ const PatientLogin = () => {
                   }}
                   renderInput={(props) => <input {...props} />}
                 />
+               
                 {/* react otp input ends */}
 
                 <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"></h3>

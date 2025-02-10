@@ -38,7 +38,7 @@ const AdminEditServices = () => {
 
         if (data && data.length > 0) {
           const filteredBloodServices = data.filter(service => service.category === "blood");
-          const filteredPhysioServices = data.filter(service => service.category === "Health");
+          const filteredPhysioServices = data.filter(service => service.category === "Physio");
 
           setBloodCard(filteredBloodServices);
           setPhysioCard(filteredPhysioServices);
