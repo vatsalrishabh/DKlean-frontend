@@ -40,6 +40,8 @@ useEffect(()=>{
     }
   };
   loadUserDetails();
+
+// coming from props donorDetails
  if (donorDetails) {
       setFormData({
         userId: donorDetails.userId || "",
@@ -112,11 +114,6 @@ const handleSubmit = async (e) => {
     try {
       // Make sure to await the API call
       const response = await axios.post(`${BaseUrl}/api/donations/donateNow`, donationDetails);
-      
-      // Check if response contains order data
-      // if (!response.data ) {
-      //   throw new Error("Invalid response from server. Order details are missing.");
-      // }
 
       const order = response.data;
       console.log(response.data);
@@ -247,12 +244,13 @@ const handleSubmit = async (e) => {
             <input
               type="number"
               placeholder="₹ Other Amount"
-              value={customAmount}
+              value={customAmount||selectedAmount}
               onChange={(e) => {
                 setCustomAmount(e.target.value);
                 setSelectedAmount(""); // Clear selected amount if custom amount is entered
               }}
               className="px-4 py-3 rounded-xl border border-gray-300 w-60 focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+              required
             />
           </div>
 
@@ -266,6 +264,7 @@ const handleSubmit = async (e) => {
                 value={formData.name}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+                required
               />
               <span className="absolute right-3 top-3 text-red-500">*</span>
             </div>
@@ -276,6 +275,7 @@ const handleSubmit = async (e) => {
                 value={formData.dob}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+                required
               />
               <span className="absolute right-3 top-3 text-red-500">*</span>
             </div>
@@ -292,6 +292,7 @@ const handleSubmit = async (e) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+                required
               />
             </div>
             <div className="relative">
@@ -302,6 +303,7 @@ const handleSubmit = async (e) => {
                 value={formData.mobile}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+                required
               />
               <span className="absolute right-3 top-3 text-red-500">*</span>
             </div>
@@ -317,6 +319,7 @@ const handleSubmit = async (e) => {
               value={formData.address}
               onChange={handleInputChange}
               className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+              required
             />
           </div>
 
@@ -329,6 +332,7 @@ const handleSubmit = async (e) => {
                 value={formData.pincode}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+
               />
             </div>
             <div>
@@ -339,6 +343,7 @@ const handleSubmit = async (e) => {
                 value={formData.city}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+                required
               />
             </div>
             <div>
@@ -349,6 +354,7 @@ const handleSubmit = async (e) => {
                 value={formData.state}
                 onChange={handleInputChange}
                 className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+                required
               />
             </div>
           </div>
@@ -361,6 +367,7 @@ const handleSubmit = async (e) => {
               value={formData.country}
               onChange={handleInputChange}
               className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+              required
             />
           </div>
 
@@ -372,6 +379,7 @@ const handleSubmit = async (e) => {
               value={formData.pancard}
               onChange={handleInputChange}
               className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+              required
             />
             {errors.pancard && <p className="text-red-500">{errors.pancard}</p>}
           </div>
