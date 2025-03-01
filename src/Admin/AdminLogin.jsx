@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useContext } from "react"; // 3 hooks 
-import { Link, useNavigate } from "react-router-dom";  // library  (big)
-import axios from "axios"; // fetch api 
-import { Breadcrumb, BreadcrumbItem } from "flowbite-react";  // ignore
-import { HiHome } from "react-icons/hi";  // ignore
-import OtpInput from "react-otp-input"; // 
+import React, { useEffect, useState, useContext } from "react"; // 3 hooks
+import { Link, useNavigate } from "react-router-dom"; // library  (big)
+import axios from "axios"; // fetch api
+import { Breadcrumb, BreadcrumbItem } from "flowbite-react"; // ignore
+import { HiHome } from "react-icons/hi"; // ignore
+import OtpInput from "react-otp-input"; //
 import { BaseUrl } from "../Components/BaseUrl"; //
-import { SuccessAlert, ErrorAlert, FailedAlert } from "../Components/Alerts";  // pops
+import { SuccessAlert, ErrorAlert, FailedAlert } from "../Components/Alerts"; // pops
 import { LoginContext } from ".././context/LoginContext"; //library (big)
 import SnackBarAlert from "../Components/SnackBarAlert"; // ignore
 
-const AdminLogin = () => { // state props componetnts hooks 
+const AdminLogin = () => {
+  // state props componetnts hooks
   const navigate = useNavigate();
   const { loggedInUser, setLoggedInUser } = useContext(LoginContext);
   const [showLogin, setShowLogin] = useState(true);
@@ -34,7 +35,7 @@ const AdminLogin = () => { // state props componetnts hooks
 
   const [otp, setOtp] = useState("");
   const [alert, setAlert] = useState({ message: "", status: "99" }); //no alert or Snackbar when status is 99
-  const [showPassword , setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // const { isloggedIn, loginUser, logoutUser, isAuthenticated } = useContext(LoginContext);
 
@@ -58,7 +59,7 @@ const AdminLogin = () => { // state props componetnts hooks
     const loginForm = {
       email: patientLoginEmail,
       password: patientLoginPassword,
-      role:"admin",
+      role: "admin",
     };
 
     try {
@@ -77,23 +78,22 @@ const AdminLogin = () => { // state props componetnts hooks
           isloggedIn: true,
           jwt: loginResponse.data.token,
           email: loginResponse.data.email,
-          userId:loginResponse.data.userId,
-        }
-      );
-      console.log({
-        isloggedIn: true,
-        jwt: loginResponse.data.token,
-        email: loginResponse.data.email,
-        userId:loginResponse.data.userId,
-      })
+          userId: loginResponse.data.userId,
+        });
+        console.log({
+          isloggedIn: true,
+          jwt: loginResponse.data.token,
+          email: loginResponse.data.email,
+          userId: loginResponse.data.userId,
+        });
         localStorage.setItem(
           "adminDetails",
           JSON.stringify({
             isloggedIn: true,
             jwt: loginResponse.data.token,
-            role:'admin',
+            role: "admin",
             email: loginResponse.data.email,
-            userId:loginResponse.data.userId,
+            userId: loginResponse.data.userId,
           })
         );
         setAlert({ message: "Logged in Successfully!", status: "200" });
@@ -135,7 +135,7 @@ const AdminLogin = () => { // state props componetnts hooks
     e.preventDefault();
 
     const registrationForm = new FormData();
-    
+
     registrationForm.append("email", patientEmail);
     registrationForm.append("mobile", patientMobile);
     registrationForm.append("role", "admin");
@@ -143,13 +143,13 @@ const AdminLogin = () => { // state props componetnts hooks
     //confim password and cpassword should be same
     if (patientPassword !== patientConPassword) {
       console.log("Passwords do not match!");
-      
-        //   message: "Password and confirm password does not match",
-        //   status: "500",
-        // });
-        // setTimeout(() => {
-        //   setAlert({ message: "", status: "99" });
-        // }, 5000);
+
+      //   message: "Password and confirm password does not match",
+      //   status: "500",
+      // });
+      // setTimeout(() => {
+      //   setAlert({ message: "", status: "99" });
+      // }, 5000);
 
       setwrongPassCpassAlert(true);
       setTimeout(() => {
@@ -185,8 +185,8 @@ const AdminLogin = () => { // state props componetnts hooks
         setTimeout(() => {
           setAlert({ message: "", status: "99" });
         }, 5000);
-      console.error("An error occurred:", error);
-    }
+        console.error("An error occurred:", error);
+      }
       console.error("An error occurred:", error);
     }
   };
@@ -203,7 +203,7 @@ const AdminLogin = () => { // state props componetnts hooks
       sex: patientSex,
       email: patientEmail,
       otp: otp,
-      role:"admin",
+      role: "admin",
     };
 
     try {
@@ -241,7 +241,8 @@ const AdminLogin = () => { // state props componetnts hooks
         setTimeout(() => {
           setAlert({ message: "", status: "99" });
         }, 5000);
-      }if(error.response && error.response.status === 500){
+      }
+      if (error.response && error.response.status === 500) {
         setAlert({
           message: "Something went wrong! Server issue",
           status: "500",
@@ -328,12 +329,10 @@ const AdminLogin = () => { // state props componetnts hooks
                   <strong>{patientEmail}</strong>.
                 </p>
                 {!isOtpCorrect ? (
-                  <p className="mb-5 text-lg font-normal text-red-700 dark:text-red-700">
-                 
-                  </p>
+                  <p className="mb-5 text-lg font-normal text-red-700 dark:text-red-700"></p>
                 ) : (
                   <p className="mb-5 text-lg font-normal text-green-500 dark:text-green-500">
-                      Account Created Successfully! 
+                    Account Created Successfully!
                   </p>
                 )}
 
@@ -361,7 +360,7 @@ const AdminLogin = () => { // state props componetnts hooks
                   onClick={verifyOtp}
                   className=" mx-2 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                 >
-               Submit Otp
+                  Submit Otp
                 </div>
                 <div
                   data-modal-hide="popup-modal "
@@ -395,7 +394,7 @@ const AdminLogin = () => { // state props componetnts hooks
             >
               <div className="mb-5">
                 <div className="heading text-center font-bold text-2xl">
-                 Admin <span className="text-custom-maroon">Login</span>
+                  Admin <span className="text-custom-maroon">Login</span>
                 </div>
                 <div className="togglle flex w-full justify-center">
                   <div
@@ -456,29 +455,75 @@ const AdminLogin = () => { // state props componetnts hooks
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 /> */}
-            
-<div className="max-w-sm">
-  <div className="relative">
 
-{/* hidden show password */}
-<div>
-    <input id="hs-toggle-password" type={showPassword?"text":"password"} className="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Enter password"  value={patientLoginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)} required/>
-    <button type="button" onClick={()=>showPassword?setShowPassword(false):setShowPassword(true)}  className="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
-      <svg className="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path className="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
-        <path className="hs-password-active:hidden" d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
-        <path className="hs-password-active:hidden" d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
-        <line className="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22"></line>
-        <path className="hidden hs-password-active:block" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-        <circle className="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
-      </svg>
-    </button>
-    </div>
-{/* hidden show password */}
-
-  </div>
-</div>
+                <div className="max-w-sm">
+                  <div className="relative">
+                    {/* hidden show password */}
+                    <div>
+                      <input
+                        id="hs-toggle-password"
+                        type={showPassword ? "text" : "password"}
+                        className="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        placeholder="Enter password"
+                        value={patientLoginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          showPassword
+                            ? setShowPassword(false)
+                            : setShowPassword(true)
+                        }
+                        className="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500"
+                      >
+                        <svg
+                          className="shrink-0 size-3.5"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path
+                            className="hs-password-active:hidden"
+                            d="M9.88 9.88a3 3 0 1 0 4.24 4.24"
+                          ></path>
+                          <path
+                            className="hs-password-active:hidden"
+                            d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"
+                          ></path>
+                          <path
+                            className="hs-password-active:hidden"
+                            d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"
+                          ></path>
+                          <line
+                            className="hs-password-active:hidden"
+                            x1="2"
+                            x2="22"
+                            y1="2"
+                            y2="22"
+                          ></line>
+                          <path
+                            className="hidden hs-password-active:block"
+                            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"
+                          ></path>
+                          <circle
+                            className="hidden hs-password-active:block"
+                            cx="12"
+                            cy="12"
+                            r="3"
+                          ></circle>
+                        </svg>
+                      </button>
+                    </div>
+                    {/* hidden show password */}
+                  </div>
+                </div>
 
                 {/* patient login ends */}
               </div>
@@ -529,8 +574,7 @@ const AdminLogin = () => { // state props componetnts hooks
             >
               <div className="mb-5">
                 <div className="heading text-center font-bold text-2xl">
-                  Admin{" "}
-                  <span className="text-custom-maroon">Registraiton</span>
+                  Admin <span className="text-custom-maroon">Registraiton</span>
                 </div>
                 <div className="togglle flex w-full justify-center">
                   <div
@@ -548,7 +592,7 @@ const AdminLogin = () => { // state props componetnts hooks
                 </div>
 
                 {/* 1. email for registration starts */}
-                <div className="relative z-0 w-full mb-5 group">
+                {/* <div className="relative z-0 w-full mb-5 group">
                   <input
                     type="email"
                     value={patientEmail}
@@ -565,11 +609,9 @@ const AdminLogin = () => { // state props componetnts hooks
                   >
                     Email address
                   </label>
-                </div>
-                {/* 1. email for registration ends */}
+                </div> */}
 
-                {/* 2. password for registration starts */}
-                <div className="relative z-0 w-full mb-5 group">
+                {/* <div className="relative z-0 w-full mb-5 group">
                   <input
                     type="password"
                     value={patientPassword}
@@ -587,10 +629,9 @@ const AdminLogin = () => { // state props componetnts hooks
                     Password
                   </label>
                 </div>
-                {/* 2. password for registration ends */}
+      */}
 
-                {/* 3. cpassword for registration ends */}
-                <div className="relative z-0 w-full mb-5 group">
+                {/* <div className="relative z-0 w-full mb-5 group">
                   <input
                     type="password"
                     value={patientConPassword}
@@ -607,11 +648,9 @@ const AdminLogin = () => { // state props componetnts hooks
                   >
                     Confirm password
                   </label>
-                </div>
-                {/* 3. cpassword for registration ends */}
+                </div> */}
 
-                {/* 4. Name for registration starts */}
-                <div className="grid md:grid-cols-2 md:gap-6">
+                {/* <div className="grid md:grid-cols-2 md:gap-6">
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="text"
@@ -630,9 +669,9 @@ const AdminLogin = () => { // state props componetnts hooks
                       Full Name
                     </label>
                   </div>
-                  {/* 4. Name for registration ends */}
+            
 
-                  {/* 4. Gender for registration starts */}
+            
                   <div className="relative z-0 w-full mb-5 group">
                     <select
                       value={patientSex}
@@ -656,11 +695,10 @@ const AdminLogin = () => { // state props componetnts hooks
                       Gender
                     </label>
                   </div>
-                  {/* 4. Gender for registration ends */}
-                </div>
+     
+                </div> */}
 
-                {/* 5.Phone number for registration starts */}
-                <div className="grid md:grid-cols-2 md:gap-6">
+                {/* <div className="grid md:grid-cols-2 md:gap-6">
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="number"
@@ -681,9 +719,7 @@ const AdminLogin = () => { // state props componetnts hooks
                       Phone number{" "}
                     </label>
                   </div>
-                  {/* 5.Phone number for registration ends */}
 
-                  {/* 6. Age number for registration starts */}
                   <div className="relative z-0 w-full mb-5 group">
                     <select
                       value={patientAge}
@@ -710,18 +746,17 @@ const AdminLogin = () => { // state props componetnts hooks
                       Age
                     </label>
                   </div>
-                  {/* 6. Age number for registration ends */}
-                </div>
+                </div> */}
               </div>
-
-              <div className="w-full flex justify-center align-middle">
+Contact Developer for Registraiton 
+              {/* <div className="w-full flex justify-center align-middle">
                 <button
                   type="submit"
                   className="text-white bg-custom-maroon hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Register
                 </button>
-              </div>
+              </div> */}
             </form>
             // registration form ends
           )}

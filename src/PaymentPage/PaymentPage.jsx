@@ -42,6 +42,7 @@ const PaymentPage = () => {
       });
 
       const order = response.data;
+      console.log(order)
       const options = {
         key: 'rzp_test_l0gnUnaG8U4VmM',
         amount: numericalValue * 100,

@@ -5,6 +5,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 const Footer = () => {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <div className='Footer'>
        
@@ -84,19 +86,19 @@ const Footer = () => {
           </div> */}
         </li>
         <hr />
-        <li className="flex items-center">
+        {/* <li className="flex items-center">
           <FmdGoodIcon className="mr-2" />
           <span className="mr-2 font-bold">USA Address:</span>
           <div>
             <p className='py-2'>723 1st Street, South West Rochester Minnesota, America 55902</p>
           </div>
         </li>
-        <hr />
+        <hr /> */}
         <li className="flex items-center">
           <FmdGoodIcon className="mr-2" />
           <span className="mr-2 font-bold">India Address:</span>
           <div>
-          <p className='PY-1'>BF-3 Phase One Lake View Apartment, Chikkabanwara, Bengaluru,Karnataka, India Pin:- 560090 </p>
+          <p className='PY-1'>E-8/6, kh No.26/19, Begum Vihar Ext, Block-E, Magadh Society Area, Magadh Chouk, Begumpur, Delhi-86, Near Rohini, Sec-23  </p>
           </div>
         </li>
       </ul>
@@ -107,7 +109,7 @@ const Footer = () => {
         </div>
     </div>
     <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 <a href="https://flowbite.com/">Dklean™</a>. All Rights Reserved.
+        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© {year} <a href="https://flowbite.com/">Dklean™</a>. All Rights Reserved.
         </span>
         <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white">

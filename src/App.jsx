@@ -68,6 +68,8 @@ import PatientDash from "./Patient/PatientDash";
 import PaymentPage from "./PaymentPage/PaymentPage";
 import PositionPractice from "./Components/PositionPractice";
 import PatientBookAnApp from "./Patient/PatientBookAnApp";
+import Services from "./Components/Services";
+import Gallery from "./Components/Gallery";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -265,7 +267,7 @@ function App() {
                     fourtName="Doctor History"
                     linkFour="/history"
                   />   {/* the above is smarpthone navbar */}
-                  <AdminDashboard/>
+               <AdminDashboard/>        {/*  the left navbar and 5 big boxes  */}
                 </>
               ) : (
                 <>
@@ -653,7 +655,19 @@ function App() {
             element={
               loggedInDonor.isloggedIn ? (
                 <>
-                  <PatientNavbar />
+              <div className="lg:block hidden"> <Navbar /></div>  
+                  {/* <PatientNavbar /> */}
+                  <PatientNavbar
+                    localstorage="donorDetails"
+                    oneName="Dashboard"
+                    linkOne="/donorlogin"
+                    twoName="Donor"
+                    linkTwo="/appointments"
+                    threeName="Manage Appointment"
+                    linkThree="/selectDis"
+                    fourtName="Doctor History"
+                    linkFour="/history"
+                  /> 
                   <DonorDashboard />
                   {/* <Footer /> */}
                 </>
@@ -720,7 +734,7 @@ function App() {
          
 
           <Route
-            path="/aboutus"
+            path="/about"
             element={
               <>
                 <Navbar />
@@ -731,7 +745,29 @@ function App() {
             }
           />
           <Route
-            path="/contactus"
+            path="/services"
+            element={
+              <>
+                <Navbar />
+                <Services />
+                {/* <ChatBotButton /> */}
+                <Footer />
+              </>
+            }
+          />
+           <Route
+            path="/gallery"
+            element={
+              <>
+                <Navbar />
+                <Gallery />
+                {/* <ChatBotButton /> */}
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/contact-us"
             element={
               <>
                 <Navbar />

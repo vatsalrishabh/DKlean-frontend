@@ -40,19 +40,21 @@ useEffect(()=>{
     }
   };
   loadUserDetails();
-  setFormData({
-    userId:donorDetails?.userId,
-    name: donorDetails?.name,
-    dob: "",
-    email: donorDetails?.email,
-    mobile: donorDetails?.mobile,
-    address: "",
-    pincode: "",
-    city: "",
-    state: "",
-    country: "",
-    pancard: donorDetails?.pancard,
-  });
+ if (donorDetails) {
+      setFormData({
+        userId: donorDetails.userId || "",
+        name: donorDetails.name || "",
+        dob: "",
+        email: donorDetails.email || "",
+        mobile: donorDetails.mobile || "",
+        address: "",
+        pincode: "",
+        city: "",
+        state: "",
+        country: "",
+        pancard: donorDetails.pancard || "",
+      });
+    }
 },[donorDetails]);
 
   const handleTypeChange = (type) => setDonationType(type);
@@ -97,23 +99,72 @@ useEffect(()=>{
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      const donationDetails = {
-        donationType,
-        amount: customAmount || selectedAmount,
-        ...formData,
-      };
-      console.log("Donation Details:", donationDetails);
-      try{
-        const response = axios.post(`${BaseUrl}/api/donations/donateNow`,donationDetails,);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (validateForm()) {
+    const donationDetails = {
+      donationType,
+      amount: customAmount || selectedAmount,
+      ...formData,
+    };
+    console.log("Donation Details:", donationDetails);
 
-      }catch(error){
-          console.log("Server Error"+error);
-      }
+    try {
+      // Make sure to await the API call
+      const response = await axios.post(`${BaseUrl}/api/donations/donateNow`, donationDetails);
+      
+      // Check if response contains order data
+      // if (!response.data ) {
+      //   throw new Error("Invalid response from server. Order details are missing.");
+      // }
+
+      const order = response.data;
+      console.log(response.data);
+      const options = {
+        key: 'rzp_test_l0gnUnaG8U4VmM',
+        amount: (customAmount || selectedAmount) * 100,
+        currency: "INR",
+        name: 'Dklean HealthCare',
+        description: 'Test Transaction',
+        order_id: response.data.id,  // Ensure `order.id` exists
+        callback_url: `${BaseUrl}/api/donations/payment-success`,
+        prefill: {
+          name: formData?.name,
+          email: formData?.email,
+          contact: formData.mobile,
+        },
+        theme: {
+          color: '#a32121',
+        },
+        handler: async function (response) {
+          try {
+            const verificationResponse = await axios.post(`${BaseUrl}/api/payments/verify-payment`, {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+
+            if (verificationResponse.data.status === 'ok') {
+              window.location.href = '/payment-success';
+            } else {
+              console.error('Payment verification failed');
+            }
+          } catch (error) {
+            console.error('Error verifying payment:', error);
+          }
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      console.log(response.data)
+      console.error("Server Error:", error);
     }
-  };
+  }
+};
+
+  
 
   useEffect(() => {
     const fetchLocationDetails = async () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Divider, Typography, Grid, Tooltip, IconButton } from "@mui/material";
 import {
   AccountCircle,
@@ -16,7 +16,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const DonationHistory = ({ donorDetails, transactions }) => {
   const [open, setOpen] = useState(false);
-  const [copied, setCopied] = useState(false); // State to manage tooltip
+  const [copied, setCopied] = useState(false);
 
   const logout = () => {
     console.log("Logout clicked");
@@ -24,17 +24,28 @@ const DonationHistory = ({ donorDetails, transactions }) => {
     location.reload();
   };
 
-  useEffect(() => {
-    // console.log(donorDetails);
-  }, [donorDetails]);
-
   const handleCopy = () => {
     if (donorDetails?.userId) {
       navigator.clipboard.writeText(donorDetails.userId);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset tooltip after 2 seconds
+      setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  // Calculate total successful and unsuccessful donations
+
+  const totalSuccessfulDonation = transactions
+    ?.filter(txn => txn.status === "success")
+    .reduce((acc, txn) => acc + txn.amount, 0) || 0;
+
+  const totalUnsuccessfulDonation = transactions
+    ?.filter(txn => txn.status === "failed")
+    .reduce((acc, txn) => acc + txn.amount, 0) || 0;
+
+    
+  const totalPendingDonation = transactions
+  ?.filter(txn => txn.status === "Pending")
+  .reduce((acc, txn) => acc + txn.amount, 0) || 0;
 
   return (
     <>
@@ -79,7 +90,7 @@ const DonationHistory = ({ donorDetails, transactions }) => {
                 </Typography>
                 <Typography variant="body2" className="text-gray-600">
                   <CreditCard sx={{ fontSize: 20, color: "#8f1b1b", marginRight: 1 }} />
-                  Pan Card - {donorDetails?.panCard || "N/A"}
+                  Pan Card - {donorDetails?.pancard || "N/A"}
                 </Typography>
               </div>
 
@@ -126,10 +137,16 @@ const DonationHistory = ({ donorDetails, transactions }) => {
 
               <div className="mb-4">
                 <Typography variant="h6" className="text-gray-700 font-semibold">
-                  Total Donation:{" "}
-                  <span className="text-green-600">
-                    ₹ {transactions?.reduce((acc, txn) => acc + txn.amount, 0) || 0}
-                  </span>
+                  Total Successful Donations:{" "}
+                  <span className="text-green-600">₹ {totalSuccessfulDonation}</span>
+                </Typography>
+                <Typography variant="h6" className="text-gray-700 font-semibold">
+                  Total Unsuccessful Donations:{" "}
+                  <span className="text-red-600">₹ {totalUnsuccessfulDonation}</span>
+                </Typography>
+                <Typography variant="h6" className="text-gray-700 font-semibold">
+                  Total Pending Donations:{" "}
+                  <span className="text-yellow-600">₹ {totalPendingDonation}</span>
                 </Typography>
               </div>
 
@@ -140,34 +157,31 @@ const DonationHistory = ({ donorDetails, transactions }) => {
                     <div key={index} className="transaction-item bg-gray-50 p-4 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-xl">
                       <div className="flex justify-between mb-2">
                         <Typography variant="body1" className="text-maroon font-semibold">
-                          ₹ {txn.amount}
+                          Amount: ₹{txn.amount}
                         </Typography>
-                        <Typography variant="body2" className="text-gray-500">
-                          {txn.date}
-                        </Typography>
-                      </div>
-
-                      <div className="flex justify-between">
-                        <Typography variant="body2" className="text-gray-600">
-                          Status:{" "}
-                          <span className={`font-semibold ${txn.status === "Completed" ? "text-green-600" : "text-red-600"}`}>
-                            {txn.status}
-                          </span>
-                        </Typography>
-                        <Typography variant="body2" className="text-gray-600">
-                          Transaction ID: <span className="font-semibold">#{txn.transactionId}</span>
+                        <Typography variant="body2" className={`font-semibold ${txn.status === "success" ? "text-green-600" : "text-red-600"}`}>
+                          {txn.status === "success" ? "Successful" : "Failed"}
                         </Typography>
                       </div>
+                      <Typography variant="body2" className="text-gray-600">
+                        Transaction ID: {txn.transactionId || "N/A"}
+                      </Typography>
+                      <Typography variant="body2" className="text-gray-600">
+                        Date: {new Date(txn.date).toLocaleDateString("en-IN", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}
+                      </Typography>
                     </div>
                   ))
                 ) : (
-                  <Typography variant="body2" className="text-gray-500 text-center">
-                    No transactions found
-                  </Typography>
+                  <Typography variant="body2" className="text-gray-600">No transactions found.</Typography>
                 )}
               </div>
             </Card>
           </Grid>
+          
         </Grid>
       </div>
     </>

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Button, Grid, Avatar } from '@mui/material';
+import { History, ArrowBack } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import DonationHistory from '../Components/Donations/DonationHistory';
-// import { CalendarToday, History, PersonOutline, Settings } from '@mui/icons-material';
 import Donationbox from '../Components/Donations/Donationbox';
 import { BaseUrl } from '../Components/BaseUrl';
 import axios from 'axios';
-
+import LeftDonationMot from '../Components/Donations/LeftDonationMot';
 
 const DonorDashboard = () => {
   const [loggedInDonor, setLoggedInDonor] = useState(null);
   const [donorDetails, setDonorDetails] = useState(null);
+  const [hover, setHover] = useState(true);
+  const [transactions , setTransaction] = useState([]);
 
   // Load donor details from localStorage
   useEffect(() => {
@@ -29,8 +31,8 @@ const DonorDashboard = () => {
         const response = await axios.get(`${BaseUrl}/api/donations/donorDetails`, {
           params: { userId: loggedInDonor.userId },
         });
-        // console.log('Fetched Donor Details:', response.data.donor);
         setDonorDetails(response.data.donor); // Store response in state
+        setTransaction(response.data.transactions)
       } catch (error) {
         console.error('Server Error:', error);
       }
@@ -38,23 +40,39 @@ const DonorDashboard = () => {
 
     fetchDonorDetails();
   }, [loggedInDonor]); // Re-run when `loggedInDonor` updates
-console.log(donorDetails)
-  const transactions = [
-    { amount: 200, date: '25 January, 2024', status: 'Completed', transactionId: '#ABC12345' },
-    { amount: 1000, date: '10 January, 2024', status: 'Completed', transactionId: '#DEF56789' },
-    { amount: 500, date: '5 January, 2024', status: 'Rejected', transactionId: '#GHI67890' }
-  ];
+
+
 
   return (
-    <div className="flex flex-col lg:flex-row w-full">
+    <div className="flex flex-col lg:flex-row w-full p-6 bg-gray-50">
       {/* Donation History Section */}
-      <div className="order-2 lg:order-1 lg:w-4/6">
-        <DonationHistory donorDetails={donorDetails} transactions={transactions} />
+      <div className="order-2 lg:order-1 lg:w-4/6 mb-6 lg:mb-0">
+        <button 
+          onClick={() => setHover(prevHover => !prevHover)} 
+          className="flex items-center justify-center bg-custom-maroon text-white py-3 px-8 rounded-full text-xl font-semibold hover:bg-custom-maroon2 transition-all transform hover:scale-105 shadow-md"
+        >
+          {hover ? (
+            <>
+              <History className="mr-2 text-2xl" /> <span>Check History</span>
+            </>
+          ) : (
+            <>
+              <ArrowBack className="mr-2 text-2xl" /> <span>Go back</span>
+            </>
+          )}
+        </button>
+        {hover ? (
+          <LeftDonationMot />
+        ) : (
+          <DonationHistory donorDetails={donorDetails} transactions={transactions} />
+        )}
       </div>
-     
+
       {/* Donation Box Section */}
       <div className="order-1 lg:order-2 lg:w-2/6">
-        <Donationbox donorDetails={donorDetails} />
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <Donationbox donorDetails={donorDetails} />
+        </div>
       </div>
     </div>
   );
