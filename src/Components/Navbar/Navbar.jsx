@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import CallIcon from "@mui/icons-material/Call";
 import MailIcon from "@mui/icons-material/Mail";
-import logo from "../../assets/Puslecarelogo/PulseCare.png";
+// import logo from "../../assets/Puslecarelogo/PulseCare.png";
+import logo from "../../assets/Puslecarelogo/dkleanlogo.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import SmartNavbar from "./SmartNavbar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -59,7 +56,7 @@ const Navbar = (props) => {
                   Working Hours
                 </div>
                 <div className="font-semibold text-white">
-                  MON - FRI: 9.00 - 21.00
+                  MON - SAt: 8.00 - 16.00
                 </div>
               </div>
             </div>
@@ -71,7 +68,7 @@ const Navbar = (props) => {
                 <div className="uppercase text-sm text-gray-300">
                   Hotline 24/7
                 </div>
-                <div className="text-white">+0962-58-58-258</div>
+                <div className="text-white">+91-9355647906</div>
               </div>
             </div>
 
@@ -80,7 +77,8 @@ const Navbar = (props) => {
               <MailIcon sx={{ fontSize: 26, color: "white" }} />
               <div className="pl-2">
                 <div className="uppercase text-sm text-gray-300">Email Us</div>
-                <div className="text-white">support@clenora.com.uk</div>
+                <div className="text-white">
+                dkleanhealthcare@gmail.com</div>
               </div>
             </div>
           </div>

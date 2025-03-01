@@ -1,11 +1,25 @@
 import React from 'react';
 import { FaHeart, FaHandsHelping, FaStethoscope, FaDonate } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import "animate.css";
 
 const LeftDonationMot = () => {
   return (
     <div className="bg-custom-graybg lg:p-6 rounded-lg shadow-md w-full">
+      <div className='flex justify-between'>
       <h2 className="text-2xl font-semibold text-custom-maroon mb-4 font-cursive">How will your donation help Dklean?</h2>
+{/* make this div jumponig type  */}
+<div className="text-center animate__animated animate__bounce animate__infinite">
+  <Link to="/donorlogin">
+    <button className="bg-custom-maroon text-white py-2 px-6 rounded-full text-xl font-semibold hover:bg-custom-maroon2 transition">
+      Login and Donate
+    </button>
+  </Link>
+</div>
+
+{/* make this code jumping type */}
+      </div>
+     
       
       <p className="text-lg text-gray-700 mb-4">
         In a world where health and wellness are more important than ever, Dklean provides essential physiotherapy and blood work services to those in need. By donating, you directly support our mission to make healthcare accessible, affordable, and effective for marginalized communities. Your donation helps us provide essential health services that can transform lives.

@@ -139,7 +139,7 @@ function App() {
             element={
               <>
                 <Navbar userType="donorDetails" />
-                <DonationPage />
+               <DonationPage />    {/*contains left and right donation page  */}
                 <Footer />
               </>
             }
