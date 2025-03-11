@@ -152,11 +152,15 @@ function App() {
               <>
                 <Navbar userType="userDetails"/>
                 <Slider/>
+             
                 <DoctorSlider />
+                
                 <HomeSmall />
-                <Professional />
-                <Testimony />
                 <PricingAndCart />
+           
+                <Testimony />
+                <Professional />
+           
                 <Footer />
               </>
             }
