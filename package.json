@@ -1,6 +1,6 @@
 {
   "name": "pulsecare",
-  "homepage":"https://dkleanhealthcare.org/",
+  "homepage": "https://dkleanhealthcare.org/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

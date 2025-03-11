@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import testimonybg from "../../assets/home/testimony.webp";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -22,6 +22,14 @@ const testimonials = [
 const Testimony = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animation, setAnimation] = useState("animate__fadeIn"); // Initial animation class
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      changeImage("right");
+    }, 5000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
 
   const changeImage = (direction) => {
     setAnimation("animate__fadeOut"); // Trigger fade-out animation

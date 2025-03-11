@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
@@ -11,12 +10,12 @@ const Footer = () => {
     <div className='Footer'>
        
 
-<footer className="bg-white dark:bg-gray-900">
+<footer className="bg-custom-maroon dark:bg-white ">
     <div className="mx-auto w-full max-w-screen-xl">
       <div className="grid lg:grid-cols-3 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3 grid-cols-1">
         <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Dklean</h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Dklean</h2>
+            <ul className="text-gray-50 dark:text-gray-50 font-medium">
                 <li className="mb-4">
                     <Link to="../patientlogin" className=" hover:underline">Patient Login</Link>
                 </li>
@@ -32,27 +31,11 @@ const Footer = () => {
             </ul>
         </div>
 
-        {/* <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4">
-                    <Link to="#" className="hover:underline">Discord Server</Link>
-                </li>
-                <li className="mb-4">
-                    <Link to="#" className="hover:underline">Twitter</Link>
-                </li>
-                <li className="mb-4">
-                    <Link to="#" className="hover:underline">Facebook</Link>
-                </li>
-                <li className="mb-4">
-                    <Link to="#" className="hover:underline">Contact Us</Link>
-                </li>
-            </ul>
-        </div> */}
+       
 
         <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
+            <ul className="text-gray-50 dark:text-gray-50 font-medium">
                 <li className="mb-4">
                     <Link to="/cancel" className="hover:underline">Cancelling and Refund Policy</Link>
                 </li>
@@ -69,31 +52,19 @@ const Footer = () => {
         </div>
         <div>
 
-        <div className="w-full p-6 bg-custom-maroon text-custom-graybg rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-gray-200">Contact Information</h2>
-      <ul className="text-gray-200 dark:text-gray-400 font-medium space-y-4">
+        <div className="w-full p-6 bg-white text-custom-graybg rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-gray-700">Contact Information</h2>
+      <ul className="text-gray-700 dark:text-gray-400 font-medium space-y-4">
         <li className="flex items-center">
           <EmailIcon className="mr-2" />
           <span className="mr-2 font-bold">Email:</span>
           <Link to="mailto:dkleanhealthcare@gmail.com" className="hover:underline">dkleanhealthcare@gmail.com</Link>
         </li>
         <li className="flex items-center">
-          {/* <CallIcon className="mr-2" />
-          <span className="mr-2 font-bold">Contact:</span>
-          <div>
-            <p>USA: +507-398-5808</p>
-            <p>India:+91-8217691302</p>
-          </div> */}
+          
         </li>
         <hr />
-        {/* <li className="flex items-center">
-          <FmdGoodIcon className="mr-2" />
-          <span className="mr-2 font-bold">USA Address:</span>
-          <div>
-            <p className='py-2'>723 1st Street, South West Rochester Minnesota, America 55902</p>
-          </div>
-        </li>
-        <hr /> */}
+        
         <li className="flex items-center">
           <FmdGoodIcon className="mr-2" />
           <span className="mr-2 font-bold">India Address:</span>

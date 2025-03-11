@@ -70,6 +70,7 @@ import PositionPractice from "./Components/PositionPractice";
 import PatientBookAnApp from "./Patient/PatientBookAnApp";
 import Services from "./Components/Services";
 import Gallery from "./Components/Gallery";
+import Slider from "./Components/Slider";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -150,8 +151,9 @@ function App() {
             element={
               <>
                 <Navbar userType="userDetails"/>
-                <HomeSmall />
+                <Slider/>
                 <DoctorSlider />
+                <HomeSmall />
                 <Professional />
                 <Testimony />
                 <PricingAndCart />

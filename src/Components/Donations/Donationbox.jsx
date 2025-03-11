@@ -115,8 +115,8 @@ const handleSubmit = async (e) => {
       // Make sure to await the API call
       const response = await axios.post(`${BaseUrl}/api/donations/donateNow`, donationDetails);
 
-      const order = response.data;
-      console.log(response.data);
+      // const order = response.data; 
+     
       const options = {
         key: 'rzp_test_l0gnUnaG8U4VmM',
         amount: (customAmount || selectedAmount) * 100,
@@ -142,7 +142,7 @@ const handleSubmit = async (e) => {
             });
 
             if (verificationResponse.data.status === 'ok') {
-              window.location.href = '/payment-success';
+              window.location.href = '/donate'; // take to donate page
             } else {
               console.error('Payment verification failed');
             }
