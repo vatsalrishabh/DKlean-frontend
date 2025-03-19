@@ -8,6 +8,7 @@ import { BaseUrl } from "./BaseUrl";
 import { SuccessAlert, ErrorAlert, FailedAlert } from "./Alerts";
 import { LoginContext } from "../context/LoginContext";
 import SnackBarAlert from "./SnackBarAlert";
+import loginbg from "../assets/loginbg.jpg"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 
 const PatientLogin = () => {
@@ -263,9 +264,13 @@ const PatientLogin = () => {
   //     verifyOtp();
   //   }
   // }, [otp]);
-
+console.log(loginbg)
   return (
-    <div className="Patient-login-form bg-custom-graybg">
+    <div
+    className="Patient-login-form bg-cover bg-center"
+    style={{ backgroundImage: `url(${loginbg})` }}
+  >
+  
       <SnackBarAlert message={alert.message} statusCode={alert.status} />
 
       {/* Breadcrum starts */}

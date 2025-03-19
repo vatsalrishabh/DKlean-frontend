@@ -8,6 +8,7 @@ import { BaseUrl } from "../Components/BaseUrl"; //
 import { SuccessAlert, ErrorAlert, FailedAlert } from "../Components/Alerts"; // pops
 import { LoginContext } from ".././context/LoginContext"; //library (big)
 import SnackBarAlert from "../Components/SnackBarAlert"; // ignore
+import loginbg from "../assets/loginbg.jpg"
 
 const AdminLogin = () => {
   // state props componetnts hooks
@@ -264,7 +265,10 @@ const AdminLogin = () => {
   // }, [otp]);
 
   return (
-    <div className="Patient-login-form bg-custom-graybg">
+    <div
+       className="Patient-login-form bg-cover bg-center"
+       style={{ backgroundImage: `url(${loginbg})` }}
+     >
       <SnackBarAlert message={alert.message} statusCode={alert.status} />
 
       {/* Breadcrum starts */}

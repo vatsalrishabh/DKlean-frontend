@@ -3,21 +3,45 @@ import testimonybg from "../../assets/home/testimony.webp";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import "animate.css";
-
 const testimonials = [
   {
     text: "It’s been an absolute pleasure to work with Hope. Their response to our brief exceeded expectations, and the execution was efficient, professional, and very reassuring. I’d fully recommend them.",
-    name: "John Doe",
-    address: "CEO, Example Inc.",
+    name: "Rohan Mehta",
+    address: "CEO, Innovate Solutions",
     image: "https://qph.cf2.quoracdn.net/main-qimg-545bed00c6e452fadbd2bc03941b7d72-lq",
   },
   {
     text: "Working with this team was a fantastic experience! The delivery was on point, and their professionalism was unmatched.",
-    name: "Jane Smith",
-    address: "Manager, Business Co.",
+    name: "Priya Sharma",
+    address: "Manager, Bharat Enterprises",
     image: "https://i.pinimg.com/564x/24/47/d9/2447d9d84433f038fc50632875128601.jpg",
   },
+  {
+    text: "The level of expertise and professionalism displayed was outstanding. I highly recommend their services!",
+    name: "Amit Verma",
+    address: "Founder, TechSphere",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    text: "I was thoroughly impressed by their commitment to quality and timely delivery. Truly a great experience.",
+    name: "Neha Kapoor",
+    address: "Director, Creative Minds",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    text: "The team exceeded our expectations in every way. Their work is simply top-notch!",
+    name: "Rajesh Iyer",
+    address: "COO, Visionary Enterprises",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
+  },
+  {
+    text: "From start to finish, the process was seamless and efficient. Couldn’t have asked for a better service.",
+    name: "Ananya Mishra",
+    address: "Head of Operations, NextGen Solutions",
+    image: "https://randomuser.me/api/portraits/women/36.jpg",
+  },
 ];
+
 
 const Testimony = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -67,7 +67,7 @@ const Footer = () => {
         
         <li className="flex items-center">
           <FmdGoodIcon className="mr-2" />
-          <span className="mr-2 font-bold">India Address:</span>
+          {/* <span className="mr-2 font-bold">India Address:</span> */}
           <div>
           <p className='PY-1'>E-8/6, kh No.26/19, Begum Vihar Ext, Block-E, Magadh Society Area, Magadh Chouk, Begumpur, Delhi-86, Near Rohini, Sec-23  </p>
           </div>

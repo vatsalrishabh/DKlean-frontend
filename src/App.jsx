@@ -140,6 +140,7 @@ function App() {
             element={
               <>
                 <Navbar userType="donorDetails" />
+                <Slider/>
                <DonationPage />    {/*contains left and right donation page  */}
                 <Footer />
               </>
@@ -152,15 +153,11 @@ function App() {
               <>
                 <Navbar userType="userDetails"/>
                 <Slider/>
-             
                 <DoctorSlider />
-                
                 <HomeSmall />
                 <PricingAndCart />
-           
                 <Testimony />
                 <Professional />
-           
                 <Footer />
               </>
             }
@@ -777,6 +774,7 @@ function App() {
             element={
               <>
                 <Navbar />
+                <Slider/>
                 <ContactUs />
                 {/* <ChatBotButton /> */}
                 <Footer />

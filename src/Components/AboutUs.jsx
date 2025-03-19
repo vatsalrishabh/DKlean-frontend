@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import aboutBg from "../assets/about/aboutbg.webp";
+import LeftImgAbout from "./About/LeftImgAbout";
+import RightImgAbout from "./About/RightImgAbout";
+import Members from "./About/Members";
 
 const AboutUs = () => {
   return (
@@ -33,57 +36,51 @@ const AboutUs = () => {
       </motion.div>
       {/* Background Image Section ends */}
 
-      {/* 2. Services Section */}
-      <div className="mt-10 text-center px-4 md:px-10">
-        <motion.h1
-          className="text-4xl font-bold text-gray-900"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          Our Services
-        </motion.h1>
+      {/* 2. Members Section */}
+      <Members />
 
-        <motion.h2
-          className="text-2xl font-semibold text-gray-700 mt-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          We proudly provide two main services:{" "}
-          <span className="text-red-500">Physiotherapy</span> and{" "}
-          <span className="text-blue-500">Blood Testing</span>.
-        </motion.h2>
+      {/* 3. About Sections (Alternating Left-Right Layout) */}
+      <LeftImgAbout 
+        img="https://savechildlife.org/uploads/who-we-are-1.png"
+        heading="Who We Are"
+        description="Dklean Healthcare is dedicated to revolutionizing the medical industry by providing top-tier healthcare services tailored to every patient’s needs. Our team consists of highly skilled professionals who are committed to delivering exceptional medical care. We focus on patient-centered approaches, ensuring that our services prioritize comfort, accessibility, and efficiency."
+      />
 
-        <motion.p
-          className="text-lg text-gray-600 mt-2 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Our expert physiotherapists help in pain relief and recovery, while our blood test
-          services ensure accurate health diagnostics at your convenience.
-        </motion.p>
+      <RightImgAbout 
+        img="https://ak.picdn.net/shutterstock/videos/1021087117/thumb/11.jpg"
+        heading="Our Vision"
+        description="Our vision is to make quality healthcare accessible to everyone, everywhere. We strive to bridge the gap between medical professionals and patients by offering state-of-the-art healthcare solutions. With our innovative approach and commitment to excellence, we aim to create a future where high-quality medical care is available at your doorstep."
+      />
 
-        <motion.div
-          className="mt-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <h3 className="text-xl font-semibold text-gray-800">Why Choose Us?</h3>
-          <ul className="list-disc list-inside text-gray-600 mt-2 text-left max-w-lg mx-auto">
-            <li>✔ Professional physiotherapists at your doorstep</li>
-            <li>✔ Quick and accurate blood test results</li>
-            <li>✔ Affordable and reliable healthcare services</li>
-          </ul>
-        </motion.div>
-      </div>
-      {/* Services Section Ends */}
+      <LeftImgAbout 
+        img="https://www.healthcarefinancenews.com/sites/healthcarefinancenews.com/files/styles/companion_top/public/Digital%20Composite%20Image%20Of%20Surgeon%20Touching%20Interface_HFN%20-%20Getty%20.jpg?itok=EX7iFnvf"
+        heading="Innovative Healthcare Solutions"
+        description="We embrace technological advancements to enhance healthcare services. Our platform integrates the latest medical technologies to ensure efficient diagnostics, treatment, and patient management. From AI-powered health assessments to telemedicine consultations, we continuously innovate to improve patient outcomes and satisfaction."
+      />
+
+      <RightImgAbout 
+        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7aoWenGMWoMl_MfO3q5JkjUR0poKSz5eDw&s"
+        heading="Our Dedicated Team"
+        description="At Dklean Healthcare, our team is our biggest strength. We bring together experienced doctors, skilled nurses, and dedicated healthcare professionals who work tirelessly to provide the best medical services. Our team members are driven by passion, empathy, and a commitment to improving lives through quality healthcare."
+      />
+
+      <LeftImgAbout 
+        img="https://www.camh.ca/-/media/professionals-images/conditions-disorders/patient-family-care-graphic-feb2023-png.png?h=500&w=521&hash=D7AA57B197E439E77702104A17896969"
+        heading="Patient-Centered Approach"
+        description="We understand that each patient is unique, and so are their medical needs. Our patient-centered approach ensures that we provide personalized healthcare solutions. Whether it's routine check-ups, specialized treatments, or emergency care, we prioritize the well-being and comfort of our patients above all else."
+      />
+
+      <RightImgAbout 
+        img="https://visualmodo.com/wp-content/uploads/2018/10/How-To-Expand-Your-Business-Reach.jpg"
+        heading="Expanding Our Reach"
+        description="We believe that quality healthcare should not be limited by geography. Our services extend beyond local boundaries, bringing world-class medical care to communities that need it the most. By leveraging digital healthcare solutions and an extensive network of medical professionals, we aim to make a global impact."
+      />
+
+      <LeftImgAbout 
+        img="https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_22572_16533781526443229.jpg"
+        heading="Shaping the Future of Healthcare"
+        description="Healthcare is evolving, and so are we. Our mission is to be at the forefront of this transformation by continuously improving and adapting to new medical advancements. We envision a world where healthcare is more accessible, efficient, and patient-friendly. Join us in shaping the future of healthcare."
+      />
     </div>
   );
 };

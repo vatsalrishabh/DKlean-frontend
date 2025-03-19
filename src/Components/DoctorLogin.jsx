@@ -5,6 +5,7 @@ import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import OtpInput from "react-otp-input";
 import { BaseUrl } from "./BaseUrl";
+import loginbg from "../assets/loginbg.jpg"
 import SnackBarAlert from '../Components/SnackBarAlert'
 
 const DoctorLogin = () => {
@@ -211,7 +212,10 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
   }, [otp]);
 
   return (
-    <div className="Doctor-login-form bg-custom-graybg">
+  <div
+         className="Patient-login-form bg-cover bg-center"
+         style={{ backgroundImage: `url(${loginbg})` }}
+       >
        <SnackBarAlert message={alert.message} statusCode={alert.status} />
       {/* Breadcrum starts */}
       <div className="p-8">
