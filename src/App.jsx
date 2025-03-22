@@ -71,6 +71,12 @@ import PatientBookAnApp from "./Patient/PatientBookAnApp";
 import Services from "./Components/Services";
 import Gallery from "./Components/Gallery";
 import Slider from "./Components/Slider";
+import Diagnosis from "./ServicesCategory/Diagnosis";
+import Neurology from "./ServicesCategory/Neurology";
+import Rehabilitation from "./ServicesCategory/Rehabilitation";
+import Cardiology from "./ServicesCategory/Cardiology";
+import Psychiatry from "./ServicesCategory/Psychiatry";
+import Physiotherapy from "./ServicesCategory/Physiotherapy";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -135,17 +141,21 @@ function App() {
           <Route path="/" element={<Loader />} />
           <Route path="/dates" element={<Dates />} />
 
+
+
           <Route
             path="/donate"
             element={
               <>
                 <Navbar userType="donorDetails" />
                 <Slider/>
-               <DonationPage />    {/*contains left and right donation page  */}
+                <DonationPage />    {/*contains left and right donation page  */}
                 <Footer />
               </>
             }
           />
+
+
 
           <Route
             path="/home"
@@ -964,6 +974,70 @@ function App() {
               </>
             }
           />
+
+<Route
+            path="/diagnosis"
+            element={
+              <>
+                <Navbar />
+                <Diagnosis/>
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/neurology"
+            element={
+              <>
+                <Navbar />
+                <Neurology />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/rehabilitation"
+            element={
+              <>
+                <Navbar />
+                <Rehabilitation />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/cardiology"
+            element={
+              <>
+                <Navbar />
+                <Cardiology />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/psychiatry"
+            element={
+              <>
+                <Navbar />
+                <Psychiatry />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/physiotherapy"
+            element={
+              <>
+                <Navbar />
+                <Physiotherapy />
+                <Footer />
+              </>
+            }
+          />
+          
+
+          
          
           <Route
             path="*"
