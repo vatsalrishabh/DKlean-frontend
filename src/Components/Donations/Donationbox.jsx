@@ -124,7 +124,7 @@ const handleSubmit = async (e) => {
         name: 'Dklean HealthCare',
         description: 'Test Transaction',
         order_id: response.data.id,  // Ensure `order.id` exists
-        callback_url: `${BaseUrl}/api/donations/payment-success`,
+        callback_url: `${BaseUrl}/api/donations/paymentSuccess`,
         prefill: {
           name: formData?.name,
           email: formData?.email,
@@ -135,7 +135,7 @@ const handleSubmit = async (e) => {
         },
         handler: async function (response) {
           try {
-            const verificationResponse = await axios.post(`${BaseUrl}/api/payments/verify-payment`, {
+            const verificationResponse = await axios.post(`${BaseUrl}/api/donations/verifyPayment`, {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,

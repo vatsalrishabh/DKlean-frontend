@@ -44,6 +44,9 @@ const TimeSlots = (props) => {
     setSelectedDateData(filteredSlots);
   }, [props.selectedDate, data]);
 
+  // Get current time in "HH:mm" 24-hour format
+  const timeNow = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+
   return (
     <div className="container mx-auto px-4 pb-2">
       {/* Show selected date's available doctors */}
@@ -64,23 +67,32 @@ const TimeSlots = (props) => {
               </Typography>
             </div>
             <ul className="space-y-4 overflow-y-auto max-h-96">
-              {item.slots.map((slot, index) => (
-                <li
-                  key={`${item._id}-${slot.time}-${slot.doctors?.join("-") || "no-docs"}-${index}`} 
-                  className="flex justify-between items-center py-4 bg-gray-100 rounded-lg hover:bg-gray-200"
-                >
-                  <span className="text-lg w-full font-medium flex justify-between">
-                    <div>{slot.time}</div>
-                    <div>
-                      <FinalSelect
-                        time={slot.time}
-                        doctors={slot.doctors}
-                        date={item.date}
-                      />
-                    </div>
-                  </span>
-                </li>
-              ))}
+              {item.slots.map((slot, index) => {
+                const slotStartTime = slot.time.split(" - ")[0]; // Extracts start time from "HH:mm - HH:mm"
+                return (
+                  <li
+                    key={`${item._id}-${slot.time}-${slot.doctors?.join("-") || "no-docs"}-${index}`} 
+                    className="flex justify-between items-center py-4 bg-gray-100 rounded-lg hover:bg-gray-200"
+                  >
+                    <span className="text-lg w-full font-medium flex justify-between">
+                      <div>{slot.time}</div>
+                      <div>
+                        {
+                          slotStartTime > timeNow ? (
+                            <FinalSelect
+                              time={slot.time}
+                              doctors={slot.doctors}
+                              date={item.date}
+                            />
+                          ) : (
+                            <>Can not book</>
+                          )
+                        }
+                      </div>
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </ContentBox>
         ))

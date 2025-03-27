@@ -83,7 +83,7 @@ const AdminDashboard = () => {
               { text: "All Appointments", path: "/admin/allApp" },
               { text: "Donations", path: "/admin/allDonation" },
               { text: "Add Doctors", path: "/admin/addDoctor" },
-              { text: "Medical Reports", path: "/medicalReports" },
+              { text: "Medical Reports", path: "/adminlogin" },
               { text: "Add Services", path: "/admin/bookAp" },
             ].map((item, index) => (
               <ListItem button component={Link} to={item.path} key={index}>

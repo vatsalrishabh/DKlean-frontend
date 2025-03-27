@@ -43,7 +43,7 @@ const AboutUs = () => {
       <LeftImgAbout 
         img="https://savechildlife.org/uploads/who-we-are-1.png"
         heading="Who We Are"
-        description="Dklean Healthcare is dedicated to revolutionizing the medical industry by providing top-tier healthcare services tailored to every patient’s needs. Our team consists of highly skilled professionals who are committed to delivering exceptional medical care. We focus on patient-centered approaches, ensuring that our services prioritize comfort, accessibility, and efficiency."
+        description="Dklean Health Care Public Charitable Trust (N.G.O.) is dedicated to revolutionizing the medical industry by providing top-tier healthcare services tailored to every patient’s needs. Our team consists of highly skilled professionals who are committed to delivering exceptional medical care. We focus on patient-centered approaches, ensuring that our services prioritize comfort, accessibility, and efficiency."
       />
 
       <RightImgAbout 

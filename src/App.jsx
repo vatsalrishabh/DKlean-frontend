@@ -214,14 +214,14 @@ function App() {
                 <>
               <PatientNavbar
                     localstorage="adminDetails"
-                    oneName="Dashboard"
+                    oneName="Admin Dashboard"
                     linkOne="/adminlogin"
                     twoName="Upcoming Appointments"
-                    linkTwo="/appointments"
-                    threeName="Manage Appointment"
-                    linkThree="/selectDis"
-                    fourtName="Doctor History"
-                    linkFour="/history"
+                    linkTwo="/admin/allApp"
+                    threeName="Donations "
+                    linkThree="/admin/allDonation"
+                    fourtName="Add Services"
+                    linkFour="/admin/bookAp"
                   />   {/* the above is smarpthone navbar */}
                   <AdminDashboard/>
                 </>
@@ -243,14 +243,14 @@ function App() {
                 <>
               <PatientNavbar
                     localstorage="adminDetails"
-                    oneName="Dashboard"
+                    oneName="Admin Dashboard"
                     linkOne="/adminlogin"
                     twoName="Upcoming Appointments"
-                    linkTwo="/appointments"
-                    threeName="Manage Appointment"
-                    linkThree="/selectDis"
-                    fourtName="Doctor History"
-                    linkFour="/history"
+                    linkTwo="/admin/allApp"
+                    threeName="Donations "
+                    linkThree="/admin/allDonation"
+                    fourtName="Add Services"
+                    linkFour="/admin/bookAp"
                   />   {/* the above is smarpthone navbar */}
                   <AdminDashboard/>
                 </>
@@ -271,14 +271,14 @@ function App() {
                 <>
               <PatientNavbar
                     localstorage="adminDetails"
-                    oneName="Dashboard"
+                    oneName="Admin Dashboard"
                     linkOne="/adminlogin"
                     twoName="Upcoming Appointments"
-                    linkTwo="/appointments"
-                    threeName="Manage Appointment"
-                    linkThree="/selectDis"
-                    fourtName="Doctor History"
-                    linkFour="/history"
+                    linkTwo="/admin/allApp"
+                    threeName="Donations "
+                    linkThree="/admin/allDonation"
+                    fourtName="Add Services"
+                    linkFour="/admin/bookAp"
                   />   {/* the above is smarpthone navbar */}
                <AdminDashboard/>        {/*  the left navbar and 5 big boxes  */}
                 </>
@@ -572,14 +572,14 @@ function App() {
                 <>
                   <PatientNavbar
                     localstorage="userDetails"
-                    oneName="Dashboard"
-                    linkOne="/patientlogin"
+                    oneName="Admin Dashboard"
+                    linkOne="/adminlogin"
                     twoName="Upcoming Appointments"
-                    linkTwo="/appointments"
-                    threeName="Book an Appointment"
-                    linkThree="/selectDis"
-                    fourtName="Patient History"
-                    linkFour="/history"
+                    linkTwo="/admin/allApp"
+                    threeName="Donations "
+                    linkThree="/admin/allDonation"
+                    fourtName="Add Services"
+                    linkFour="/admin/bookAp"
                   />
                   <AdminDashboard />
                   {/* <Footer /> */}
@@ -602,14 +602,14 @@ function App() {
                 <>
                   <PatientNavbar
                     localstorage="doctorDetails"
-                    oneName="Dashboard"
+                    oneName="Admin Dashboard"
                     linkOne="/adminlogin"
                     twoName="Upcoming Appointments"
-                    linkTwo="/appointments"
-                    threeName="Manage Appointment"
-                    linkThree="/selectDis"
-                    fourtName="Doctor History"
-                    linkFour="/history"
+                    linkTwo="/admin/allApp"
+                    threeName="Donations "
+                    linkThree="/admin/allDonation"
+                    fourtName="Add Services"
+                    linkFour="/admin/bookAp"
                   />   {/* the above is smarpthone navbar */}
                   <AdminDashboard/>
                   {/* <DoctorDashboard /> */}

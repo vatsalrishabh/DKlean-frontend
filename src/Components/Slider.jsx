@@ -1,20 +1,21 @@
 import { Carousel } from "@material-tailwind/react";
+import s from "../assets/home/bgone.png"
 
 export default function Slider() {
   return (
     <Carousel autoplay loop className="xl">
       <img
-        src="https://chestermeremedicalclinic.com/wp-content/uploads/slider/cache/fb39997792b813bd00cbdcd0c6b1233f/doctor-slider.jpg"
+        src="https://dl.geimshospital.com/uploads/image/M9vjwG35-Physiotherapy-100-1-jpg.webp"
         alt="Image 1"
         className="lg:h-[70vh] w-full object-cover"
       />
       <img
-        src="https://medical.lmu.edu.ng/wp-content/uploads/sites/33/2017/08/slider-1.jpg"
+        src={s}
         alt="Image 2"
         className="lg:h-[70vh] w-full object-cover"
       />
       <img
-        src="https://www.drdijeshshah.com/images/slider/slider1.jpg"
+        src="https://media.istockphoto.com/id/1199908661/photo/physiotherapist-treatment-patient-she-holding-patients-hand-shoulder-joint-treatment.jpg?s=612x612&w=0&k=20&c=yghgsRCfhifTxzIS8UqlHIxpyyHDUNXkfqwQHABDRuY="
         alt="Image 3"
         className="lg:h-[70vh] w-full object-cover"
       />

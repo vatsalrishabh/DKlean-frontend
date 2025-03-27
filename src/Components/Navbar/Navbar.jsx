@@ -56,7 +56,7 @@ const Navbar = (props) => {
                   Working Hours
                 </div>
                 <div className="font-semibold text-white">
-                  MON - SAt: 8.00 - 16.00
+                  MON - SAT: 8.00 - 16.00
                 </div>
               </div>
             </div>

@@ -11,7 +11,7 @@ const PricingAndCart = () => {
       homeCollection: "Yes",
     },
     {
-      name: "Full Body Checkup",
+      name: "Full Body Checkup (70+)",
       description: "70+ Tests (CBC, LFT, KFT, Thyroid, Sugar, Liver)",
       price: "₹999",
       homeCollection: "Yes",
@@ -23,7 +23,7 @@ const PricingAndCart = () => {
       homeCollection: "Yes",
     },
     {
-      name: "Advanced Physiotherapy",
+      name: "Advanced Physiotherapy ",
       description: "Consultation + 3 Therapy Sessions",
       price: "₹899",
       homeCollection: "Yes",

@@ -15,7 +15,7 @@ const HomeSmall = () => {
         {items.map((item, index) => (
           <div
             key={index}
-            className="fourco flex flex-col items-center space-y-4 text-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+            className="fourco flex flex-col items-center space-y-4 text-center bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
           >
             <div className="icon text-[#8f1b1b]">
               <FontAwesomeIcon icon={item.icon} size={item.size} />
