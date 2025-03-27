@@ -1,37 +1,44 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ash from "../../assets/doctors/ashwani.jpg"
+import may from "../../assets/doctors/mayank.jpg"
+import dkum from "../../assets/doctors/dkumar.jpg"
 
 const teamMembers = [
   {
-    name: "Dr. Ananya Sharma",
-    designation: "Senior Physiotherapist",
-    img: "https://plus.unsplash.com/premium_photo-1673953510158-174d4060db8b?fm=jpg&q=60&w=3000",
+    name: "Mr. D. Kumar",
+    designation: "Path Lab & Physiotherapist",
+    img: dkum, // This should be "dkum" instead of "ash"
+    contact: "8510090506",
   },
   {
-    name: "Dr. Rohan Verma",
-    designation: "Orthopedic Specialist",
-    img: "https://plus.unsplash.com/premium_photo-1673953510158-174d4060db8b?fm=jpg&q=60&w=3000",
+    name: "Dr. Mayank Kumar (PT)",
+    designation: "Physiotherapist (BPT, DNYS, CMS-ED, EMT)",
+    img: may,
+    contact: "+91 88822 28599",
   },
   {
-    name: "Dr. Meera Kapoor",
-    designation: "Nutrition Expert",
-    img: "https://plus.unsplash.com/premium_photo-1673953510158-174d4060db8b?fm=jpg&q=60&w=3000",
+    name: "Dr. Ashwani Kumar Rai",
+    designation: "MBBS, MS Orthopaedics",
+    img: ash, // This should be "ash" instead of "dkum"
+    contact: "+91 85959 93431",
   },
 ];
 
+
 const Members = () => {
   return (
-    <div className="p-4 bg-gray-100">
-      <h2 className="text-3xl font-bold text-center text-[#8f1b1b] mb-4">
+    <div className="p-8 bg-gray-100">
+      <h2 className="text-4xl font-bold text-center text-[#8f1b1b] mb-8">
         Meet Our Experts
       </h2>
 
-      {/* Flex Row Layout for One Row with 3 Cards */}
-      <div className="flex flex-wrap justify-center gap-4">
+      {/* Responsive Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
-            className="group bg-white p-4 rounded-lg shadow-md flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105 hover:bg-[#8f1b1b] hover:text-white"
+            className="group bg-white p-6 rounded-lg shadow-lg flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105 hover:bg-[#8f1b1b] hover:text-white w-80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.15 }}
@@ -39,14 +46,17 @@ const Members = () => {
             <img
               src={member.img}
               alt={member.name}
-              className="w-28 h-28 rounded-full shadow-sm mb-3 transition-all duration-300 hover:scale-110"
+              className="w-32 h-32 rounded-full shadow-md mb-4 transition-all duration-300 hover:scale-110 border-4 border-gray-300"
             />
-            <h3 className="text-lg font-semibold text-gray-800 group-hover:text-white">
+            <h3 className="text-xl font-semibold text-gray-800 group-hover:text-white">
               {member.name}
             </h3>
-            <p className="text-gray-500 group-hover:text-gray-200 text-sm">
+            <p className="text-gray-500 group-hover:text-gray-200 text-sm mb-2">
               {member.designation}
             </p>
+            <span className="text-gray-700 group-hover:text-gray-300 text-sm">
+              📞 {member.contact}
+            </span>
           </motion.div>
         ))}
       </div>
