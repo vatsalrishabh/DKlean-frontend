@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ash from "../../assets/doctors/ashwani.jpg"
-import may from "../../assets/doctors/mayank.jpg"
-import dkum from "../../assets/doctors/dkumar.jpg"
+import ash from "../../assets/doctors/ashwani.jpg";
+import may from "../../assets/doctors/mayank.jpg";
+import dkum from "../../assets/doctors/dkumar.jpg";
 
 const teamMembers = [
   {
     name: "Mr. D. Kumar",
     designation: "Path Lab & Physiotherapist",
-    img: dkum, // This should be "dkum" instead of "ash"
+    img: dkum,
     contact: "8510090506",
   },
   {
@@ -20,21 +20,20 @@ const teamMembers = [
   {
     name: "Dr. Ashwani Kumar Rai",
     designation: "MBBS, MS Orthopaedics",
-    img: ash, // This should be "ash" instead of "dkum"
+    img: ash,
     contact: "+91 85959 93431",
   },
 ];
 
-
 const Members = () => {
   return (
-    <div className="p-8 bg-gray-100">
+    <div className="p-8 bg-gray-100 flex flex-col items-center">
       <h2 className="text-4xl font-bold text-center text-[#8f1b1b] mb-8">
         Meet Our Experts
       </h2>
 
-      {/* Responsive Grid Layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+      {/* Centered Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center place-items-center">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
