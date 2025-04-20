@@ -97,6 +97,7 @@ const Payment = (props) => {
             });
 
             if (verificationResponse.data.status === 'ok') {
+              localStorage.removeItem("paymentData");
               localStorage.setItem('paymentData', JSON.stringify({
                 patientId: patientId,
                 name: name,

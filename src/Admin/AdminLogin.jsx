@@ -23,7 +23,7 @@ const AdminLogin = () => {
   // Patient Registration form data starts
   const [patientName, setName] = useState("");
   const [patientEmail, setPatientEmail] = useState("");
-  const [patientMobile, setPatientMobile] = useState(8123573669);
+  const [patientMobile, setPatientMobile] = useState();
   const [patientPassword, setPassword] = useState("");
   const [patientConPassword, setConPassword] = useState("");
   const [patientAge, setPatientAge] = useState("");
@@ -87,6 +87,10 @@ const AdminLogin = () => {
           email: loginResponse.data.email,
           userId: loginResponse.data.userId,
         });
+        localStorage.removeItem("userDetails");
+        localStorage.removeItem("donorDetails");
+        localStorage.removeItem("doctorDetails");
+        
         localStorage.setItem(
           "adminDetails",
           JSON.stringify({

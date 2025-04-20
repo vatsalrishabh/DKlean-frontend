@@ -23,7 +23,7 @@ const PatientLogin = () => {
   // Patient Registration form data starts
   const [patientName, setName] = useState("");
   const [patientEmail, setPatientEmail] = useState("");
-  const [patientMobile, setPatientMobile] = useState(8123573669);
+  const [patientMobile, setPatientMobile] = useState();
   const [patientPassword, setPassword] = useState("");
   const [patientConPassword, setConPassword] = useState("");
   const [patientAge, setPatientAge] = useState("");
@@ -91,6 +91,9 @@ const PatientLogin = () => {
           email: loginResponse.data.email,
           userId: loginResponse.data.userId,
         });
+        localStorage.removeItem("adminDetails");
+        localStorage.removeItem("donorDetails");
+        localStorage.removeItem("doctorDetails");
         localStorage.setItem(
           "userDetails",
           JSON.stringify({
@@ -735,7 +738,7 @@ console.log(loginbg)
                 <div className="grid md:grid-cols-2 md:gap-6">
                   <div className="relative z-0 w-full mb-5 group">
                     <input
-                      type="number"
+                      type="tel"
                       value={patientMobile}
                       onChange={(e) => {
                         setPatientMobile(e.target.value);

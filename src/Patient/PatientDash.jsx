@@ -11,6 +11,7 @@ import ContactSupport from "../Components/ContactSupport";
 import { Caraousal } from "../Components/Caraousal/Caraousal";
 import TypeOfService from "./TypeOfService";
 import Footer from "../Components/Footer"
+import { Navbar } from "flowbite-react";
 
 const  PatientDash = () => {
   const location = useLocation();
@@ -87,7 +88,7 @@ const  PatientDash = () => {
         firstLink="/patientlogin"
         secondLink="/bookAp"
       />
-      <Caraousal />
+      {/* <Caraousal /> */}
       <TypeOfService/>
       <Footer/>
       {/* <PatientBookAnApp /> */}
@@ -138,7 +139,7 @@ const  PatientDash = () => {
             firstLink="/patientlogin"
             secondLink="/patientprofile"
           />
-<PatientProfile/>
+<PatientProfile userType="userDetails"/>
         </div>
       );
     }else if (location.pathname === "/contactSupport") {
@@ -150,7 +151,9 @@ const  PatientDash = () => {
             firstLink="/patientlogin"
             secondLink="/contactSupport"
           />
-<ContactSupport />
+   
+<ContactUs />
+
         </div>
       );
     }

@@ -6,7 +6,7 @@ const ContactUs = () => {
       {/* 1. Google Map Section */}
       <div className="map-container w-full h-[80vh] flex justify-center items-center p-4 pb-0">
         <iframe
-          title="Dklean Healthcare Location"
+          title="Dklean Health Care Public Charitable Trust (N.G.O.)"
           className="w-full h-full rounded-lg shadow-lg"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.002630609211!2d77.60635597461699!3d12.90755211628019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x44bb07227a52240b%3A0xc487f0d4e31ec0ac!2sNebulaNet%20(Website%20Apps%20Solutions)!5e0!3m2!1sen!2sin!4v1740068993946!5m2!1sen!2sin"
           allowFullScreen

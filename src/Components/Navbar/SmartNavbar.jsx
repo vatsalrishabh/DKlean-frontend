@@ -19,7 +19,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import logo from "../../assets/Puslecarelogo/PulseCare.png";
+// import logo from "../../assets/Puslecarelogo/PulseCare.png";
+import logo from "../../assets/Puslecarelogo/dkleanlogo.jpeg";
 
 const SmartNavbar = () => {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ const SmartNavbar = () => {
     { text: "About", icon: <InfoIcon />, link: "/about" },
     { text: "Services", icon: <LanIcon />, link: "/services" },
     { text: "Gallery", icon: <CollectionsIcon />, link: "/gallery" },
-    { text: "Contact Us", icon: <CallIcon />, link: "/contact" },
+    { text: "Contact Us", icon: <CallIcon />, link: "/contact-us" },
   ];
 
   const DrawerList = () => (

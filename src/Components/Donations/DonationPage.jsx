@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Donationbox from "./Donationbox";
 import LeftDonationMot from "./LeftDonationMot";
+import { useNavigate } from "react-router-dom";
 
 const DonationPage = () => {
+  const navigate = useNavigate();
+  const [loggedInDonor, setLoggedInDonor] = useState(null);
+
+  useEffect(() => {
+    const storedDetails = localStorage.getItem('donorDetails');
+    if (storedDetails) {
+      const parsedDetails = JSON.parse(storedDetails);
+      setLoggedInDonor(parsedDetails);
+      if (parsedDetails.isloggedIn) {
+        navigate("/donorlogin");
+      }
+    }
+  }, []);
+
   return (
     <>
       <div className="lg:flex justify-end p-4">

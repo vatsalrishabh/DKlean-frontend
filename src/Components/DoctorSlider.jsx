@@ -21,7 +21,7 @@ const DoctorSlider = () => {
         {/* Left Section */}
         <div className="left lg:w-4/6 sm:w-full space-y-8">
           <div className="the-Heading">
-            <div className="text-gray-500 text-sm uppercase tracking-wider">Why Choose DKlean</div>
+            <div className="text-gray-500 text-sm uppercase tracking-wider">Why Choose Dklean Health Care Public Charitable Trust (N.G.O.)</div>
             <div className="flex items-center space-x-2">
               <h1 className="text-3xl font-bold text-[#8f1b1b]">The Best</h1>
               <h1 className="text-3xl font-semibold text-gray-800">For Your Health</h1>

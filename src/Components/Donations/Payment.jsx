@@ -82,7 +82,7 @@ const Payment = (props) => {
         key: 'rzp_test_l0gnUnaG8U4VmM',
         amount: (amount - discount) * 100,
         currency: order.currency,
-        name: 'Dklean HealthCare',
+        name: 'Dklean Health Care Public Charitable Trust (N.G.O.)',
         description: 'Donation Transaction',
         order_id: order.id,
         callback_url: `${BaseUrl}/api/donations/payment-success`,

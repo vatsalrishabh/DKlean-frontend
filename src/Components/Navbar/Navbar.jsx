@@ -13,12 +13,40 @@ const Navbar = (props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({});
  
+  const roleBasedLinks = {
+    user: [
+      { to: "/patientlogin", name: "Book Appointment" },
+      { to: "/pApp", name: "All Appointments" },
+      { to: "/patientprofile", name: "Profile Setting" },
+      // { to: "/contactSupport", name: "Contact Support" }
+    ],
+    donor: [
+      { to: "/donate", name: "Donate Now" },
+    ],
+    doctor: [
+      { to: "/doctorDashboard", name: "Doctor Dashboard" },
+      { to: "/appointments", name: "Appointments" },
+      { to: "/doctorProfile", name: "Profile" }
+    ],
+    admin: [
+      { to: "/adminDashboard", name: "Admin Panel" },
+      { to: "/manageUsers", name: "Manage Users" },
+      { to: "/reports", name: "Reports & Analytics" }
+    ]
+  };
+  
 
   useEffect(() => {
     const loadDetails = () => {
-      const storedDetails = localStorage.getItem(props.userType);
-      if (storedDetails) {
+      // const storedDetails = localStorage.getItem(props.userType||"userDetails");
+      const storedDetails = localStorage.getItem(
+        [props.userType, "userDetails", "donorDetails", "doctorDetails", "adminDetails"]
+          .find(key => localStorage.getItem(key))// ek ek value pe function chalya
+      );
+      // console.log(storedDetails);
+      if (storedDetails) { //jisme value null nahi ayi use useState me bhej diya
         setLoggedInUser(JSON.parse(storedDetails));
+        console.log(loggedInUser);
       }
     };
     loadDetails();
@@ -40,7 +68,7 @@ const Navbar = (props) => {
       {/* Top Navbar */}
 
       {/* Bottom Navbar */}
-      <div className="hidden lg:block lg:bg-custom-maroon lg:h-[17vh]">
+      <div className="hidden lg:block lg:bg-custom-maroon lg:h-[19vh]">
         <div className="flex justify-center items-center h-[12vh]">
           <div className="flex justify-between items-center w-4/5">
             {/* Logo Section */}
@@ -131,7 +159,7 @@ const Navbar = (props) => {
               </Avatar>
             ) : (
               <Link to="/patientlogin" >
-                <span className="text-white transition-all duration-300 font-semibold border border-white p-2 rounded-md hover:bg-gray-200 hover:text-black">
+                <span className="text-white transition-all duration-300 font-semibold border border-white p-2 rounded-md hover:bg-gray-200 hover:text-black ">
                   Login / Signup
                 </span>
               </Link>
@@ -141,18 +169,43 @@ const Navbar = (props) => {
           {
   isDropdownOpen && (
     <div className="z-50 bg-custom-maroon text-white absolute right-56 top-36 rounded-lg shadow-lg animate-fadeIn" sx={{ bgcolor: "red" }} onClick={() => setIsDropdownOpen((prevState) => !prevState)}>
-      <Link to="/bookAp" className="block p-2 hover:bg-custom-maroon2 transition duration-300">
-        Book Appointment
-      </Link>
-      <Link to="/pApp" className="block p-2 hover:bg-custom-maroon2 transition duration-300">
-        All Appointments
-      </Link>
-      <Link to="/patientprofile" className="block p-2 hover:bg-custom-maroon2 transition duration-300">
-        Profile Setting
-      </Link>
-      <Link to="/contactSupport" className="block p-2 hover:bg-custom-maroon2 transition duration-300">
-        Contact Support 
-      </Link>
+       {loggedInUser?.role === "user" && (
+    <>
+   {roleBasedLinks[loggedInUser?.role]?.map((link, index) => (
+  <Link key={index} to={link.to} className="block p-2 hover:bg-custom-maroon2 transition duration-300">
+    {link.name}
+  </Link>
+))}
+    </>
+  )}
+   {loggedInUser?.role === "donor" && (
+    <>
+   {roleBasedLinks[loggedInUser?.role]?.map((link, index) => (
+  <Link key={index} to={link.to} className="block p-2 hover:bg-custom-maroon2 transition duration-300">
+    {link.name}
+  </Link>
+))}
+    </>
+  )}
+   {loggedInUser?.role === "admin" && (
+    <>
+   {roleBasedLinks[loggedInUser?.role]?.map((link, index) => (
+  <Link key={index} to={link.to} className="block p-2 hover:bg-custom-maroon2 transition duration-300">
+    {link.name}
+  </Link>
+))}
+    </>
+  )}
+   {loggedInUser?.role === "doctor" && (
+    <>
+   {roleBasedLinks[loggedInUser?.role]?.map((link, index) => (
+  <Link key={index} to={link.to} className="block p-2 hover:bg-custom-maroon2 transition duration-300">
+    {link.name}
+  </Link>
+))}
+    </>
+  )}
+     
       <div onClick={logout} className="block p-2 hover:bg-custom-maroon2 transition duration-300">
         Logout
       </div>

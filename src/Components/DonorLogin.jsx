@@ -17,7 +17,7 @@ const DonorLogin = () => {
   // Doctor Registration form data starts
   const [doctorName, setName] = useState("");
   const [doctorEmail, setDoctorEmail] = useState("");
-  const [doctorMobile, setDoctorMobile] = useState(8123573669);
+  const [doctorMobile, setDoctorMobile] = useState();
   const [doctorPassword, setPassword] = useState("");
   const [doctorConPassword, setConPassword] = useState("");
   const [doctorAge, setDoctorAge] = useState("");
@@ -63,6 +63,9 @@ const DonorLogin = () => {
       if (loginResponse.status === 200) {
         console.log(loginResponse.status);
     //  console.log(loginResponse.data.DoctorDetails);
+    localStorage.removeItem("userDetails");
+    localStorage.removeItem("adminDetails");
+    localStorage.removeItem("doctorDetails");
     localStorage.setItem(
       "donorDetails",
       JSON.stringify({

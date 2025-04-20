@@ -19,7 +19,7 @@ const Diagnosis = () => {
         <LeftImgAbout
           img="https://cdn.myhealthteams.com/graphic/5c3f9af2d9e5c8531c8b9932/woriginal/MyMyelomaTeam_ConditionGuide-2024_Diagnosis_1200x630-bb26f6aa6f251d865a68f04e644f269a.webp?1721339016"
           heading="Who We Are"
-          description="Dklean Healthcare is dedicated to revolutionizing the medical industry by providing top-tier healthcare services tailored to every patient’s needs. Our team consists of highly skilled professionals who are committed to delivering exceptional medical care. We focus on patient-centered approaches, ensuring that our services prioritize comfort, accessibility, and efficiency."
+          description="Dklean Health Care Public Charitable Trust (N.G.O.) is dedicated to revolutionizing the medical industry by providing top-tier healthcare services tailored to every patient’s needs. Our team consists of highly skilled professionals who are committed to delivering exceptional medical care. We focus on patient-centered approaches, ensuring that our services prioritize comfort, accessibility, and efficiency."
         />
 
         <RightImgAbout

@@ -47,14 +47,14 @@ const PaymentPage = () => {
         key: 'rzp_test_l0gnUnaG8U4VmM',
         amount: numericalValue * 100,
         currency: order.currency,
-        name: 'Dklean HealthCare',
+        name: 'Dklean Health Care Public Charitable Trust (N.G.O.)',
         description: 'Test Transaction',
         order_id: order.id,
         callback_url: `${BaseUrl}/api/payments/payment-success`,
         prefill: {
           name: loggedInUser?.name,
           email: loggedInUser?.email,
-          contact: "8123573669",
+          contact: "",
         },
         theme: {
           color: '#a32121',

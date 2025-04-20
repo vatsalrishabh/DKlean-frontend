@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'; 
-import axios from 'axios'; 
 import TimeSlots from './TimeSlots'; 
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'; 
 import { BreadCrumb } from '../DoctorDashboard/BreadCrumb';
@@ -8,6 +7,8 @@ const Dates = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());   
   const [formattedDate, setFormattedDate] = useState('');    
 
+
+// function to change date object to dd-MM-YYYY
   useEffect(() => {     
     const formatDate = (date) => {       
       const day = String(date.getDate()).padStart(2, '0');       
@@ -17,6 +18,8 @@ const Dates = () => {
     };     
     setFormattedDate(formatDate(selectedDate));   
   }, [selectedDate]);    
+// function to change date object to dd-MM-YYYY
+
 
   const handleDateClick = (day) => {     
     const newDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day);     
@@ -119,7 +122,8 @@ const Dates = () => {
           </div>         
         </div>       
       </div>       
-      <div className='lg:w-2/6'>         
+      <div className='lg:w-2/6'> 
+           
         <TimeSlots selectedDate={formattedDate} />       
       </div>       
     </div> 

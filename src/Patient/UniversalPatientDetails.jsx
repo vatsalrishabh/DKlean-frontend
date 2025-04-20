@@ -112,7 +112,7 @@ const UniversalPatientDetails = () => {
                         <Box display="flex" alignItems="center">
                             <PriceCheckIcon sx={{ marginRight: 2, color: '#8f1b1b' }} />
                             <Typography variant="h6" color="textSecondary" sx={{ flex: 1 }}>
-                                {price ? `$${price}` : 'Price Not Available'}
+                                {price ? `${price}` : 'Price Not Available'}
                             </Typography>
                             <IconButton onClick={() => copyToClipboard(price ? `$${price}` : 'Price Not Available')}>
                                 <CopyAllIcon sx={{ color: '#8f1b1b' }} />

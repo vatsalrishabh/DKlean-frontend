@@ -22,7 +22,7 @@ const AboutUs = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          Dklean Healthcare
+       Dklean Health Care
         </motion.h1>
         
         <motion.h2
@@ -31,7 +31,7 @@ const AboutUs = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          About Dklean
+           Public Charitable Trust (N.G.O.)
         </motion.h2>
       </motion.div>
       {/* Background Image Section ends */}
@@ -61,7 +61,7 @@ const AboutUs = () => {
       <RightImgAbout 
         img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7aoWenGMWoMl_MfO3q5JkjUR0poKSz5eDw&s"
         heading="Our Dedicated Team"
-        description="At Dklean Healthcare, our team is our biggest strength. We bring together experienced doctors, skilled nurses, and dedicated healthcare professionals who work tirelessly to provide the best medical services. Our team members are driven by passion, empathy, and a commitment to improving lives through quality healthcare."
+        description="At Dklean Health Care Public Charitable Trust (N.G.O.), our team is our biggest strength. We bring together experienced doctors, skilled nurses, and dedicated healthcare professionals who work tirelessly to provide the best medical services. Our team members are driven by passion, empathy, and a commitment to improving lives through quality healthcare."
       />
 
       <LeftImgAbout 

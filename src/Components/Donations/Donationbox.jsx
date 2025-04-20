@@ -121,7 +121,7 @@ const handleSubmit = async (e) => {
         key: 'rzp_test_l0gnUnaG8U4VmM',
         amount: (customAmount || selectedAmount) * 100,
         currency: "INR",
-        name: 'Dklean HealthCare',
+        name: 'Dklean Health Care Public Charitable Trust (N.G.O.)',
         description: 'Test Transaction',
         order_id: response.data.id,  // Ensure `order.id` exists
         callback_url: `${BaseUrl}/api/donations/paymentSuccess`,
@@ -142,7 +142,8 @@ const handleSubmit = async (e) => {
             });
 
             if (verificationResponse.data.status === 'ok') {
-              window.location.href = '/donate'; // take to donate page
+              console.log(verificationResponse.data.updatedDonation.razorpayId);
+              window.location.href = `/donatereceipt/${verificationResponse.data.updatedDonation.razorpayId}`; // take to donate page
             } else {
               console.error('Payment verification failed');
             }
@@ -163,21 +164,25 @@ const handleSubmit = async (e) => {
 
   
 
+
+
+
+
   useEffect(() => {
     const fetchLocationDetails = async () => {
       if (formData.pincode.length === 6) { // Ensure pincode is fully entered
         try {
           const response = await axios.get(
-            `http://www.postalpincode.in/api/pincode/${formData.pincode}`
+            `https://pinlookup.in/api/pincode?pincode=${formData.pincode}`
           );
-          const { PostOffice, Status } = response.data;
-          if (PostOffice.length > 0) {
-            const { District: city, State: state, Country: country } = PostOffice[0];
+          const data = response.data?.data;
+          if (data) {
+          
             setFormData((prev) => ({
               ...prev,
-              city,
-              state,
-              country,
+              city: data.district_name,
+              state: data.state_name,
+              country:"India",
             }));
           } else {
             console.error("Invalid Pincode or No Data Found");
@@ -195,7 +200,7 @@ const handleSubmit = async (e) => {
 
 
   return (
-    <div className="w-full bg-[#f7f7f7] py-10">
+    <div className="w-full bg-[#f7f7f7] py-10" >
       <div className="w-full max-w-4xl mx-auto bg-white shadow-md rounded-lg p-5">
         <form onSubmit={handleSubmit}>
           {/* Donation Type Selection */}
@@ -220,7 +225,7 @@ const handleSubmit = async (e) => {
             <HttpsIcon sx={{ color: "green" }} /> Choose an amount to donate
           </div>
           <div className="flex justify-center gap-4 mb-6">
-            {(donationType === "Give Once" ? [1200, 2400, 3600, 5000] : [2000, 4000, 6000, 8000]).map((amount) => (
+            {(donationType === "Give Once" ? [1200, 2400, 3600, ] : [2000, 4000, 6000, ]).map((amount) => (
               <div
                 key={amount}
                 onClick={() => handleAmountClick(amount)}
@@ -257,6 +262,9 @@ const handleSubmit = async (e) => {
           {/* User Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="relative">
+            <label htmlFor="name" className="pl-4 block text-sm font-semibold text-gray-800 mb-1">
+  Name
+  </label>
               <input
                 type="text"
                 name="name"
@@ -269,16 +277,23 @@ const handleSubmit = async (e) => {
               <span className="absolute right-3 top-3 text-red-500">*</span>
             </div>
             <div className="relative">
-              <input
-                type="date"
-                name="dob"
-                value={formData.dob}
-                onChange={handleInputChange}
-                className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
-                required
-              />
-              <span className="absolute right-3 top-3 text-red-500">*</span>
-            </div>
+            <label htmlFor="dob" className="pl-4 block text-sm font-semibold text-gray-800 mb-1">
+    Date of Birth
+  </label>
+  <input
+    type="date"
+    id="dob"
+    name="dob"
+    value={formData.dob}
+    onChange={handleInputChange}
+    className="px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 w-full shadow-sm hover:border-custom-maroon focus:outline-none focus:ring-2 focus:ring-custom-maroon transition duration-200"
+    required
+    title="Please enter in format: YYYY-MM-DD"
+  />
+
+  <span className="absolute right-3 top-3 text-red-500 pointer-events-none select-none">*</span>
+</div>
+
           </div>
           {errors.name && <p className="text-red-500">{errors.name}</p>}
           {errors.dob && <p className="text-red-500">{errors.dob}</p>}
@@ -296,17 +311,21 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div className="relative">
-              <input
-                type="number"
-                name="mobile"
-                placeholder="Mobile *"
-                value={formData.mobile}
-                onChange={handleInputChange}
-                className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
-                required
-              />
-              <span className="absolute right-3 top-3 text-red-500">*</span>
-            </div>
+  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">+91</span>
+  <input
+    type="tel"
+    name="mobile"
+    placeholder="Mobile *"
+    value={formData.mobile}
+    onChange={handleInputChange}
+    className="pl-14 pr-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
+    pattern="[6-9]{1}[0-9]{9}"
+    maxLength={10}
+    required
+  />
+  <span className="absolute right-3 top-3 text-red-500">*</span>
+</div>
+
           </div>
           {errors.mobile && <p className="text-red-500">{errors.mobile}</p>}
 
@@ -372,15 +391,22 @@ const handleSubmit = async (e) => {
           </div>
 
           <div className="mb-6">
-            <input
-              type="text"
-              name="pancard"
-              placeholder="Pan Card *"
-              value={formData.pancard}
-              onChange={handleInputChange}
-              className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon"
-              required
-            />
+          <input
+  type="text"
+  name="pancard"
+  placeholder="Pan Card *"
+  value={formData.pancard}
+  onChange={handleInputChange}
+  onBlur={(e) => {
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    if (!panRegex.test(e.target.value)) {
+      alert("Invalid PAN card number. Format should be: ABCDE1234F");
+    }
+  }}
+  className="px-4 py-3 rounded-xl border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-custom-maroon uppercase"
+  required
+  maxLength={10}
+/>
             {errors.pancard && <p className="text-red-500">{errors.pancard}</p>}
           </div>
 

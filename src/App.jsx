@@ -77,6 +77,19 @@ import Rehabilitation from "./ServicesCategory/Rehabilitation";
 import Cardiology from "./ServicesCategory/Cardiology";
 import Psychiatry from "./ServicesCategory/Psychiatry";
 import Physiotherapy from "./ServicesCategory/Physiotherapy";
+import DonationReceipt from "./Components/Donations/DonationReceipt";
+import SpeedDiall from "./Components/SpeedDial/SpeedDiall";
+
+// home images 
+import img from "./assets/home/bgone.jpeg"
+import imgone from "./assets/home/bgtwo.jpeg"
+
+// contact-us images
+import contactone from "./assets/home/contactone.jpeg";
+
+//donate and /donorlogin
+import donateone from "./assets/home/donateone.png"
+
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -137,6 +150,7 @@ function App() {
   return (
     <Router>
       <div className="h-full">
+    <SpeedDiall/>      {/* speed dial  */}
         <Routes>
           <Route path="/" element={<Loader />} />
           <Route path="/dates" element={<Dates />} />
@@ -148,7 +162,7 @@ function App() {
             element={
               <>
                 <Navbar userType="donorDetails" />
-                <Slider/>
+                <Slider imgArray={[donateone]} />
                 <DonationPage />    {/*contains left and right donation page  */}
                 <Footer />
               </>
@@ -156,13 +170,34 @@ function App() {
           />
 
 
+<Route
+            path="/donatereceipt"
+            element={
+              <>
+                <Navbar userType="donorDetails" />
+                <DonationReceipt/>
+                <Footer />
+              </>
+            }
+          />
+
+<Route
+  path="/donatereceipt/:transactionId"
+  element={
+    <>
+      <Navbar userType="donorDetails" />
+      <DonationReceipt />
+      <Footer />
+    </>
+  }
+/>
 
           <Route
             path="/home"
             element={
               <>
                 <Navbar userType="userDetails"/>
-                <Slider/>
+                <Slider imgArray={[imgone, img]}/>
                 <DoctorSlider />
                 <HomeSmall />
                 <PricingAndCart />
@@ -330,7 +365,7 @@ function App() {
             element={
               loggedInUser.isloggedIn ? (
                 <>
-              <Dates/>
+              <Dates/>   {/* the calendar and time slots - in timeslots only two componets Universalpatieent, FinalSelect */}
                   {/* <AllAppointment /> */}
                 </>
               ) : (
@@ -668,11 +703,11 @@ function App() {
             element={
               loggedInDonor.isloggedIn ? (
                 <>
-              <div className="lg:block hidden"> <Navbar /></div>  
+              <div className="lg:block hidden">  <Navbar userType="donorDetails" /></div>  
                   {/* <PatientNavbar /> */}
                   <PatientNavbar
                     localstorage="donorDetails"
-                    oneName="Dashboard"
+                    oneName="Your Donations"
                     linkOne="/donorlogin"
                     twoName="Donor"
                     linkTwo="/appointments"
@@ -686,7 +721,7 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Navbar />
+                  <Navbar userType="donorDetails" />
                   <DonorLogin />
                   <Footer />
                 </>
@@ -784,7 +819,7 @@ function App() {
             element={
               <>
                 <Navbar />
-                <Slider/>
+                <Slider imgArray={[contactone]} />
                 <ContactUs />
                 {/* <ChatBotButton /> */}
                 <Footer />
