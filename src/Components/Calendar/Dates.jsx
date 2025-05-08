@@ -1,5 +1,7 @@
+// it has calendar on left
+//  and timeSlots coponenet - which has Service Details and TimeSLots
 import React, { useState, useEffect } from 'react'; 
-import TimeSlots from './TimeSlots'; 
+import TimeSlots from './TimeSlots';  //it has service detials and timeSlots
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'; 
 import { BreadCrumb } from '../DoctorDashboard/BreadCrumb';
 

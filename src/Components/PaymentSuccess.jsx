@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Typography, Card, CardContent } from '@mui/material';
 import { CheckCircle, Person, CalendarToday, AccessTime, MedicalServices, Receipt } from '@mui/icons-material';
-import pulsecarelogo from '../assets/Puslecarelogo/PulseCare.png'; // Ensure correct path for your logo
+import pulsecarelogo from '../assets/Puslecarelogo/dkleanlogo.jpeg'; // Ensure correct path for your logo
 import axios from 'axios';
 import { BaseUrl } from './BaseUrl'; // Ensure BaseUrl is correctly imported
 import SnackBarAlert from './SnackBarAlert'; // Assuming this is your Snackbar component
@@ -18,13 +18,15 @@ const PaymentSuccess = () => {
       setPatientDetails(JSON.parse(storedData));
     }
   }, []);
-
+console.log(patientDetails);
   useEffect(() => {
     // Send receipt email after data is set, only if email hasn't been sent yet
     const sendMail = async () => {
+      console.log(patientDetails)
       if (patientDetails && !emailSent) {
         try {
-          const response = await axios.post(`${BaseUrl}/api/patients/sendMailToCx`, patientDetails); // Ensure correct endpoint
+          const response = await axios.post(`${BaseUrl}/api/payments/sendMailToCx`, patientDetails); // Ensure correct endpoint
+        
           if (response.status === 200) {
             setEmailSent(true); // Mark the email as sent
             setAlert({ message: 'A copy of the receipt has been sent to your email!', status: '200' });

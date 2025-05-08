@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//after selecting the doctor you will be - /patient/payment
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -22,7 +23,16 @@ const FinalSelect = (props) => {
   const serviceFromRedux = useSelector(state=>state.service);
   const navigate = useNavigate();
 
+  const [userDetails , setUserDetails] = useState({});
+
+  useEffect(()=>{
+    const loadDetails = JSON.parse(localStorage.getItem("userDetails"));
+    setUserDetails(loadDetails);
+    console.log(loadDetails)
+  },[])
+
   const handleBookClick = (doctor) => {
+
     console.log({
       blocked:props.blocked,
       date: props.date,
@@ -30,18 +40,20 @@ const FinalSelect = (props) => {
       bookingId: doctor.bookingId,
       doctorId: doctor.doctorId,
       doctorName: doctor.doctorName,
-      bookedBy: "CurrentUserId", 
+      bookedBy: userDetails.userId, 
       serviceFromRedux , // this the servive id name and price for the service selected
     });
 
     localStorage.setItem('paymentData', JSON.stringify({
+        email:userDetails.email||"not found ",
+        userId:userDetails.userId||"not found email",
         date: props.date,                // Ensure props.date has a valid value
         time: props.time,                // Ensure props.time has a valid value
         bookingId: doctor.bookingId,     // Ensure doctor.bookingId is defined
         doctorId: doctor.doctorId,       // Ensure doctor.doctorId is defined
         doctorName: doctor.doctorName,   // Ensure doctor.doctorName is defined
         serviceFromRedux ,
-        bookedBy: "Anonymous", // Replace with actual user ID; fallback to "Anonymous"
+        bookedBy:userDetails.name, // Replace with actual user ID; fallback to "Anonymous"
       }));
 
       navigate("/patient/payment");

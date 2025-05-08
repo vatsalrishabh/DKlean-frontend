@@ -6,6 +6,7 @@ import {
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { BaseUrl } from '../BaseUrl';
+import logo from "../../assets/Puslecarelogo/dkleanlogo.jpeg"
 
 const DonationReceipt = () => {
   const { transactionId } = useParams();
@@ -105,6 +106,9 @@ const DonationReceipt = () => {
                       key={idx}
                       className="bg-white rounded-xl border-2 border-custom-maroon p-6 shadow-md mb-6"
                     >
+                      <div className="flex justify-center mb-4">
+    <img src={logo} alt="NGO Logo" className="h-16 w-auto" />
+  </div>
                       <h2 className="text-2xl font-bold text-center text-custom-maroon mb-4">Donation Receipt</h2>
 
                       <div className="flex flex-col gap-3 text-gray-800">

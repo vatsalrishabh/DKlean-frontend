@@ -1,11 +1,13 @@
+//UniversalPatientDetails - redux api - patient and servie details and price 
+//FinalSelect - will have available doctors list as MODAL
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BaseUrl } from "../BaseUrl";
 import { Button, Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import CircularProgress from "@mui/material/CircularProgress";
-import FinalSelect from "./FinalSelect";
-import UniversalPatientDetails from "../../Patient/UniversalPatientDetails";
+import FinalSelect from "./FinalSelect"; // will have the doctor list and in modal
+import UniversalPatientDetails from "../../Patient/UniversalPatientDetails"; // the patient details and service he wants to book redux api
 
 // Custom styled Box component for content styling
 const ContentBox = styled(Box)(({
@@ -77,17 +79,30 @@ const TimeSlots = (props) => {
                     <span className="text-lg w-full font-medium flex justify-between">
                       <div>{slot.time}</div>
                       <div>
-                        {
-                          slotStartTime > timeNow ? (
-                            <FinalSelect
-                              time={slot.time}
-                              doctors={slot.doctors}
-                              date={item.date}
-                            />
-                          ) : (
-                            <>Can not book</>
-                          )
-                        }
+                      {
+    (() => {
+      const currentDateTime = new Date(); // current datetime
+      const today = currentDateTime.toISOString().split("T")[0]; // YYYY-MM-DD
+
+      // Convert DD-MM-YYYY to YYYY-MM-DD
+      const [dd, mm, yyyy] = item.date.split("-");
+      const formattedDate = `${yyyy}-${mm}-${dd}`; // correct format for Date()
+
+      // Extract only start time from "21:00 - 22:00"
+      const slotStartTimeStr = slot.time.split(" - ")[0];
+
+      const slotDateTime = new Date(`${formattedDate}T${slotStartTimeStr}:00`);
+  return (formattedDate !== today || slotDateTime > currentDateTime) ? (
+        <FinalSelect
+          time={slot.time}
+          doctors={slot.doctors}
+          date={item.date}
+        />
+      ) : (
+        <>Can not book</>
+      );
+    })()
+  }
                       </div>
                     </span>
                   </li>

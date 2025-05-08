@@ -17,7 +17,7 @@ const UniversalPatientDetails = () => {
     // Function to check if necessary data exists and navigate accordingly
     const ifDataExists = () => {
         if (!serviceId || !name || !price) {
-            navigate("/bookAp"); // Navigate to the previous page if data is incomplete
+            navigate("/patientlogin"); // Navigate to the previous page if data is incomplete
         }
     };
 
