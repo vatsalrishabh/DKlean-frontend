@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import servicebg from "../assets/about/servicebg.webp";
+import servicebg from "../assets/home/services.png";
 import ServiceCard from "./Services/ServiceCard";
 import { FaUserMd, FaVial, FaBriefcaseMedical } from "react-icons/fa";
 

@@ -10,7 +10,7 @@ import { BaseUrl } from '../BaseUrl';
 const DonationReceipt = () => {
   const { transactionId } = useParams();
   const [donors, setDonors] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

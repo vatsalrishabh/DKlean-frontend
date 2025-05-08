@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setServiceData }  from "../features/serviceSlice"
 
-const Card = ({ name, price, description, discount,serviceId }) => {
+const Card = ({ name, price, description, discount, serviceId, category }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const maxLength = 30; // Maximum length for the description before truncating
   const navigate = useNavigate();
@@ -18,9 +18,10 @@ const Card = ({ name, price, description, discount,serviceId }) => {
     setIsModalOpen(false);
   };
 
+  // console.log(category+"sdfsdfsdf")
   const gotoDates = () => {
     dispatch(setServiceData({ serviceId, name, price }));
-    navigate('/patient/dates');
+    navigate(`${category==="Physio"?"/bookphysio":"/bookbloodtest"}`);
   };
   
 

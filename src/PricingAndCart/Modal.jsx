@@ -8,6 +8,7 @@ import WaterDropIcon from '@mui/icons-material/WaterDrop'; // Blood Drop Icon
 import OpacityIcon from '@mui/icons-material/Opacity'; // CBC Icon
 import FilterAltIcon from '@mui/icons-material/FilterAlt'; // Kidney Function Icon
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const iconMap = {
   "CBC": <OpacityIcon sx={{ fontSize: 30, color: "#8f1b1b" }} />,
@@ -17,6 +18,7 @@ const iconMap = {
 };
 
 const Modal = ({ name, price, description, discount, onClose }) => {
+  const navigate = useNavigate();
   // Convert description string into an array and trim spaces
   const descriptionArr = description.split(',').map((item) => item.trim());
 
@@ -71,6 +73,7 @@ const Modal = ({ name, price, description, discount, onClose }) => {
         {/* Book Now Button */}
         <button
           className="w-full py-3 bg-[#8f1b1b] text-white font-semibold rounded-lg hover:bg-[#a22d2d] transition-all duration-300 flex items-center justify-center space-x-2"
+          onClick={() => navigate("/bookphysio")}
         >
           Book Now
         </button>

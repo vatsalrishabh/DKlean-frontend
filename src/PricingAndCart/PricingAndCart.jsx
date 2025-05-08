@@ -1,7 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { BaseUrl } from '../Components/BaseUrl';
 
 const PricingAndCart = () => {
+  const [specialityCard, setSpecialityCard] = useState([]); //physio
+    const [commonHealthCard, setCommonHealthCard] = useState([]); // blood 
+    const [allServices, setAllServices] = useState([]); // all physio and blood
+    const [loggedInUser, setLoggedInUser] = useState({});
+    const location = useLocation(); // Hook to get current route
+  
+    // Load user details from local storage
+    useEffect(() => {
+      const storedUserDetails = localStorage.getItem("userDetails");
+      if (storedUserDetails) {
+        setLoggedInUser(JSON.parse(storedUserDetails));
+      }
+    }, []);
+  
+    // Fetch data from API when JWT is available
+    useEffect(() => {
+    
+      const fetchServices = async () => {
+        try {
+          const response = await axios.get(`${BaseUrl}/api/services/getAllServices`);
+  
+          const { data } = response.data;
+          setAllServices(data);
+          console.log(allServices)
+          if (data && data.length > 0) {
+            setSpecialityCard(data.filter((service) => service.category === "blood"));
+            setCommonHealthCard(data.filter((service) => service.category === "Physio"));
+            console.log(specialityCard);
+          }
+        } catch (error) {
+          console.error("Error fetching services:", error);
+        }
+      };
+  
+      fetchServices();
+    }, [loggedInUser]);
   // Sample card data
   const cards = [
     {
@@ -36,6 +75,9 @@ const PricingAndCart = () => {
     },
   ];
 
+
+
+
   const [startIndex, setStartIndex] = useState(0);
 
   const handleNext = () => {
@@ -60,13 +102,14 @@ const PricingAndCart = () => {
         </div>
       </div>
       <div className="bodyyy flex flex-wrap justify-center gap-6">
-        {cards.slice(startIndex, startIndex + 4).map((card, index) => (
+        {allServices.slice(startIndex, startIndex + 4).map((card, index) => (
           <Card
             key={index}
-            name={card.name}
-            price={card.price}
-            description={card.description}
-            discount={card.discount}
+            name={card?.name}
+            price={card?.price}
+            description={card?.description||"description"}
+            discount={card?.discount}
+            category={card?.category}
           />
         ))}
       </div>

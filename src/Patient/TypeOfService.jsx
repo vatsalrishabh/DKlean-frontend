@@ -1,18 +1,20 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, Button } from '@mui/material';
 import { Link } from "react-router-dom";
-
+import blood from "../assets/pdash/blood.jpeg"
+import physio from "../assets/pdash/physio.jpeg"
+// the firstd dashboard with the two cards. physio and blood
 const services = [
   {
     title: 'Physiotherapy',
     description: 'Pain relief and better mobility through physiotherapy',
-    imageUrl: 'https://regencyhealthcare.in/wp-content/uploads/2018/06/How-physiotherapy-can-help-with-pain-relief-and-better-mobility-1-1200x800.png',
+    imageUrl: physio,
     link: "/bookphysio",
   },
   {
     title: 'Blood Test',
     description: 'Comprehensive blood tests for accurate diagnosis',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9nu9n8oKCQlKsBHFSczSVrR-qXPEeSOFnaA&s',
+    imageUrl: blood,
     link: "/bookbloodtest",
   },
 ];
