@@ -21,7 +21,8 @@ const Card = ({ name, price, description, discount, serviceId, category }) => {
   // console.log(category+"sdfsdfsdf")
   const gotoDates = () => {
     dispatch(setServiceData({ serviceId, name, price }));
-    navigate(`${category==="Physio"?"/bookphysio":"/bookbloodtest"}`);
+    navigate("/patient/dates"); //bring you to the date page 
+    // navigate(`${category==="Physio"?"/bookphysio":"/bookbloodtest"}`);
   };
   
 
