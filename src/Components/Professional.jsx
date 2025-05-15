@@ -38,7 +38,7 @@ const Professional = () => {
 
   return (
     <div
-      className="lg:h-[80vh] w-full py-10 px-6 bg-gray-100 flex flex-col items-center"
+      className=" w-full py-10 px-6 bg-gray-100 flex flex-col items-center"
       onDoubleClick={(e) => {
         if (e.clientX < window.innerWidth / 2) {
           handleDoubleClick("left");

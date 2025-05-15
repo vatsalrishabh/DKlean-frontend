@@ -69,16 +69,18 @@ const DonorDashboard = () => {
       </div>
    
         {hover ? (
-          <LeftDonationMot />
+          <LeftDonationMot /> // its only the details and writing decoreation contect
         ) : (
           <DonationHistory donorDetails={donorDetails} transactions={transactions} />
+          // it will have a list of transactions 
         )}
       </div>
 
       {/* Donation Box Section */}
       <div className="order-1 lg:order-2 lg:w-2/6">
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <Donationbox donorDetails={donorDetails} />
+          <Donationbox donorDetails={donorDetails} /> 
+          {/* it is for the donation */}
         </div>
       </div>
     </div>

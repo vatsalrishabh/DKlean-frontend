@@ -203,6 +203,9 @@ function App() {
                 <PricingAndCart />
                 <Testimony />
                 <Professional />
+                {/* <div className="p-8 bg-[#f3f4f6]" >
+
+                </div> */}
                 <Footer />
               </>
             }
@@ -224,9 +227,9 @@ function App() {
                     twoName="All Appointments"
                     linkTwo="/pApp"
                     threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientprofile"
+                    linkFour="/patientlogin"
                   /> 
                     <PatientDash />
                   {/* <AllAppointment /> */}
@@ -340,10 +343,10 @@ function App() {
                     linkOne="/patientlogin"
                     twoName="All Appointments"
                     linkTwo="/pApp"
-                    threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                  threeName="Book an Appointment"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientprofile"
+                    linkFour="/patientlogin"
                   /> 
                     <PatientDash />
                   {/* <AllAppointment /> */}
@@ -394,10 +397,10 @@ function App() {
                     linkOne="/patientlogin"
                     twoName="All Appointments"
                     linkTwo="/pApp"
-                    threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                 threeName="Book an Appointment"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientprofile"
+                    linkFour="/patientlogin"
                   />    
                     {/* smartphone navbar above and its link */}
                  <PatientBookAnApp/>
@@ -427,10 +430,10 @@ function App() {
                     linkOne="/patientlogin"
                     twoName="All Appointments"
                     linkTwo="/pApp"
-                    threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                  threeName="Book an Appointment"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientprofile"
+                    linkFour="/patientlogin"
                   />    
                     {/* smartphone navbar above and its link */}
                  <PatientBookAnApp/>
@@ -461,10 +464,10 @@ function App() {
                     linkOne="/patientlogin"
                     twoName="All Appointments"
                     linkTwo="/pApp"
-                    threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                  threeName="Book an Appointment"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientprofile"
+                    linkFour="/patientlogin"
                   />    
                     {/* smartphone navbar above and its link */}
                   <PatientDash />
@@ -494,8 +497,7 @@ function App() {
                     linkTwo="/doctor/UpcomingApp"
                     threeName="Manage Appointment"
                     linkThree="/doctor/manageApp"
-                    fourtName="Contact Support"
-                    linkFour="/doctor/contactSupport"
+                   
                   />
                   <DoctorDashboard />
                 </>
@@ -838,10 +840,10 @@ function App() {
                     linkOne="/patientlogin"
                     twoName="All Appointments"
                     linkTwo="/pApp"
-                    threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                   threeName="Book an Appointment"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientprofile"
+                    linkFour="/patientlogin"
                   />    
                 <PatientDash />
                   {/* <PatientNavbar />
@@ -894,9 +896,9 @@ function App() {
                     twoName="All Appointments"
                     linkTwo="/pApp"
                     threeName="Book an Appointment"
-                    linkThree="/bookAp"
+                    linkThree="/patientlogin"
                     fourtName="Profile Setting"
-                    linkFour="/patientProfile"
+                    linkFour="/patientlogin"
                   />    
                     {/* smartphone navbar above and its link */}
                   <PatientDash />

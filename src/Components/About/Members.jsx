@@ -4,32 +4,15 @@ import ash from "../../assets/doctors/ashwani.jpg";
 import may from "../../assets/doctors/mayank.jpg";
 import dkum from "../../assets/doctors/dkumar.jpg";
 
-const teamMembers = [
-  {
-    name: "Mr. D. Kumar",
-    designation: "Path Lab & Physiotherapist",
-    img: dkum,
-    contact: "8510090506",
-  },
-  {
-    name: "Dr. Mayank Kumar (PT)",
-    designation: "Physiotherapist (BPT, DNYS, CMS-ED, EMT)",
-    img: may,
-    contact: "+91 88822 28599",
-  },
-  {
-    name: "Dr. Ashwani Kumar Rai",
-    designation: "MBBS, MS Orthopaedics",
-    img: ash,
-    contact: "+91 85959 93431",
-  },
-];
 
-const Members = () => {
+
+const Members = ({teamMembers,heading}) => {
+
+
   return (
     <div className="p-8 bg-gray-100 flex flex-col items-center">
       <h2 className="text-4xl font-bold text-center text-[#8f1b1b] mb-8">
-        Meet Our Experts
+        {heading}
       </h2>
 
       {/* Centered Grid Layout */}

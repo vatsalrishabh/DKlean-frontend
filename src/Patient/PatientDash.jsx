@@ -35,7 +35,7 @@ const  PatientDash = () => {
   const menuItems = [
     { name: "Book Appointment", link: "/bookAp" },
     { name: "All Appointments", link: "/pApp" },
-    { name: "Profile Setting", link: "/patientprofile" },
+    { name: "Profile Setting", link: "/patientlogin" },
     { name: "Contact Support", link: "/contactSupport" },
   ];
 
@@ -137,7 +137,7 @@ const  PatientDash = () => {
             first="Patient Dashboard"
             second="Patient Profile"
             firstLink="/patientlogin"
-            secondLink="/patientprofile"
+            secondLink="/patientlogin"
           />
 <PatientProfile userType="userDetails"/>
         </div>

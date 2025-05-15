@@ -149,6 +149,7 @@ if(registrationForm.doctorPassword!==registrationForm.doctorConPassword){
       }
     } catch (error) {
       console.error("An error occurred:", error);
+         setAlert({ message: "User already registered", status: "400" });
     }
   };
 

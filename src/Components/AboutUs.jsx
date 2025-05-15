@@ -4,8 +4,36 @@ import aboutBg from "../assets/about/aboutbg.webp";
 import LeftImgAbout from "./About/LeftImgAbout";
 import RightImgAbout from "./About/RightImgAbout";
 import Members from "./About/Members";
+import inno from "../assets/about/inno.webp"
+// Members images import
+import ash from "../assets/doctors/ashwani.jpg";
+import may from "../assets/doctors/mayank.jpg";
+import dkum from "../assets/doctors/dkumar.jpg";
 
 const AboutUs = () => {
+
+  const teamMembers = [
+    {
+      name: "Mr. D. Kumar",
+      designation: "Path Lab & Physiotherapist",
+      img: dkum,
+      contact: "8510090506",
+    },
+    {
+      name: "Dr. Mayank Kumar (PT)",
+      designation: "Physiotherapist (BPT, DNYS, CMS-ED, EMT)",
+      img: may,
+      contact: "+91 88822 28599",
+    },
+    {
+      name: "Dr. Ashwani Kumar Rai",
+      designation: "MBBS, MS Orthopaedics",
+      img: ash,
+      contact: "+91 85959 93431",
+    },
+  ];
+
+
   return (
     <div className="w-full">
       {/* 1. Background Image Section */}
@@ -37,7 +65,7 @@ const AboutUs = () => {
       {/* Background Image Section ends */}
 
       {/* 2. Members Section */}
-      <Members />
+      <Members teamMembers={teamMembers} heading="Meet Our Experts" />
 
       {/* 3. About Sections (Alternating Left-Right Layout) */}
       <LeftImgAbout 
@@ -53,7 +81,7 @@ const AboutUs = () => {
       />
 
       <LeftImgAbout 
-        img="https://www.healthcarefinancenews.com/sites/healthcarefinancenews.com/files/styles/companion_top/public/Digital%20Composite%20Image%20Of%20Surgeon%20Touching%20Interface_HFN%20-%20Getty%20.jpg?itok=EX7iFnvf"
+        img={inno}
         heading="Innovative Healthcare Solutions"
         description="We embrace technological advancements to enhance healthcare services. Our platform integrates the latest medical technologies to ensure efficient diagnostics, treatment, and patient management. From AI-powered health assessments to telemedicine consultations, we continuously innovate to improve patient outcomes and satisfaction."
       />
@@ -63,7 +91,7 @@ const AboutUs = () => {
         heading="Our Dedicated Team"
         description="At Dklean Health Care Public Charitable Trust (N.G.O.), our team is our biggest strength. We bring together experienced doctors, skilled nurses, and dedicated healthcare professionals who work tirelessly to provide the best medical services. Our team members are driven by passion, empathy, and a commitment to improving lives through quality healthcare."
       />
-
+ <Members teamMembers={teamMembers} heading="Team Members" />
       <LeftImgAbout 
         img="https://www.camh.ca/-/media/professionals-images/conditions-disorders/patient-family-care-graphic-feb2023-png.png?h=500&w=521&hash=D7AA57B197E439E77702104A17896969"
         heading="Patient-Centered Approach"

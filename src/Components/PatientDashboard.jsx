@@ -25,7 +25,7 @@ const PatientDashboard = () => {
               <Typography variant="body2" color="text.secondary">
                 Get the latest health tips and advice from our experts.
               </Typography>
-              <Link to="/patientprofile" style={{ textDecoration: 'none' }}>
+              <Link to="/patientlogin" style={{ textDecoration: 'none' }}>
                 <Button variant="contained" color="primary" className="mt-4" style={{ backgroundColor: '#71a113' }}>
                   Learn More
                 </Button>

@@ -23,6 +23,7 @@ const DonationHistory = ({ donorDetails, transactions }) => {
     localStorage.clear();
     location.reload();
   };
+  console.log(transactions)
 
   const handleCopy = () => {
     if (donorDetails?.userId) {
@@ -33,10 +34,10 @@ const DonationHistory = ({ donorDetails, transactions }) => {
   };
 
   // Calculate total successful and unsuccessful donations
+const totalSuccessfulDonation = transactions
+  ?.filter(txn => txn.status.toLowerCase() === "completed" || txn.status.toLowerCase() === "success")
+  .reduce((acc, txn) => acc + txn.amount, 0) || 0;
 
-  const totalSuccessfulDonation = transactions
-    ?.filter(txn => txn.status === "success")
-    .reduce((acc, txn) => acc + txn.amount, 0) || 0;
 
   const totalUnsuccessfulDonation = transactions
     ?.filter(txn => txn.status === "failed")
@@ -67,7 +68,8 @@ const DonationHistory = ({ donorDetails, transactions }) => {
       </div>
 
       {/* Donation Modal */}
-      <DonationModal open={open} handleClose={() => setOpen(false)} />
+      <DonationModal open={open} handleClose={() => setOpen(false)} donorDetails={donorDetails} />   {/* this has the details of logged IN donor */}
+       
 
       {/* Main Layout */}
       <div className="flex w-full h-full bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 p-6">
@@ -99,10 +101,10 @@ const DonationHistory = ({ donorDetails, transactions }) => {
                   <AccessTime sx={{ fontSize: 20, color: "#8f1b1b", marginRight: 1 }} />
                   Age: <span className="font-semibold">{donorDetails?.age || "N/A"} yrs</span>
                 </Typography>
-                <Typography variant="body2" className="text-gray-600">
+                {/* <Typography variant="body2" className="text-gray-600">
                   <Business sx={{ fontSize: 20, color: "#8f1b1b", marginRight: 1 }} />
                   Gender: <span className="font-semibold">{donorDetails?.gender || "N/A"}</span>
-                </Typography>
+                </Typography> */}
               </div>
 
               <div className="mb-4">
@@ -159,8 +161,8 @@ const DonationHistory = ({ donorDetails, transactions }) => {
                         <Typography variant="body1" className="text-maroon font-semibold">
                           Amount: ₹{txn.amount}
                         </Typography>
-                        <Typography variant="body2" className={`font-semibold ${txn.status === "success" ? "text-green-600" : "text-red-600"}`}>
-                          {txn.status === "success" ? "Successful" : "Failed"}
+                        <Typography variant="body2" className={`font-semibold ${txn.status === "Completed" ? "text-green-600" : "text-red-600"}`}>
+                          {txn.status === "Completed" ? "Successful" : "Failed"}
                         </Typography>
                       </div>
                       <Typography variant="body2" className="text-gray-600">

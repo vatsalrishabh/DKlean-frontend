@@ -17,7 +17,7 @@ const Navbar = (props) => {
     user: [
       { to: "/patientlogin", name: "Book Appointment" },
       { to: "/pApp", name: "All Appointments" },
-      { to: "/patientprofile", name: "Profile Setting" },
+      { to: "/patientlogin", name: "Profile Setting" },
       // { to: "/contactSupport", name: "Contact Support" }
     ],
     donor: [

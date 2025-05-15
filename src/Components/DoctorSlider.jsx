@@ -8,11 +8,12 @@ import 'animate.css';
 const DoctorSlider = () => {
   const card = [
     { icon: faStethoscope, heading: "Diagnosis", descriptions: "Examination & Diagnosis", link: "/diagnosis" },
+        { icon: faWheelchair, heading: "Physiotherapy", descriptions: "Physical therapy sessions", link: "/physiotherapy" },
     { icon: faBrain, heading: "Neurology", descriptions: "Expert neurological care", link: "/neurology" },
     { icon: faWheelchair, heading: "Rehabilitation", descriptions: "Assistance for recovery", link: "/rehabilitation" },
     { icon: faStethoscope, heading: "Cardiology", descriptions: "Heart-related treatment", link: "/cardiology" },
     { icon: faBrain, heading: "Psychiatry", descriptions: "Mental health support", link: "/psychiatry" },
-    { icon: faWheelchair, heading: "Physiotherapy", descriptions: "Physical therapy sessions", link: "/physiotherapy" }
+
   ];
 
   return (

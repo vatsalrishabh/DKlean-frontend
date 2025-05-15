@@ -46,36 +46,36 @@ const PricingAndCart = () => {
     {
       name: "Basic Health Checkup",
       description: "CBC, Blood Sugar, Cholesterol, Kidney Function",
-      price: "₹399",
+      price: "399",
       homeCollection: "Yes",
     },
     {
       name: "Full Body Checkup (70+)",
       description: "70+ Tests (CBC, LFT, KFT, Thyroid, Sugar, Liver)",
-      price: "₹999",
+      price: "999",
       homeCollection: "Yes",
     },
     {
       name: "Diabetes Care Package",
       description: "Sugar Test, HbA1c, Kidney Profile, Thyroid",
-      price: "₹699",
+      price: "699",
       homeCollection: "Yes",
     },
     {
       name: "Advanced Physiotherapy ",
       description: "Consultation + 3 Therapy Sessions",
-      price: "₹899",
+      price: "899",
       homeCollection: "Yes",
     },
     {
       name: "Essential Vitamin Checkup",
       description: "Vitamin D, B12, Iron, Calcium, CBC",
-      price: "₹599",
+      price: "599",
       homeCollection: "Yes",
     },
   ];
 
-
+console.log(allServices)
 
 
   const [startIndex, setStartIndex] = useState(0);

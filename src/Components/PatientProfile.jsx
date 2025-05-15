@@ -109,7 +109,7 @@ const PatientProfile = () => {
 
   return (
     <>
-      <BreadCrumb first="Patient Dashboard" second="Patient Profile" firstLink="/pdash" secondLink="/patientprofile" />
+      <BreadCrumb first="Patient Dashboard" second="Patient Profile" firstLink="/pdash" secondLink="/patientlogin" />
       
       <Typography variant="h4" gutterBottom>
         Patient History

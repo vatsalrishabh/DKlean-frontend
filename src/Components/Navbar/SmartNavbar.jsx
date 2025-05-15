@@ -13,6 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import CallIcon from "@mui/icons-material/Call";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import LanIcon from "@mui/icons-material/Lan";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import InfoIcon from "@mui/icons-material/Info";
@@ -27,7 +28,10 @@ const SmartNavbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDrawer = (state) => (event) => {
-    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
     setOpen(state);
@@ -64,7 +68,11 @@ const SmartNavbar = () => {
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton component={Link} to={item.link} onClick={toggleDrawer(false)}>
+            <ListItemButton
+              component={Link}
+              to={item.link}
+              onClick={toggleDrawer(false)}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
@@ -74,7 +82,11 @@ const SmartNavbar = () => {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/donate" onClick={toggleDrawer(false)}>
+          <ListItemButton
+            component={Link}
+            to="/donate"
+            onClick={toggleDrawer(false)}
+          >
             <ListItemIcon>
               <VolunteerActivismIcon />
             </ListItemIcon>
@@ -82,7 +94,11 @@ const SmartNavbar = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding className="no-close">
-          <ListItemButton component={Link} to="/patientlogin" onClick={toggleDrawer(false)}>
+          <ListItemButton
+            component={Link}
+            to="/patientlogin"
+            onClick={toggleDrawer(false)}
+          >
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
@@ -101,6 +117,19 @@ const SmartNavbar = () => {
       </div>
 
       {/* Hamburger Menu for Mobile */}
+<div className="flex">
+      {/* the donate button on SmartNavbar ends */}
+      <div className="flex items-center p-2 bg-yellow-400 rounded-lg hover:bg-yellow-500 transition-all duration-300">
+        <FavoriteIcon sx={{ color: "white", fontSize: 20 }} />
+        <Link
+          to="/donate"
+          className="text-white text-sm font-semibold ml-2 hover:text-gray-200 transition-all duration-300"
+        >
+          Donate
+        </Link>
+      </div>
+      {/* the donate button on SmartNavbar ends */}
+
       <Button onClick={toggleDrawer(true)} className="lg:hidden">
         <MenuIcon sx={{ fontSize: 30, color: "custom-gray0" }} />
       </Button>
@@ -113,37 +142,63 @@ const SmartNavbar = () => {
       {/* Desktop Navigation */}
       <div className="hidden lg:flex gap-6 items-center">
         {menuItems.map((item, index) => (
-          <Link key={index} to={item.link} className="text-custom-maroon0 font-medium hover:text-custom-green transition duration-300">
+          <Link
+            key={index}
+            to={item.link}
+            className="text-custom-maroon0 font-medium hover:text-custom-green transition duration-300"
+          >
             {item.text}
           </Link>
         ))}
-        <Link to="/donate" className="text-custom-green font-semibold px-4 py-2 rounded-md hover:bg-custom-green hover:text-white transition duration-300">
+        <Link
+          to="/donate"
+          className="text-custom-green font-semibold px-4 py-2 rounded-md hover:bg-custom-green hover:text-white transition duration-300"
+        >
           Donate
         </Link>
 
         {/* Login Dropdown */}
         <div className="relative">
-          <button onClick={toggleDropdown} className="text-custom-maroon2 font-semibold px-4 py-2 rounded-md hover:bg-custom-maroon2 hover:text-white transition duration-300">
-            Login/Sign Up {dropdownOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          <button
+            onClick={toggleDropdown}
+            className="text-custom-maroon2 font-semibold px-4 py-2 rounded-md hover:bg-custom-maroon2 hover:text-white transition duration-300"
+          >
+            Login/Sign Up{" "}
+            {dropdownOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </button>
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
-              <Link to="/patient-login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <Link
+                to="/patient-login"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
                 Patient Login
               </Link>
-              <Link to="/doctor-login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <Link
+                to="/doctor-login"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
                 Doctor Login
               </Link>
-              <Link to="/donor-login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <Link
+                to="/donor-login"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
                 Donor Login
               </Link>
-              <Link to="/admin-login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <Link
+                to="/admin-login"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
                 Admin Login
               </Link>
             </div>
           )}
         </div>
       </div>
+{/* the right side ends which has button and the menu logo */}
+</div>
+
     </nav>
   );
 };

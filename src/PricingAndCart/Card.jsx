@@ -39,7 +39,7 @@ const Card = ({ name, price, description, discount, serviceId, category }) => {
       
       {/* Price Section */}
       <div className="flex items-center space-x-2 justify-center">
-        <span className="text-lg font-bold text-[#8f1b1b]">{price}</span>
+        <span className="text-lg font-bold text-[#8f1b1b]">₹{price}</span>
         {discount && (
           <span className="text-sm text-green-500 bg-green-100 rounded-full px-2 py-1">
             {discount}

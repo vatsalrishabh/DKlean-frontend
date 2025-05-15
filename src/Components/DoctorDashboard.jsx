@@ -26,47 +26,28 @@ const DoctorDashboard = () => {
 
   const menuItems = [
     { name: "Dashboard", link: "/doctorlogin" },
-    { name: "Edit Appointments", link: "/doctor/UpcomingApp" },
+    // { name: "Edit Appointments", link: "/doctor/UpcomingApp" },
     { name: "Manage Appointment", link: "/doctor/manageApp" },
-    { name: "Contact Support", link: "/doctor/contactSupport" },
+  
   ];
 
   const dashboardCards = [
     {
-      title: "Edit Appointments",
+      title: "Edit Appoint.",
       description: "Schedule a new appointment with your preferred doctor.",
       iconType: "CalendarToday",
-      link: "/doctor/UpcomingApp",
+      link: "/doctor/manageApp",
       buttonText: "Book Now",
     },
     {
-      title: "Manage Appointments",
+      title: "Manage Appoint..",
       description: "View details of your past appointments and treatments.",
       iconType: "History",
       link: "/doctor/manageApp",
       buttonText: "View Details",
     },
-    {
-      title: "Profile Settings",
-      description: "Manage your profile and account settings.",
-      iconType: "Settings",
-      link: "/doctorProfile",
-      buttonText: "Manage",
-    },
-    {
-      title: "Contact Support",
-      description: "Access your medical records and reports anytime.",
-      iconType: "FileCopy",
-      link: "/doctor/contactSupport",
-      buttonText: "View Reports",
-    },
-    {
-      title: "Contact Support",
-      description: "Need help? Reach out to our support team.",
-      iconType: "HelpOutline",
-      link: "/doctor/contactSupport",
-      buttonText: "Get Support",
-    },
+   
+    
   ];
 
   // Function to render the right content based on the route

@@ -214,7 +214,7 @@ const EditPatientProfile = () => {
       console.log("Patient history updated successfully:", response.data);
 
       setTimeout(() => {
-        navigate("/patientprofile");
+        navigate("/patientlogin");
       }, 2000);
     } catch (error) {
       console.error(
