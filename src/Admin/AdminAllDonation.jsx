@@ -5,6 +5,8 @@ import { Grid, Card, Typography, Divider, TextField, Button } from "@mui/materia
 import CheckCircle from "@mui/icons-material/CheckCircle";
 import { BreadCrumb } from "../Components/DoctorDashboard/BreadCrumb";
 import AdminAllApp from "./AdminAllApp";
+import MonthlySummaryModal from './MonthlySummaryModal';
+
 
 const AdminAllDonation = () => {
   const [loggedInDonor, setLoggedInDonor] = useState(null);
@@ -12,6 +14,7 @@ const AdminAllDonation = () => {
   const [transactions, setTransactions] = useState([]);
   const [everyTran, setEveryTran] = useState([]);
   const [findUserId, setUserId] = useState("");
+    const [open, setOpen] = useState(false); //montly summary mofal opne clonse
 
   useEffect(() => {
     const storedDetails = localStorage.getItem("adminDetails");
@@ -48,6 +51,37 @@ console.log(transactions)
   const totalPendingDonation = transactions
     .filter((txn) => txn.status === "pending")
     .reduce((sum, txn) => sum + txn.amount, 0);
+// console.log(everyTran)
+function summarizeDonationsByMonth(donations) {
+  const summary = {};
+
+  donations.forEach(donation => {
+    const date = new Date(donation.donationDate);
+    const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+
+    if (!summary[month]) {
+      summary[month] = { month, successful: 0, pending: 0, total: 0 };
+    }
+
+    // Add donation amount to total
+    summary[month].total += donation.donationAmount;
+
+    // Add donation amount based on payment status
+    if (donation.paymentStatus === "completed") {
+      summary[month].successful += donation.donationAmount;
+    } else if (donation.paymentStatus === "pending") {
+      summary[month].pending += donation.donationAmount;
+    }
+  });
+
+  // Convert object to array and sort by month
+  return Object.values(summary).sort((a, b) => a.month.localeCompare(b.month));
+}
+
+
+const monthlySummary = summarizeDonationsByMonth(everyTran);
+console.log(monthlySummary);
+
 
   return (
     <div className="w-full p-6">
@@ -74,6 +108,28 @@ console.log(transactions)
         >
           Search
         </Button>
+      {monthlySummary && (
+  <>
+    <Button
+      onClick={() => setOpen(true)}
+      variant="contained"
+      sx={{
+        backgroundColor: "#8f1b1b",
+        marginLeft:"2px",
+        color: "white",
+        "&:hover": {
+          backgroundColor: "#701414",
+        },
+      }}
+    >
+      Show Monthly Summary
+    </Button>
+
+    <MonthlySummaryModal open={open} onClose={() => setOpen(false)} data={monthlySummary} />
+  </>
+)}
+
+        
       </div>
 
       {findUserId.toString().length > 0  ? (

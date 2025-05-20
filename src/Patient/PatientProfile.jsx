@@ -43,15 +43,15 @@ const PatientProfile = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`${BaseUrl}/api/user/profile`, {
-          headers: { Authorization: `Bearer ${loggedInUser.jwt}` },
+          headers: { Authorization: `Bearer ${loggedInUser?.jwt}` },
         });
-        setUserDetails(response.data.user);
+        setUserDetails(response.data?.user);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
-    if (loggedInUser.jwt) fetchUserData();
+    if (loggedInUser?.jwt) fetchUserData();
   }, [loggedInUser]);
 
   const handleInputChange = (e) => {
@@ -85,7 +85,7 @@ const PatientProfile = () => {
         `${BaseUrl}/api/user/updateProfile`,
         { ...userDetails, password },
         {
-          headers: { Authorization: `Bearer ${loggedInUser.jwt}` },
+          headers: { Authorization: `Bearer ${loggedInUser?.jwt}` },
         }
       );
       alert("Profile updated successfully!");
@@ -97,12 +97,12 @@ const PatientProfile = () => {
   };
 
   return (
-    <div className="Patient-Profile p-6 bg-gray-100 min-h-screen">
+    <div className="Patient-Profile p-6 bg-gray-100 ">
       <h1 className="text-3xl font-extrabold text-custom-maroon mb-8 text-center animate-fade-in">
         Edit Profile
       </h1>
-      <div className="max-w-4xl mx-auto bg-white shadow-lg p-8 rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-5xl mx-auto bg-white shadow-lg p-6 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             { label: "Name", name: "name", icon: faUser },
             { label: "Email", name: "email", icon: faEnvelope },
@@ -114,12 +114,12 @@ const PatientProfile = () => {
               <div className="flex items-center bg-gray-100 border border-gray-300 rounded-lg p-3 focus-within:ring-2 focus-within:ring-custom-maroon transition-all">
                 <FontAwesomeIcon
                   icon={field.icon}
-                  className="text-custom-maroon text-4xl mr-4 hover:scale-110 transition-transform"
+                  className="text-custom-maroon text-3xl mr-4"
                 />
                 <input
                   type="text"
                   name={field.name}
-                  value={userDetails[field.name]}
+                  value={userDetails?.[field.name] || ""}
                   onChange={handleInputChange}
                   className="flex-1 bg-transparent text-lg p-1 focus:outline-none"
                   readOnly={!editableFields[field.name]}
@@ -138,19 +138,19 @@ const PatientProfile = () => {
           ))}
 
           {["street", "city", "state", "zipCode", "country"].map((field, index) => (
-            <div key={index} className="relative col-span-2 animate-slide-in">
+            <div key={index} className="relative animate-slide-in">
               <label className="block text-xl font-bold text-custom-maroon mb-2 capitalize">
                 {field}
               </label>
               <div className="flex items-center bg-gray-100 border border-gray-300 rounded-lg p-3 focus-within:ring-2 focus-within:ring-custom-maroon transition-all">
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
-                  className="text-custom-maroon text-4xl mr-4 hover:scale-110 transition-transform"
+                  className="text-custom-maroon text-3xl mr-4"
                 />
                 <input
                   type="text"
                   name={`address.${field}`}
-                  value={userDetails.address[field]}
+                  value={userDetails?.address?.[field] || ""}
                   onChange={handleInputChange}
                   className="flex-1 bg-transparent text-lg p-1 focus:outline-none"
                   readOnly={!editableFields[`address.${field}`]}
@@ -188,6 +188,7 @@ const PatientProfile = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:ring-2 focus:ring-custom-maroon focus:outline-none"
+              placeholder="Enter your password"
             />
             <div className="flex justify-end space-x-2">
               <button

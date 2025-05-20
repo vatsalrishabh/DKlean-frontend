@@ -58,16 +58,10 @@ const  PatientDash = () => {
       title: "Profile Settings",
       description: "Manage your profile and account settings.",
       iconType: "Settings",
-      link: "/doctorProfile",
+      link: "/patientlogin",
       buttonText: "Manage",
     },
-    {
-      title: "Medical Reports",
-      description: "Access your medical records and reports anytime.",
-      iconType: "FileCopy",
-      link: "/medicalReports",
-      buttonText: "View Reports",
-    },
+   
     {
       title: "Contact Support",
       description: "Need help? Reach out to our support team.",
@@ -103,7 +97,7 @@ const  PatientDash = () => {
             firstLink="/patientlogin"
             secondLink="/profileSettings"
           />
-          <ContactUs />
+          <PatientProfile />
         </div>
       );
     } else if (location.pathname === "/bookAp") {

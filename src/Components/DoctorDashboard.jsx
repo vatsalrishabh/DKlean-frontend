@@ -37,7 +37,7 @@ const DoctorDashboard = () => {
       description: "Schedule a new appointment with your preferred doctor.",
       iconType: "CalendarToday",
       link: "/doctor/manageApp",
-      buttonText: "Book Now",
+      buttonText: "Edit Now",
     },
     {
       title: "Manage Appoint..",

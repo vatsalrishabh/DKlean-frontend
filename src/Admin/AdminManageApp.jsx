@@ -21,8 +21,21 @@ const AdminManageApp = () => {
       try {
         const response = await axios.get(`${BaseUrl}/api/payments/doctorBookings?doctorId=${loggedInUser.userId}`);
         if (response.status === 200) {
-          setAllAppointments(response.data.payments);
-          console.log(response.data);
+          
+       const parseDateTime = (appointment) => {
+  const [day, month, year] = appointment.date.split('-');
+  const startTime = appointment.time.split(' - ')[0]; // e.g., "17:00"
+  return new Date(`${year}-${month}-${day}T${startTime}:00`);
+};
+
+const sortedAppointments = response.data.payments.sort((a, b) => {
+  const dateA = parseDateTime(a);
+  const dateB = parseDateTime(b);
+  return dateB - dateA; // Descending order
+});
+
+        setAllAppointments(sortedAppointments);
+        console.log(response.data);
         }
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -39,20 +52,21 @@ const AdminManageApp = () => {
   const handleDeleteAppointment = (id) => {
     setAllAppointments((prev) => prev.filter((appointment) => appointment._id !== id));
   };
+  console.log(allAppointments)
 
   return (
     <div className="Manage-App p-4">
       <h1 className="text-2xl font-bold mb-4">Manage Appointments</h1>
-      <div className="overflow-x-auto">
-        <table className=" min-w-[900px] table-auto w-full border-collapse border border-gray-300 shadow-md rounded-lg overflow-x-auto text-sm">
+      <div className="overflow-x-auto w-[90vw]">
+        <table className="  table-auto  border-collapse border border-gray-300 shadow-md rounded-lg  text-sm">
           <thead className="bg-gray-100 text-gray-700 text-left">
             <tr>
               <th className="border px-4 py-2">#</th>
-              <th className="border px-4 py-2">Patient</th>
-              <th className="border px-4 py-2">Doctor</th>
+              <th className="border px-4 py-2">Patient Name</th>
+              <th className="border px-4 py-2">Doctor Name</th>
               <th className="border px-4 py-2">Service</th>
-              <th className="border px-4 py-2">Date</th>
-              <th className="border px-4 py-2">Time</th>
+              <th className="border px-4 py-2">D.O.A.</th>
+              <th className="border px-4 py-2">Timeslot</th>
               <th className="border px-4 py-2">Amount</th>
               <th className="border px-4 py-2">Status</th>
               <th className="border px-4 py-2">Actions</th>

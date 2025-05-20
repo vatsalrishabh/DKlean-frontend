@@ -8,7 +8,7 @@ const ContactUs = () => {
         <iframe
           title="Dklean Health Care Public Charitable Trust (N.G.O.)"
           className="w-full h-full rounded-lg shadow-lg"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.002630609211!2d77.60635597461699!3d12.90755211628019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x44bb07227a52240b%3A0xc487f0d4e31ec0ac!2sNebulaNet%20(Website%20Apps%20Solutions)!5e0!3m2!1sen!2sin!4v1740068993946!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.382747608241!2d77.03285819999999!3d28.6182887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d05df90671067%3A0xfc69115db1265dbe!2sDklean%20Path%20Lab%20And%20Collection%20Center!5e0!3m2!1sen!2sin!4v1747326436442!5m2!1sen!2sin" 
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -38,7 +38,7 @@ const ContactUs = () => {
           <div className="space-y-3">
             <div>
               <h4 className="text-lg font-semibold">Call Directly:</h4>
-              <p className="text-lg font-bold text-yellow-300">+91 81235 73660</p>
+              <p className="text-lg font-bold text-yellow-300">+91 9355647906</p>
             </div>
             
             <div>

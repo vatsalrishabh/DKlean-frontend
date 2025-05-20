@@ -29,9 +29,8 @@ const Navbar = (props) => {
       { to: "/doctorProfile", name: "Profile" }
     ],
     admin: [
-      { to: "/adminDashboard", name: "Admin Panel" },
-      { to: "/manageUsers", name: "Manage Users" },
-      { to: "/reports", name: "Reports & Analytics" }
+      { to: "/adminlogin", name: "Admin Panel" },
+
     ]
   };
   

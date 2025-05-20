@@ -368,6 +368,18 @@ function App() {
             element={
               loggedInUser.isloggedIn ? (
                 <>
+                 <PatientNavbar
+                    localstorage="userDetails"
+                    oneName="Dashboard"
+                    linkOne="/patientlogin"
+                    twoName="All Appointments"
+                    linkTwo="/pApp"
+                  threeName="Book an Appointment"
+                    linkThree="/patientlogin"
+                    fourtName="Profile Setting"
+                    linkFour="/patientlogin"
+                  /> 
+                <Navbar/>
               <Dates/>   {/* the calendar and time slots - in timeslots only two componets Universalpatieent, FinalSelect */}
                   {/* <AllAppointment /> */}
                 </>
@@ -493,8 +505,7 @@ function App() {
                     localstorage="doctorDetails"
                     oneName="Dashboard"
                     linkOne="/doctorlogin"
-                    twoName="Edit Appointments"
-                    linkTwo="/doctor/UpcomingApp"
+                 
                     threeName="Manage Appointment"
                     linkThree="/doctor/manageApp"
                    
@@ -520,12 +531,10 @@ function App() {
                     localstorage="doctorDetails"
                     oneName="Dashboard"
                     linkOne="/doctorlogin"
-                    twoName="Edit Appointments"
-                    linkTwo="/doctor/UpcomingApp"
+                 
                     threeName="Manage Appointment"
                     linkThree="/doctor/manageApp"
-                    fourtName="Contact Support"
-                    linkFour="/doctor/contactSupport"
+                  
                   />
                   <DoctorDashboard />
                 </>
@@ -549,12 +558,10 @@ function App() {
                     localstorage="doctorDetails"
                     oneName="Dashboard"
                     linkOne="/doctorlogin"
-                    twoName="Edit Appointments"
-                    linkTwo="/doctor/UpcomingApp"
+                 
                     threeName="Manage Appointment"
                     linkThree="/doctor/manageApp"
-                    fourtName="Contact Support"
-                    linkFour="/doctor/contactSupport"
+                   
                   />
                   <DoctorDashboard />
                 </>
@@ -581,12 +588,11 @@ function App() {
                     localstorage="doctorDetails"
                     oneName="Dashboard"
                     linkOne="/doctorlogin"
-                    twoName="Edit Appointments"
-                    linkTwo="/doctor/UpcomingApp"
+                    // twoName="Edit Appointments"
+                    // linkTwo="/doctor/UpcomingApp"
                     threeName="Manage Appointment"
                     linkThree="/doctor/manageApp"
-                    fourtName="Contact Support"
-                    linkFour="/doctor/contactSupport"
+                
                   />
                   <DoctorDashboard />
                 </>

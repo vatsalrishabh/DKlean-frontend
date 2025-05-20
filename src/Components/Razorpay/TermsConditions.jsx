@@ -105,7 +105,7 @@ const TermsConditions = () => {
         <Section
           icon={<FaExclamationTriangle className="text-yellow-500 text-xl" />}
           title="10. Dispute Resolution"
-          text="In case of any disputes, the matter will be resolved amicably. If not resolved, the jurisdiction shall lie with the courts of Bengaluru, Karnataka."
+          text="In case of any disputes, the matter will be resolved amicably. If not resolved, the jurisdiction shall lie with the courts of Delhi."
         />
 
         <div className="mt-10 flex justify-center">
